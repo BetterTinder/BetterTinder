@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +20,9 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -29,13 +30,13 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class Profile extends Application{
+public class UserProfile {
 	ArrayList<String> images = new ArrayList<String>();
 	Image image;
 	ImageView view = new ImageView();
 	Text userBio;
 
-	public Profile() {
+	public UserProfile() {
 		//import method to return the array
 		getBio();
 		images.add("profile.jpg");
@@ -48,8 +49,8 @@ public class Profile extends Application{
 		view.setImage(image);
 		view.setFitWidth(250);
 		view.setFitHeight(250);
-		view.setTranslateX(1);
-		view.setTranslateY(-90);
+		view.setX(105);
+		view.setY(30);
 		view.setScaleX(1);
 		view.setScaleY(1);
 		view.setPreserveRatio(true);
@@ -89,14 +90,16 @@ public class Profile extends Application{
 		//Pane
 		StackPane borderPane = new StackPane();
 		Scene ProfileScene = new Scene(borderPane, 400, 500); 
-
+		VBox vbox = new VBox();
+		
+		
 		//Left Scroll
 		Button leftscroll = new Button("<");
-		VBox lvbox = new VBox();
-		lvbox.setTranslateX(50);
-		lvbox.setTranslateY(150);
-		lvbox.getChildren().add(leftscroll);
-		borderPane.getChildren().addAll(lvbox);
+		leftscroll.setPadding(new Insets(15,15,15,15));
+		leftscroll.setLayoutX(400);
+		leftscroll.setLayoutY(400);
+		
+
 		leftscroll.setOnAction(click->{
 			Collections.rotate(images, 1);
 			image = new Image(images.get(0));
@@ -106,46 +109,21 @@ public class Profile extends Application{
 
 		//Right Scroll
 		Button rightscroll = new Button(">");
-		VBox rvbox = new VBox();
-		rvbox.setTranslateX(325);
-		rvbox.setTranslateY(150);
-		rvbox.getChildren().add(rightscroll);
-		borderPane.getChildren().addAll(rvbox);
+
+		rightscroll.setPadding(new Insets(15,15,15,15));
+
+
 		rightscroll.setOnAction(click->{
 			Collections.rotate(images, -1);
 			image = new Image(images.get(0));
 			view = change(image);
 			System.out.println(images.get(0));
 		});
-		//Add
-
-
-		//Remove
-		Button add = new Button("Add");
-		VBox addVBox = new VBox();
-		addVBox.setTranslateX(120);
-		addVBox.setTranslateY(295);
-		addVBox.getChildren().add(add);
-		borderPane.getChildren().addAll(addVBox);
-		add.setOnAction(click->{
-			System.out.println("add");
-		});
-
-		//Remove
-		Button remove = new Button("Remove");
-		VBox removeVBox = new VBox();
-		removeVBox.setTranslateX(220);
-		removeVBox.setTranslateY(295);
-		removeVBox.getChildren().add(remove);
-		borderPane.getChildren().addAll(removeVBox);
-		remove.setOnAction(click->{
-			System.out.println("remove");
-		});
 
 		//Add text and image to Pane
-		userBio.setTranslateX(10.0f);
-		userBio.setTranslateY(90.0f);
-		borderPane.getChildren().addAll(view,userBio);
+		userBio.setX(20.0f);
+		userBio.setY(350.0f);
+		borderPane.getChildren().addAll(view,userBio,leftscroll);
 
 		//Stage
 		ProfileStage.setResizable(false);
@@ -154,3 +132,4 @@ public class Profile extends Application{
 		ProfileStage.show(); 
 	}
 }
+
