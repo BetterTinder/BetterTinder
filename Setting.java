@@ -41,6 +41,11 @@ public class Setting extends Application  {
         ComboBox comboBox3 = new ComboBox(yesno);
         ComboBox comboBox4 = new ComboBox(yesno);
         ComboBox comboBox5 = new ComboBox(yesno);
+        ComboBox comboBox6 = new ComboBox(yesno);
+        ComboBox comboBox7 = new ComboBox(yesno);
+        ComboBox comboBox8 = new ComboBox(yesno);
+        ComboBox comboBox9 = new ComboBox(yesno);
+        ComboBox comboBox10 = new ComboBox(yesno);
         ComboBox comboBox = new ComboBox(options);
         ObservableList<String> option = 
         	    FXCollections.observableArrayList(
@@ -83,7 +88,10 @@ public class Setting extends Application  {
         Label dog = new Label("Do you like dogs?");
         Label doge = new Label("Do you have a dog?");
         Label veg = new Label("Do you eat meat?");
-        Label mov = new Label("Do you enjoy watching movies?");
+        Label mov = new Label("Do you enjoy movies?");
+        Label wal = new Label("Do you enjoy walking?");
+        Label mus = new Label("Do you like music?");
+        Label dem = new Label("Do you love democracy?");
         
         GridPane gridPane = new GridPane();
         gridPane.add(comboBox,1,3);
@@ -103,13 +111,19 @@ public class Setting extends Application  {
         gridPane.add(comboBox4, 1, 7);
         gridPane.add(mov, 0, 8);
         gridPane.add(comboBox5, 1, 8);
+        gridPane.add(wal, 0, 9);
+        gridPane.add(comboBox6, 1, 9);
+        gridPane.add(mus, 0, 10);
+        gridPane.add(comboBox7, 1, 10);
+        gridPane.add(dem, 0, 11);
+        gridPane.add(comboBox8, 1, 11);
         gridPane.add(save, 400, 500);
         
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change who they sleep with");
+            	System.out.println("The user would like sleep with the gender of:");
             	System.out.println(genderBox.getValue());
             	}
         });
@@ -153,11 +167,35 @@ public class Setting extends Application  {
             	System.out.println(comboBox5.getValue());
             	}
         });
+        comboBox6.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox6.getValue());
+            	}
+        });
+        comboBox7.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox7.getValue());
+            	}
+        });
+        comboBox8.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox8.getValue());
+            	}
+        });
         genderBox1.setOnAction(new EventHandler<ActionEvent>() {
          	 
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("The user would like to identigy as");
+            	System.out.println("The user would like to identify as:");
             	System.out.println(genderBox1.getValue());
             	}
         });
