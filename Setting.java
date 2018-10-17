@@ -18,13 +18,12 @@ public class Setting extends Application  {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Settings");
 
-        Button male = new Button("Male");
-        Button fem = new Button("Female");
-        Button age = new Button("Current Age");
+        
         Button save = new Button("Apply Changes");
         Button ins = new Button("Current Interests");
         Label agg = new Label("Age:");
         Label gen = new Label("Gender preference:");
+        Label geb = new Label("Gender:");
         Label loc = new Label("Location:");
         Label inr = new Label("Intrests:");
         ObservableList<String> options = 
@@ -34,37 +33,74 @@ public class Setting extends Application  {
         	        "Daytona"
         	    );
         ComboBox comboBox = new ComboBox(options);
+        ObservableList<String> option = 
+        	    FXCollections.observableArrayList(
+        	        "10",
+        	        "11",
+        	        "13",
+        	        "14",
+        	        "15",
+        	        "16",
+        	        "17",
+        	        "18",
+        	        "19",
+        	        "20",
+        	        "21"
+        	    );
+        ObservableList<String> optionn = 
+        	    FXCollections.observableArrayList(
+        	        "male",
+        	        "female",
+        	        "",
+        	        "assault vehicle",
+        	        "yes/all"
+        	    );
+        ComboBox genderBox = new ComboBox(optionn);
+        ComboBox genderBox1 = new ComboBox(optionn);
+        ComboBox comboBox1 = new ComboBox(option);
         GridPane gridPane = new GridPane();
-        gridPane.add(comboBox,1,2);
+        gridPane.add(comboBox,1,3);
         gridPane.add(gen, 0, 0);
-        gridPane.add(male, 1, 0);
-        gridPane.add(fem, 2, 0);
-        gridPane.add(agg, 0, 1);
-        gridPane.add(age, 1, 1);
-        gridPane.add(loc, 0, 2);
-        gridPane.add(inr, 0, 3);
-        gridPane.add(ins, 1, 3);
+        gridPane.add(geb, 0, 1);
+        gridPane.add(genderBox, 1, 0);
+        gridPane.add(genderBox1, 1, 1);
+        gridPane.add(agg, 0, 2);
+        gridPane.add(comboBox1, 1, 2);
+        gridPane.add(loc, 0, 3);
+        gridPane.add(inr, 0, 4);
+        gridPane.add(ins, 1, 4);
         gridPane.add(save, 400, 500);
         
-        male.setOnAction(new EventHandler<ActionEvent>() {
-        	 
+        genderBox.setOnAction(new EventHandler<ActionEvent>() {
+          	 
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("The user would like to sleep with men");
+            	System.out.println("The user would like to change who they sleep with");
+            	System.out.println(genderBox.getValue());
             	}
         });
-        fem.setOnAction(new EventHandler<ActionEvent>() {
-       	 
+        genderBox1.setOnAction(new EventHandler<ActionEvent>() {
+         	 
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("The user would like to sleep with women");
+            	System.out.println("The user would like to identigy as");
+            	System.out.println(genderBox.getValue());
             	}
         });
-        age.setOnAction(new EventHandler<ActionEvent>() {
+        comboBox1.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user would like to change their age");
+            	System.out.println(comboBox1.getValue());
+            	}
+        });
+        comboBox.setOnAction(new EventHandler<ActionEvent>() {
+          	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user would like to change their location");
+            	System.out.println(comboBox.getValue());
             	}
         });
         save.setOnAction(new EventHandler<ActionEvent>() {
