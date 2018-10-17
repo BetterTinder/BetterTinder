@@ -18,20 +18,29 @@ public class Setting extends Application  {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Settings");
 
-        
-        Button save = new Button("Apply Changes");
-        Button ins = new Button("Current Interests");
-        Label agg = new Label("Age:");
-        Label gen = new Label("Gender preference:");
-        Label geb = new Label("Gender:");
-        Label loc = new Label("Location:");
-        Label inr = new Label("Intrests:");
         ObservableList<String> options = 
         	    FXCollections.observableArrayList(
         	        "Scranton",
         	        "Port Orange",
-        	        "Daytona"
+        	        "Daytona",
+        	        "Disney",
+        	        "I dont know/unsure",
+        	        "600 Pennsylvania Ave.",
+        	        "1725 Slough Ave",
+        	        "Detroit",
+        	        "Asia",
+        	        "South Africa",
+        	        "Not listed"
         	    );
+        ObservableList<String> yesno = 
+        	    FXCollections.observableArrayList(
+        	        "Yes",
+        	        "No"
+        	    );
+        ComboBox comboBox2 = new ComboBox(yesno);
+        ComboBox comboBox3 = new ComboBox(yesno);
+        ComboBox comboBox4 = new ComboBox(yesno);
+        ComboBox comboBox5 = new ComboBox(yesno);
         ComboBox comboBox = new ComboBox(options);
         ObservableList<String> option = 
         	    FXCollections.observableArrayList(
@@ -45,19 +54,37 @@ public class Setting extends Application  {
         	        "18",
         	        "19",
         	        "20",
-        	        "21"
+        	        "21",
+        	        "22",
+        	        "23",
+        	        "24",
+        	        "25"
         	    );
         ObservableList<String> optionn = 
         	    FXCollections.observableArrayList(
-        	        "male",
-        	        "female",
-        	        "",
-        	        "assault vehicle",
-        	        "yes/all"
+        	        "Male",
+        	        "Female",
+        	        "None",
+        	        "Assault vehicle",
+        	        "Yes/all",
+        	        "Transgendered",
+        	        "Chinese"
         	    );
         ComboBox genderBox = new ComboBox(optionn);
         ComboBox genderBox1 = new ComboBox(optionn);
         ComboBox comboBox1 = new ComboBox(option);
+        
+        Button save = new Button("Apply Changes");
+        Label agg = new Label("Age:");
+        Label gen = new Label("Gender preference:");
+        Label geb = new Label("Gender:");
+        Label loc = new Label("Location:");
+        Label inr = new Label("Intrests:");
+        Label dog = new Label("Do you like dogs?");
+        Label doge = new Label("Do you have a dog?");
+        Label veg = new Label("Do you eat meat?");
+        Label mov = new Label("Do you enjoy watching movies?");
+        
         GridPane gridPane = new GridPane();
         gridPane.add(comboBox,1,3);
         gridPane.add(gen, 0, 0);
@@ -68,7 +95,14 @@ public class Setting extends Application  {
         gridPane.add(comboBox1, 1, 2);
         gridPane.add(loc, 0, 3);
         gridPane.add(inr, 0, 4);
-        gridPane.add(ins, 1, 4);
+        gridPane.add(dog, 0, 5);
+        gridPane.add(comboBox2, 1, 5);
+        gridPane.add(doge, 0, 6);
+        gridPane.add(comboBox3, 1, 6);
+        gridPane.add(veg, 0, 7);
+        gridPane.add(comboBox4, 1, 7);
+        gridPane.add(mov, 0, 8);
+        gridPane.add(comboBox5, 1, 8);
         gridPane.add(save, 400, 500);
         
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -79,12 +113,52 @@ public class Setting extends Application  {
             	System.out.println(genderBox.getValue());
             	}
         });
+        comboBox2.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox2.getValue());
+            	}
+        });
+        comboBox3.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox3.getValue());
+            	}
+        });
+        comboBox3.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox3.getValue());
+            	}
+        });
+        comboBox4.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox4.getValue());
+            	}
+        });
+        comboBox5.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(comboBox5.getValue());
+            	}
+        });
         genderBox1.setOnAction(new EventHandler<ActionEvent>() {
          	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user would like to identigy as");
-            	System.out.println(genderBox.getValue());
+            	System.out.println(genderBox1.getValue());
             	}
         });
         comboBox1.setOnAction(new EventHandler<ActionEvent>() {
@@ -108,13 +182,6 @@ public class Setting extends Application  {
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("Changes saved");
-            	}
-        });
-        ins.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change their interests");
             	}
         });
 
