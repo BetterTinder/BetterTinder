@@ -37,16 +37,6 @@ public class Setting extends Application  {
         	        "Yes",
         	        "No"
         	    );
-        ComboBox comboBox2 = new ComboBox(yesno);
-        ComboBox comboBox3 = new ComboBox(yesno);
-        ComboBox comboBox4 = new ComboBox(yesno);
-        ComboBox comboBox5 = new ComboBox(yesno);
-        ComboBox comboBox6 = new ComboBox(yesno);
-        ComboBox comboBox7 = new ComboBox(yesno);
-        ComboBox comboBox8 = new ComboBox(yesno);
-        ComboBox comboBox9 = new ComboBox(yesno);
-        ComboBox comboBox10 = new ComboBox(yesno);
-        ComboBox comboBox = new ComboBox(options);
         ObservableList<String> option = 
         	    FXCollections.observableArrayList(
         	        "10",
@@ -63,7 +53,12 @@ public class Setting extends Application  {
         	        "22",
         	        "23",
         	        "24",
-        	        "25"
+        	        "25",
+        	        "26",
+        	        "27",
+        	        "28",
+        	        "29",
+        	        "30"
         	    );
         ObservableList<String> optionn = 
         	    FXCollections.observableArrayList(
@@ -77,7 +72,18 @@ public class Setting extends Application  {
         	    );
         ComboBox genderBox = new ComboBox(optionn);
         ComboBox genderBox1 = new ComboBox(optionn);
+        ComboBox comboBox = new ComboBox(options);
         ComboBox comboBox1 = new ComboBox(option);
+        ComboBox comboBox2 = new ComboBox(yesno);
+        ComboBox comboBox3 = new ComboBox(yesno);
+        ComboBox comboBox4 = new ComboBox(yesno);
+        ComboBox comboBox5 = new ComboBox(yesno);
+        ComboBox comboBox6 = new ComboBox(yesno);
+        ComboBox comboBox7 = new ComboBox(yesno);
+        ComboBox comboBox8 = new ComboBox(yesno);
+        ComboBox comboBox9 = new ComboBox(yesno);
+        ComboBox comboBox10 = new ComboBox(yesno);
+
         
         Button save = new Button("Apply Changes");
         Label agg = new Label("Age:");
@@ -125,6 +131,30 @@ public class Setting extends Application  {
             public void handle(ActionEvent event) {
             	System.out.println("The user would like sleep with the gender of:");
             	System.out.println(genderBox.getValue());
+            	}
+        });
+        genderBox1.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user would like to identify as:");
+            	System.out.println(genderBox1.getValue());
+            	}
+        });
+        comboBox.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user would like to change their location");
+            	System.out.println(comboBox.getValue());
+            	}
+        });
+        comboBox1.setOnAction(new EventHandler<ActionEvent>() {
+       	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user would like to change their age");
+            	System.out.println(comboBox1.getValue());
             	}
         });
         comboBox2.setOnAction(new EventHandler<ActionEvent>() {
@@ -189,30 +219,6 @@ public class Setting extends Application  {
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
             	System.out.println(comboBox8.getValue());
-            	}
-        });
-        genderBox1.setOnAction(new EventHandler<ActionEvent>() {
-         	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to identify as:");
-            	System.out.println(genderBox1.getValue());
-            	}
-        });
-        comboBox1.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change their age");
-            	System.out.println(comboBox1.getValue());
-            	}
-        });
-        comboBox.setOnAction(new EventHandler<ActionEvent>() {
-          	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change their location");
-            	System.out.println(comboBox.getValue());
             	}
         });
         save.setOnAction(new EventHandler<ActionEvent>() {
