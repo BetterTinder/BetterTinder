@@ -7,7 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-
+/**
+ * 
+ * @author super
+ *
+ */
 public class Help extends Application  {
 
 
