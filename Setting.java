@@ -3,10 +3,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -90,6 +93,7 @@ public class Setting extends Application  {
         ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
         
         //label declarations
+        String style = "-fx-background-color: rgba(50, 0, 255, 0.75);";
         Button save = new Button("Apply Changes");
         Label agg = new Label("Age:");
         Label gen = new Label("Gender preference:");
@@ -106,6 +110,8 @@ public class Setting extends Application  {
         
         //adding all of it to the gridpane
         GridPane gridPane = new GridPane();
+        gridPane.setStyle(style);
+        gridPane.setPadding(new Insets(25));
         gridPane.add(comboBox,1,3);
         gridPane.add(gen, 0, 0);
         gridPane.add(geb, 0, 1);
