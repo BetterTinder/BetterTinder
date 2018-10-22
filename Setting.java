@@ -10,7 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-
+/**
+ * 
+ * @author super
+ *
+ */
 public class Setting extends Application  {
 
 
@@ -20,17 +24,11 @@ public class Setting extends Application  {
 
         ObservableList<String> options = 
         	    FXCollections.observableArrayList(
-        	        "Scranton",
+        	        "Holly Hill",
         	        "Port Orange",
         	        "Daytona",
-        	        "Disney",
-        	        "I dont know/unsure",
-        	        "600 Pennsylvania Ave.",
-        	        "1725 Slough Ave",
-        	        "Detroit",
-        	        "Asia",
-        	        "South Africa",
-        	        "Not listed"
+        	        "Deland",
+        	        "Ormond Beach"
         	    );
         ObservableList<String> yesno = 
         	    FXCollections.observableArrayList(
@@ -64,11 +62,7 @@ public class Setting extends Application  {
         	    FXCollections.observableArrayList(
         	        "Male",
         	        "Female",
-        	        "None",
-        	        "Assault vehicle",
-        	        "Yes/all",
-        	        "Transgendered",
-        	        "Chinese"
+        	        "Other"
         	    );
         ComboBox genderBox = new ComboBox(optionn);
         ComboBox genderBox1 = new ComboBox(optionn);
