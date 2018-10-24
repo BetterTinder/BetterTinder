@@ -37,7 +37,8 @@ public class Setting extends Application  {
         ObservableList<String> yesno = 
         	    FXCollections.observableArrayList(
         	        "Yes",
-        	        "No"
+        	        "No",
+        	        "Prefer not to answer"
         	    );
         ObservableList<String> option = 
         	    FXCollections.observableArrayList(
@@ -93,7 +94,7 @@ public class Setting extends Application  {
         ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
         
         //label declarations
-        String style = "-fx-background-color: rgba(50, 0, 255, 0.75);";
+        String style = "-fx-background-color: rgba(50, 0, 255, 0.5);";
         Button save = new Button("Apply Changes");
         Label agg = new Label("Age:");
         Label gen = new Label("Gender preference:");
