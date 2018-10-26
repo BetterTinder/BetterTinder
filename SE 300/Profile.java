@@ -1,61 +1,47 @@
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
 import javafx.application.Application;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class Profile extends Application{
+
+public class Profile extends StackPane{
+	String directory = System.getProperty("user.dir"); String dir = directory + ("\\\\");
 	ArrayList<String> imagesList = new ArrayList<String>();
 	Image image; ImageView view = new ImageView();
-	Text userBio;
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
 
 	public Profile() {
-		//import method to return the array
-		getBio();
-		imagesList.add("profile.jpg");
-		imagesList.add("Test1.JPG");
+		HBox Hbox1 = new HBox(268);
+		Hbox1.setTranslateX(40);
+		Hbox1.setTranslateY(165);
+		Hbox1.getChildren().addAll(getLeftBtn(),getRightBtn());
+		HBox Hbox2 = new HBox(5);
+		Hbox2.setTranslateX(1);
+		Hbox2.setTranslateY(1);
+		Hbox2.getChildren().addAll(getSettingBtn(),getAddBtn(),getRemoveBtn());
+		
+		imagesList.add("profile.jpg"); //must change to get default image or the first image
+		imagesList.add("Test1.jpg");
 		image = new Image(imagesList.get(0));
 		change(image);
+		
+		this.getChildren().addAll(Hbox2,Hbox1,getname(),getBio(),view);
 	}
 
 	public ImageView change(Image image) {
@@ -63,15 +49,16 @@ public class Profile extends Application{
 		view.setFitWidth(250);
 		view.setFitHeight(250);
 		view.setTranslateX(1);
-		view.setTranslateY(-90);
+		view.setTranslateY(-70);
 		view.setScaleX(1);
 		view.setScaleY(1);
 		view.setPreserveRatio(true);
 		return view;
 	}
 
-	public void getBio() {
+	public Text getBio() {
 		BufferedReader br = null;
+		Text userBio;
 		try {
 			br = new BufferedReader(new FileReader("BioTest.txt"));
 		} catch (FileNotFoundException e1) {
@@ -98,49 +85,39 @@ public class Profile extends Application{
 		String userBioString = sb.toString();
 		userBio = new Text(userBioString);
 		userBio.setWrappingWidth(400);
+		userBio.setTranslateX(10.0f);
+		userBio.setTranslateY(100.0f);
+		return userBio;
 	}
 
-	public VBox getLeftBtn(){
+	public Button getLeftBtn(){
 		//Left Scroll
 		Button leftscroll = new Button("<");
-		VBox lvbox = new VBox();
-		lvbox.setTranslateX(50);
-		lvbox.setTranslateY(150);
-		lvbox.getChildren().add(leftscroll);
 		leftscroll.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Collections.rotate(imagesList, 1);
 				image = new Image(imagesList.get(0));
 				view=change(image);
-				//	System.out.println(imagesList.get(0));
+				//System.out.println(imagesList.get(0));
 			}
 		});
-		return lvbox;
+		return leftscroll;
 	}
 
-	public VBox getRightBtn() {
+	public Button getRightBtn() {
 		Button rightscroll = new Button(">");
-		VBox rvbox = new VBox();
-		rvbox.setTranslateX(325);
-		rvbox.setTranslateY(150);
-		rvbox.getChildren().add(rightscroll);
 		rightscroll.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Collections.rotate(imagesList, -1);
 				image = new Image(imagesList.get(0));
 				view = change(image);
-				//				System.out.println(imagesList.get(0));
 			}
 		});
-		return rvbox;
+		return rightscroll;
 	}
 
-	public VBox getAddBtn() {
+	public Button getAddBtn() { //Reads the file
 		Button add = new Button("Add");
-		VBox addVBox = new VBox();
-		addVBox.setTranslateX(120);
-		addVBox.setTranslateY(295);
-		addVBox.getChildren().add(add);
 		add.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Stage getImageStage = new Stage();
@@ -148,14 +125,15 @@ public class Profile extends Application{
 				checkFileChooser(photoChosen);
 				photoChosen.setTitle("Riddle Vision: Grab A Photo");
 				File file = photoChosen.showOpenDialog(getImageStage);
+				//So no error pops up in the console if the user decided to cancel, because a photo is not required
 				if (file !=null) {
+					if (imagesList.size()<5){
 					String filename = file.getName(); //grabs the name of the imported photo
-					imagesList.add(filename); //adds it to the list
-					System.out.print(imagesList);
-					String directory = ("P:\\eclipse-workplace\\SE 300\\");//The directory
-					String reLocateFileName = directory + filename;//The directory + The files name
+					imagesList.add(2,filename); //adds it to the list
+					String reLocateFileName = dir + filename;//The directory + The files name
 					file.renameTo(new File(reLocateFileName)); //adds the image to directory
-				}
+				}}
+				System.out.print(imagesList.size());
 			}
 			private void checkFileChooser(FileChooser photoChosen) {
 				photoChosen.getExtensionFilters().addAll(
@@ -165,18 +143,12 @@ public class Profile extends Application{
 						new FileChooser.ExtensionFilter("png", "*.png")
 						);
 			}
-
 		});
-
-		return addVBox;
+		return add;
 	}
 
-	public VBox getRemoveBtn() {
+	public Button getRemoveBtn() {
 		Button remove = new Button("Remove");
-		VBox removeVBox = new VBox();
-		removeVBox.setTranslateX(220);
-		removeVBox.setTranslateY(295);
-		removeVBox.getChildren().add(remove);
 		remove.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				String currentfile=	imagesList.get(0);
@@ -186,46 +158,23 @@ public class Profile extends Application{
 				fileRemove.delete(); //remove from the directory
 			}
 		});
-		return removeVBox;
+		return remove;
 	}
 
-	public VBox getSettingBtn() {
+	public Button getSettingBtn() {
 		Button setting = new Button("Settings");
-		VBox setVBox = new VBox();
-		setVBox.setTranslateX(1);
-		setVBox.setTranslateY(1);
-		setVBox.getChildren().add(setting);
-
 		setting.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				//		System.out.println("Settings");
+				System.out.println("ok");
 			}
 		});
-		return setVBox;
-
+		return setting;
 	}
 
-	public void start(Stage ProfileStage) {
-		//Pane
-		StackPane borderPane = new StackPane();
-		Scene ProfileScene = new Scene(borderPane, 400, 500); 
-
-		//Add the Buttons
-		borderPane.getChildren().addAll(getLeftBtn(),getRightBtn(),getAddBtn(),
-				getRemoveBtn());//getSettingBtn());
-
-		//Add text and image to Pane
+	public Text getname() {
 		Text username = new Text(name); //Converts the parameter name to a text
 		username.setTranslateX(4.0f);
-		username.setTranslateY(-230.0f);
-		userBio.setTranslateX(10.0f);
-		userBio.setTranslateY(100.0f);
-		borderPane.getChildren().addAll(username,userBio,view);
-
-		//Stage
-		ProfileStage.setResizable(false);
-		ProfileStage.setTitle("Riddle Vision");
-		ProfileStage.setScene(ProfileScene); 
-		ProfileStage.show(); 
+		username.setTranslateY(-210.0f);
+		return username;
 	}
 }

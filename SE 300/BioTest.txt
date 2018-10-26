@@ -1,6 +1,1 @@
-<<<<<<< HEAD
 Hello my name is Keanu Reeve, falling in love and having a relationship are two different things.
-=======
-Hello my Name is Keanu Reeves and I am an actor. I am single...
-//Hey umm... shouldn't everyone on the app be single?
->>>>>>> f455a96505f955d5972d9378c8b6741d3edf37bf
