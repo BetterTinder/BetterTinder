@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -18,11 +19,9 @@ import javafx.stage.Stage;
  * @author super
  *
  */
-public class Setting extends Application  {
+public class Setting extends Pane  {
 
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public Setting(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Settings");
 
         //Sting lists for the combo boxes
@@ -42,13 +41,6 @@ public class Setting extends Application  {
         	    );
         ObservableList<String> option = 
         	    FXCollections.observableArrayList(
-        	        "10",
-        	        "11",
-        	        "13",
-        	        "14",
-        	        "15",
-        	        "16",
-        	        "17",
         	        "18",
         	        "19",
         	        "20",
@@ -94,7 +86,7 @@ public class Setting extends Application  {
         ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
         
         //label declarations
-        String style = "-fx-background-color: rgba(50, 0, 255, 0.5);";
+        String style = "-fx-background-color: rgba(255, 0, 0, 1);";
         Button save = new Button("Apply Changes");
         Label agg = new Label("Age:");
         Label gen = new Label("Gender preference:");
@@ -137,7 +129,6 @@ public class Setting extends Application  {
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
         gridPane.add(save, 400, 500);
-        
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
@@ -145,7 +136,7 @@ public class Setting extends Application  {
             public void handle(ActionEvent event) {
             	System.out.println("The user would like sleep with the gender of:");
             	System.out.println(genderBox.getValue());
-            	}
+            }
         });
         genderBox1.setOnAction(new EventHandler<ActionEvent>() {
         	 
@@ -242,17 +233,17 @@ public class Setting extends Application  {
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("Changes saved");
-            	//sendtoSQL(comboBox.getValue());
-            	//sendtoSQL(comboBox1.getValue());
-            	//sendtoSQL(comboBox2.getValue());
-            	//sendtoSQL(comboBox3.getValue());
-            	//sendtoSQL(comboBox4.getValue());
-            	//sendtoSQL(comboBox5.getValue());
-            	//sendtoSQL(comboBox6.getValue());
-            	//sendtoSQL(comboBox7.getValue());
-            	//sendtoSQL(comboBox8.getValue());
-            	//sendtoSQL(genderBox.getValue());
-            	//sendtoSQL(genderBox1.getValue());
+            	//sendtoDatabase(comboBox.getValue());
+            	//sendtoDatabase(comboBox1.getValue());
+            	//sendtoDatabase(comboBox2.getValue());
+            	//sendtoDatabase(comboBox3.getValue());
+            	//sendtoDatabase(comboBox4.getValue());
+            	//sendtoDatabase(comboBox5.getValue());
+            	//sendtoDatabase(comboBox6.getValue());
+            	//sendtoDatabase(comboBox7.getValue());
+            	//sendtoDatabase(comboBox8.getValue());
+            	//sendtoDatabase(genderBox.getValue());
+            	//sendtoDatabase(genderBox1.getValue());
             	}
         });
 
@@ -264,6 +255,5 @@ public class Setting extends Application  {
 
     public static void main(String[] args) {
     	System.out.println("Running Settings GUI");
-        Application.launch(args);
     }
 }
