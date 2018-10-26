@@ -21,8 +21,7 @@ import javafx.stage.Stage;
  */
 public class Setting extends Pane  {
 
-    public Setting(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Settings");
+    Setting() {
 
         //Sting lists for the combo boxes
         ObservableList<String> options = 
@@ -129,6 +128,8 @@ public class Setting extends Pane  {
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
         gridPane.add(save, 400, 500);
+        Pane pane = new Pane();
+        pane.getChildren().add(gridPane);
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
@@ -247,13 +248,10 @@ public class Setting extends Pane  {
             	}
         });
 
-        //set the scene
-        Scene scene = new Scene(gridPane, 400, 500);
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     public static void main(String[] args) {
     	System.out.println("Running Settings GUI");
     }
+
 }
