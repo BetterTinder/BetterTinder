@@ -20,6 +20,8 @@ public class Manager extends Application{
 	Setting setting = new Setting(); //this is used in profile; Chris
 	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
+	loginScreen login = new loginScreen();
+	NewAccount newAcc = new NewAccount();
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -27,13 +29,15 @@ public class Manager extends Application{
 	}
 	
 	public void start(Stage stage) {
-		rootpane.add(heelp, 5,5);
-		rootpane.getChildren().add(profile);// This method would be in each button
-		heelp.setOnAction(new EventHandler<ActionEvent>(){ //@Chris
+		rootpane.add(heelp, 5,5); //@Chris
+		heelp.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
 			rootpane.getChildren().add(help);
 			}
-	});
+		});
+		rootpane.getChildren().add(profile);// This method would be in each button
+		//rootpane.getChildren().add(newAcc); @Chris
+		//rootpane.getChildren().add(login);
 		Scene scene = new Scene(rootpane,400,500);
 		stage.setScene(scene);
 		stage.show();
