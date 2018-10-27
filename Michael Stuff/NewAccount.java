@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author Chris and also Jose
+ * @author Chris
  *
  */
-public class Registration extends Setting  {
+public class NewAccount extends Setting  {
 
-    Registration() {
+    NewAccount() {
 
         TextField ID = new TextField();
         TextField FirstName = new TextField();
@@ -44,29 +44,29 @@ public class Registration extends Setting  {
         gridPane.add(FirstName,1,2);
         gridPane.add(userLast,0,3);
         gridPane.add(LastName,1,3);
-        gridPane.add(comboBox,1,3);
-        gridPane.add(gen, 0, 0);
-        gridPane.add(geb, 0, 1);
-        gridPane.add(genderBox, 1, 0);
-        gridPane.add(genderBox1, 1, 1);
-        gridPane.add(agg, 0, 2);
-        gridPane.add(comboBox1, 1, 2);
-        gridPane.add(loc, 0, 3);
-        gridPane.add(inr, 0, 4);
-        gridPane.add(dog, 0, 5);
-        gridPane.add(comboBox2, 1, 5);
-        gridPane.add(doge, 0, 6);
-        gridPane.add(comboBox3, 1, 6);
-        gridPane.add(veg, 0, 7);
-        gridPane.add(comboBox4, 1, 7);
-        gridPane.add(mov, 0, 8);
-        gridPane.add(comboBox5, 1, 8);
-        gridPane.add(wal, 0, 9);
-        gridPane.add(comboBox6, 1, 9);
-        gridPane.add(mus, 0, 10);
-        gridPane.add(comboBox7, 1, 10);
-        gridPane.add(dem, 0, 11);
-        gridPane.add(comboBox8, 1, 11);
+        gridPane.add(comboBox,0,7);
+        gridPane.add(gen, 0, 4);
+        gridPane.add(geb, 0, 5);
+        gridPane.add(genderBox, 1, 4);
+        gridPane.add(genderBox1, 1, 5);
+        gridPane.add(agg, 0, 6);
+        gridPane.add(comboBox1, 1, 6);
+        gridPane.add(loc, 0, 7);
+        gridPane.add(inr, 0, 8);
+        gridPane.add(dog, 0, 9);
+        gridPane.add(comboBox2, 1, 9);
+        gridPane.add(doge, 0, 10);
+        gridPane.add(comboBox3, 1, 10);
+        gridPane.add(veg, 0, 11);
+        gridPane.add(comboBox4, 1, 11);
+        gridPane.add(mov, 0, 12);
+        gridPane.add(comboBox5, 1, 12);
+        gridPane.add(wal, 0, 13);
+        gridPane.add(comboBox6, 1, 13);
+        gridPane.add(mus, 0, 14);
+        gridPane.add(comboBox7, 1, 14);
+        gridPane.add(dem, 0, 15);
+        gridPane.add(comboBox8, 1, 15);
         gridPane.add(save, 400, 500);
         Pane pane = new Pane();
         pane.getChildren().add(gridPane);
@@ -186,7 +186,7 @@ public class Registration extends Setting  {
             	//sendtoDatabase(genderBox1.getValue());
             	}
         });
-
+        this.getChildren().add(gridPane);
     }
     /**
      * 
