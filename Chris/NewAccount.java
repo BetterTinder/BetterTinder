@@ -68,8 +68,7 @@ public class NewAccount extends Setting  {
         gridPane.add(dem, 0, 15);
         gridPane.add(comboBox8, 1, 15);
         gridPane.add(save, 400, 500);
-        Pane pane = new Pane();
-        pane.getChildren().add(gridPane);
+
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
