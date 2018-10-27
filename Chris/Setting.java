@@ -3,49 +3,43 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author super
+ *
+ */
+public class Setting extends Pane  {
 
-public class Setting extends Application  {
+    Setting() {
 
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Settings");
-
+        //Sting lists for the combo boxes
         ObservableList<String> options = 
         	    FXCollections.observableArrayList(
-        	        "Scranton",
+        	        "Holly Hill",
         	        "Port Orange",
         	        "Daytona",
-        	        "Disney",
-        	        "I dont know/unsure",
-        	        "600 Pennsylvania Ave.",
-        	        "1725 Slough Ave",
-        	        "Detroit",
-        	        "Asia",
-        	        "South Africa",
-        	        "Not listed"
+        	        "Deland",
+        	        "Ormond Beach"
         	    );
         ObservableList<String> yesno = 
         	    FXCollections.observableArrayList(
         	        "Yes",
-        	        "No"
+        	        "No",
+        	        "Prefer not to answer"
         	    );
         ObservableList<String> option = 
         	    FXCollections.observableArrayList(
-        	        "10",
-        	        "11",
-        	        "13",
-        	        "14",
-        	        "15",
-        	        "16",
-        	        "17",
         	        "18",
         	        "19",
         	        "20",
@@ -58,33 +52,40 @@ public class Setting extends Application  {
         	        "27",
         	        "28",
         	        "29",
-        	        "30"
+        	        "30",
+        	        "31",
+        	        "32",
+        	        "33",
+        	        "34",
+        	        "35",
+        	        "36",
+        	        "37",
+        	        "38",
+        	        "39",
+        	        "40"
         	    );
         ObservableList<String> optionn = 
         	    FXCollections.observableArrayList(
         	        "Male",
         	        "Female",
-        	        "None",
-        	        "Assault vehicle",
-        	        "Yes/all",
-        	        "Transgendered",
-        	        "Chinese"
+        	        "Other"
         	    );
-        ComboBox genderBox = new ComboBox(optionn);
-        ComboBox genderBox1 = new ComboBox(optionn);
-        ComboBox comboBox = new ComboBox(options);
-        ComboBox comboBox1 = new ComboBox(option);
-        ComboBox comboBox2 = new ComboBox(yesno);
-        ComboBox comboBox3 = new ComboBox(yesno);
-        ComboBox comboBox4 = new ComboBox(yesno);
-        ComboBox comboBox5 = new ComboBox(yesno);
-        ComboBox comboBox6 = new ComboBox(yesno);
-        ComboBox comboBox7 = new ComboBox(yesno);
-        ComboBox comboBox8 = new ComboBox(yesno);
-        ComboBox comboBox9 = new ComboBox(yesno);
-        ComboBox comboBox10 = new ComboBox(yesno);
-
         
+        //combo box declarations
+        ComboBox<String> genderBox = new ComboBox<String>(optionn);
+        ComboBox<String> genderBox1 = new ComboBox<String>(optionn);
+        ComboBox<String> comboBox = new ComboBox<String>(options);
+        ComboBox<String> comboBox1 = new ComboBox<String>(option);
+        ComboBox<String> comboBox2 = new ComboBox<String>(yesno);
+        ComboBox<String> comboBox3 = new ComboBox<String>(yesno);
+        ComboBox<String> comboBox4 = new ComboBox<String>(yesno);
+        ComboBox<String> comboBox5 = new ComboBox<String>(yesno);
+        ComboBox<String> comboBox6 = new ComboBox<String>(yesno);
+        ComboBox<String> comboBox7 = new ComboBox<String>(yesno);
+        ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
+        
+        //label declarations
+        String style = "-fx-background-color: rgba(255, 0, 0, 1);";
         Button save = new Button("Apply Changes");
         Label agg = new Label("Age:");
         Label gen = new Label("Gender preference:");
@@ -99,7 +100,10 @@ public class Setting extends Application  {
         Label mus = new Label("Do you like music?");
         Label dem = new Label("Do you love democracy?");
         
+        //adding all of it to the gridpane
         GridPane gridPane = new GridPane();
+        gridPane.setStyle(style);
+        gridPane.setPadding(new Insets(25));
         gridPane.add(comboBox,1,3);
         gridPane.add(gen, 0, 0);
         gridPane.add(geb, 0, 1);
@@ -124,14 +128,16 @@ public class Setting extends Application  {
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
         gridPane.add(save, 400, 500);
-        
+        Pane pane = new Pane();
+        pane.getChildren().add(gridPane);
+        //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user would like sleep with the gender of:");
             	System.out.println(genderBox.getValue());
-            	}
+            }
         });
         genderBox1.setOnAction(new EventHandler<ActionEvent>() {
         	 
@@ -221,20 +227,31 @@ public class Setting extends Application  {
             	System.out.println(comboBox8.getValue());
             	}
         });
+        
+        //pseudo code methods to sending values to SQL 
         save.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("Changes saved");
+            	//sendtoDatabase(comboBox.getValue());
+            	//sendtoDatabase(comboBox1.getValue());
+            	//sendtoDatabase(comboBox2.getValue());
+            	//sendtoDatabase(comboBox3.getValue());
+            	//sendtoDatabase(comboBox4.getValue());
+            	//sendtoDatabase(comboBox5.getValue());
+            	//sendtoDatabase(comboBox6.getValue());
+            	//sendtoDatabase(comboBox7.getValue());
+            	//sendtoDatabase(comboBox8.getValue());
+            	//sendtoDatabase(genderBox.getValue());
+            	//sendtoDatabase(genderBox1.getValue());
             	}
         });
 
-        Scene scene = new Scene(gridPane, 400, 500);
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        Application.launch(args);
+    	System.out.println("Running Settings GUI");
     }
+
 }

@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,10 +25,10 @@ public class Manager extends Application {
 	private Pane matchScreen;
 	private Pane viewPeople;
 	private Pane instantMessage;
-	private Pane settingsAndProfile;
 	private Pane helpScreen;
 	private HBox taskBar;
 	private Button taskBt1, taskBt2, taskBt3;
+	private Setting settings;
 	
 	public Manager() {
 		// Initialize all possible GUI panes
@@ -36,11 +38,11 @@ public class Manager extends Application {
 		matchScreen = new Pane();
 		viewPeople = new Pane();
 		instantMessage = new Pane();
-		settingsAndProfile = new Pane();
+
 		helpScreen = new Pane();
 		taskBar = new HBox();
 		taskBar.setAlignment(Pos.CENTER);
-		
+
 		taskBar.setMaxWidth(Double.MAX_VALUE);
 		taskBar.setPrefHeight(30);
 		
@@ -68,14 +70,27 @@ public class Manager extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Scene primaryScene = new Scene(mainPane);
+		settings = new Setting();
+		taskBt1.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+				mainPane.setCenter(settings);		
+            	}
+        });
+		
 		primaryStage.setScene(primaryScene);
 		primaryStage.setTitle("RiddleVision");
-		
+		primaryStage.setMaxHeight(600);
+		primaryStage.setMinHeight(600);
+		primaryStage.setMaxWidth(400);
+		primaryStage.setMinWidth(400);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	
 	public static void main(String[] args) {
-		Application.launch(args);
+		launch(args);
 	}
 	
 	public void addPane(Pane pane) {
