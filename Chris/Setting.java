@@ -21,84 +21,85 @@ import javafx.stage.Stage;
  */
 public class Setting extends Pane  {
 
+    //Sting lists for the combo boxes
+    ObservableList<String> options = 
+    	    FXCollections.observableArrayList(
+    	        "Holly Hill",
+    	        "Port Orange",
+    	        "Daytona",
+    	        "Deland",
+    	        "Ormond Beach"
+    	    );
+    ObservableList<String> yesno = 
+    	    FXCollections.observableArrayList(
+    	        "Yes",
+    	        "No",
+    	        "Prefer not to answer"
+    	    );
+    ObservableList<String> option = 
+    	    FXCollections.observableArrayList(
+    	        "18",
+    	        "19",
+    	        "20",
+    	        "21",
+    	        "22",
+    	        "23",
+    	        "24",
+    	        "25",
+    	        "26",
+    	        "27",
+    	        "28",
+    	        "29",
+    	        "30",
+    	        "31",
+    	        "32",
+    	        "33",
+    	        "34",
+    	        "35",
+    	        "36",
+    	        "37",
+    	        "38",
+    	        "39",
+    	        "40"
+    	    );
+    ObservableList<String> optionn = 
+    	    FXCollections.observableArrayList(
+    	        "Male",
+    	        "Female",
+    	        "Other"
+    	    );
+    
+    //combo box declarations
+    ComboBox<String> genderBox = new ComboBox<String>(optionn);
+    ComboBox<String> genderBox1 = new ComboBox<String>(optionn);
+    ComboBox<String> comboBox = new ComboBox<String>(options);
+    ComboBox<String> comboBox1 = new ComboBox<String>(option);
+    ComboBox<String> comboBox2 = new ComboBox<String>(yesno);
+    ComboBox<String> comboBox3 = new ComboBox<String>(yesno);
+    ComboBox<String> comboBox4 = new ComboBox<String>(yesno);
+    ComboBox<String> comboBox5 = new ComboBox<String>(yesno);
+    ComboBox<String> comboBox6 = new ComboBox<String>(yesno);
+    ComboBox<String> comboBox7 = new ComboBox<String>(yesno);
+    ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
+    
+    //label declarations
+    String style = "-fx-background-color: rgba(255, 0, 0, 1);";
+    Button save = new Button("Apply Changes");
+    Label agg = new Label("Age:");
+    Label gen = new Label("Gender preference:");
+    Label geb = new Label("Gender:");
+    Label loc = new Label("Location:");
+    Label inr = new Label("Intrests:");
+    Label dog = new Label("Do you like dogs?");
+    Label doge = new Label("Do you have a dog?");
+    Label veg = new Label("Do you eat meat?");
+    Label mov = new Label("Do you enjoy movies?");
+    Label wal = new Label("Do you enjoy walking?");
+    Label mus = new Label("Do you like music?");
+    Label dem = new Label("Do you love democracy?");
+    
     Setting() {
 
-        //Sting lists for the combo boxes
-        ObservableList<String> options = 
-        	    FXCollections.observableArrayList(
-        	        "Holly Hill",
-        	        "Port Orange",
-        	        "Daytona",
-        	        "Deland",
-        	        "Ormond Beach"
-        	    );
-        ObservableList<String> yesno = 
-        	    FXCollections.observableArrayList(
-        	        "Yes",
-        	        "No",
-        	        "Prefer not to answer"
-        	    );
-        ObservableList<String> option = 
-        	    FXCollections.observableArrayList(
-        	        "18",
-        	        "19",
-        	        "20",
-        	        "21",
-        	        "22",
-        	        "23",
-        	        "24",
-        	        "25",
-        	        "26",
-        	        "27",
-        	        "28",
-        	        "29",
-        	        "30",
-        	        "31",
-        	        "32",
-        	        "33",
-        	        "34",
-        	        "35",
-        	        "36",
-        	        "37",
-        	        "38",
-        	        "39",
-        	        "40"
-        	    );
-        ObservableList<String> optionn = 
-        	    FXCollections.observableArrayList(
-        	        "Male",
-        	        "Female",
-        	        "Other"
-        	    );
-        
-        //combo box declarations
-        ComboBox<String> genderBox = new ComboBox<String>(optionn);
-        ComboBox<String> genderBox1 = new ComboBox<String>(optionn);
-        ComboBox<String> comboBox = new ComboBox<String>(options);
-        ComboBox<String> comboBox1 = new ComboBox<String>(option);
-        ComboBox<String> comboBox2 = new ComboBox<String>(yesno);
-        ComboBox<String> comboBox3 = new ComboBox<String>(yesno);
-        ComboBox<String> comboBox4 = new ComboBox<String>(yesno);
-        ComboBox<String> comboBox5 = new ComboBox<String>(yesno);
-        ComboBox<String> comboBox6 = new ComboBox<String>(yesno);
-        ComboBox<String> comboBox7 = new ComboBox<String>(yesno);
-        ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
-        
-        //label declarations
-        String style = "-fx-background-color: rgba(255, 0, 0, 1);";
-        Button save = new Button("Apply Changes");
-        Label agg = new Label("Age:");
-        Label gen = new Label("Gender preference:");
-        Label geb = new Label("Gender:");
-        Label loc = new Label("Location:");
-        Label inr = new Label("Intrests:");
-        Label dog = new Label("Do you like dogs?");
-        Label doge = new Label("Do you have a dog?");
-        Label veg = new Label("Do you eat meat?");
-        Label mov = new Label("Do you enjoy movies?");
-        Label wal = new Label("Do you enjoy walking?");
-        Label mus = new Label("Do you like music?");
-        Label dem = new Label("Do you love democracy?");
         
         //adding all of it to the gridpane
         GridPane gridPane = new GridPane();
@@ -249,7 +250,10 @@ public class Setting extends Pane  {
         });
 
     }
-
+    /**
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
     	System.out.println("Running Settings GUI");
     }
