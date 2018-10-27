@@ -83,7 +83,7 @@ public class Setting extends Pane  {
     ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
     
     //label declarations
-    String style = "-fx-background-color: rgba(255, 0, 0, 1);";
+    String style = "-fx-background-color: rgba(255, 255, 255, 1);";
     Button save = new Button("Apply Changes");
     Label agg = new Label("Age:");
     Label gen = new Label("Gender preference:");
