@@ -27,7 +27,7 @@ public class Profile extends StackPane{
 	Image image; ImageView view = new ImageView();
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
 	
-	Profile() {
+	Profile(GridPane grid1, Setting grid2) {
 		HBox Hbox1 = new HBox(268);
 		Hbox1.setTranslateX(40);
 		Hbox1.setTranslateY(165);
@@ -35,7 +35,7 @@ public class Profile extends StackPane{
 		HBox Hbox2 = new HBox(5);
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
-		Hbox2.getChildren().addAll(getSettingBtn(),getAddBtn(),getRemoveBtn());
+		Hbox2.getChildren().addAll(getSettingBtn(grid1,grid2),getAddBtn(),getRemoveBtn());
 		imagesList.add("profile.jpg"); //must change to get default image or the first image
 		imagesList.add("Test1.jpg");
 		image = new Image(imagesList.get(0));
@@ -66,12 +66,12 @@ public class Profile extends StackPane{
 		}
 		StringBuilder sb = new StringBuilder();
 		String bio = null;
-		try {
-			bio = br.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//try {
+		//	bio = br.readLine();
+		//} catch (IOException e) {
+		//	 TODO Auto-generated catch block
+		//	e.printStackTrace();
+		//}
 		while (bio !=null) {
 			sb.append(bio).append("\n");
 			try {
@@ -160,9 +160,13 @@ public class Profile extends StackPane{
 		return remove;
 	}
 
-	public Button getSettingBtn() {
+	public Button getSettingBtn(GridPane gridPane1, Setting gridPane2) {
 		Button setting = new Button("Settings");
-		//@Chris removed eventhandler
+		setting.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				gridPane1.getChildren().add(gridPane2);
+			}
+		});
 		return setting;
 	}
 

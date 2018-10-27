@@ -3,108 +3,47 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
  * 
- * @author super
+ * @author Chris and also Jose
  *
  */
-public class Setting extends Pane  {
+public class Registration extends Setting  {
 
-    //Sting lists for the combo boxes
-    ObservableList<String> options = 
-    	    FXCollections.observableArrayList(
-    	        "Holly Hill",
-    	        "Port Orange",
-    	        "Daytona",
-    	        "Deland",
-    	        "Ormond Beach"
-    	    );
-    ObservableList<String> yesno = 
-    	    FXCollections.observableArrayList(
-    	        "Yes",
-    	        "No",
-    	        "Prefer not to answer"
-    	    );
-    ObservableList<String> option = 
-    	    FXCollections.observableArrayList(
-    	        "18",
-    	        "19",
-    	        "20",
-    	        "21",
-    	        "22",
-    	        "23",
-    	        "24",
-    	        "25",
-    	        "26",
-    	        "27",
-    	        "28",
-    	        "29",
-    	        "30",
-    	        "31",
-    	        "32",
-    	        "33",
-    	        "34",
-    	        "35",
-    	        "36",
-    	        "37",
-    	        "38",
-    	        "39",
-    	        "40"
-    	    );
-    ObservableList<String> optionn = 
-    	    FXCollections.observableArrayList(
-    	        "Male",
-    	        "Female",
-    	        "Other"
-    	    );
-    
-    //combo box declarations
-    ComboBox<String> genderBox = new ComboBox<String>(optionn);
-    ComboBox<String> genderBox1 = new ComboBox<String>(optionn);
-    ComboBox<String> comboBox = new ComboBox<String>(options);
-    ComboBox<String> comboBox1 = new ComboBox<String>(option);
-    ComboBox<String> comboBox2 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox3 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox4 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox5 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox6 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox7 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
-    
-    //label declarations
-    String style = "-fx-background-color: rgba(255, 0, 0, 1);";
-    Button save = new Button("Apply Changes");
-    Label agg = new Label("Age:");
-    Label gen = new Label("Gender preference:");
-    Label geb = new Label("Gender:");
-    Label loc = new Label("Location:");
-    Label inr = new Label("Intrests:");
-    Label dog = new Label("Do you like dogs?");
-    Label doge = new Label("Do you have a dog?");
-    Label veg = new Label("Do you eat meat?");
-    Label mov = new Label("Do you enjoy movies?");
-    Label wal = new Label("Do you enjoy walking?");
-    Label mus = new Label("Do you like music?");
-    Label dem = new Label("Do you love democracy?");
-    
-    Setting() {
+    Registration() {
 
+        TextField ID = new TextField();
+        TextField FirstName = new TextField();
+        TextField LastName = new TextField();
+        TextField Password = new TextField();
+        Button save = new Button("Save Account");
+        Label userID = new Label("User ID:");
+        Label userFirst = new Label("First Name:");
+        Label userLast = new Label("Last Name:");
+        Label pass = new Label("Password:");
+        Label agg = new Label("Age:");
+        Label gen = new Label("Gender preference:");
+        Label geb = new Label("Gender:");
+        Label loc = new Label("Location:");
         
-        //adding all of it to the gridpane
         GridPane gridPane = new GridPane();
-        gridPane.setStyle(style);
-        gridPane.setPadding(new Insets(25));
+        gridPane.add(userID,0,0);
+        gridPane.add(ID,1,0);
+        gridPane.add(pass,0,1);
+        gridPane.add(Password,1,1);
+        gridPane.add(userFirst,0,2);
+        gridPane.add(FirstName,1,2);
+        gridPane.add(userLast,0,3);
+        gridPane.add(LastName,1,3);
         gridPane.add(comboBox,1,3);
         gridPane.add(gen, 0, 0);
         gridPane.add(geb, 0, 1);
@@ -129,6 +68,8 @@ public class Setting extends Pane  {
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
         gridPane.add(save, 400, 500);
+        Pane pane = new Pane();
+        pane.getChildren().add(gridPane);
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
@@ -227,7 +168,6 @@ public class Setting extends Pane  {
             	}
         });
         
-        //pseudo code methods to sending values to SQL 
         save.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
@@ -246,14 +186,13 @@ public class Setting extends Pane  {
             	//sendtoDatabase(genderBox1.getValue());
             	}
         });
-        this.getChildren().add(gridPane);
+
     }
     /**
      * 
      * @param args
      */
     public static void main(String[] args) {
-    	System.out.println("Running Settings GUI");
+    	System.out.println("IM FUCKING RUNNNNNIWNDBXW***2sx72 AHHHHHHH YMCA YMCA YMCA YMCA YMCA YMCA YMCA");
     }
-
 }

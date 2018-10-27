@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
 	Button heelp = new Button("Help");	//global help button @Chris
-	Profile profile = new Profile(); //This will be global
 	Setting setting = new Setting(); //this is used in profile; Chris
+	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
 	
 	public static void main(String[] args) {
@@ -27,13 +27,8 @@ public class Manager extends Application{
 	}
 	
 	public void start(Stage stage) {
-		rootpane.add(heelp, 0,0);
+		rootpane.add(heelp, 5,5);
 		rootpane.getChildren().add(profile);// This method would be in each button
-		profile.getSettingBtn().setOnAction(new EventHandler<ActionEvent>(){ //@Chris
-				public void handle(ActionEvent event) {
-				rootpane.getChildren().add(setting);
-				}
-		});
 		heelp.setOnAction(new EventHandler<ActionEvent>(){ //@Chris
 			public void handle(ActionEvent event) {
 			rootpane.getChildren().add(help);
