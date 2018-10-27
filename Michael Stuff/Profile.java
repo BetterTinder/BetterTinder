@@ -162,11 +162,7 @@ public class Profile extends StackPane{
 
 	public Button getSettingBtn() {
 		Button setting = new Button("Settings");
-		setting.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-			
-			}
-		});
+		//@Chris removed eventhandler
 		return setting;
 	}
 
@@ -176,4 +172,5 @@ public class Profile extends StackPane{
 		username.setTranslateY(-70.0f);
 		return username;
 	}
+
 }

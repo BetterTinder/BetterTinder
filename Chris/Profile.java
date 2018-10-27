@@ -162,6 +162,7 @@ public class Profile extends StackPane{
 
 	public Button getSettingBtn() {
 		Button setting = new Button("Settings");
+		//@Chris removed eventhandler
 		return setting;
 	}
 

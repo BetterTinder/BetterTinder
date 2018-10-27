@@ -26,7 +26,7 @@ public class Manager extends Application{
 	
 	public void start(Stage stage) {
 		rootpane.getChildren().add(profile);// This method would be in each button
-		profile.getSettingBtn().setOnAction(new EventHandler<ActionEvent>(){
+		profile.getSettingBtn().setOnAction(new EventHandler<ActionEvent>(){ //@Chris
 				public void handle(ActionEvent event) {
 				rootpane.getChildren().add(setting);
 				}
