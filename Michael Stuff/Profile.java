@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -25,8 +26,8 @@ public class Profile extends StackPane{
 	ArrayList<String> imagesList = new ArrayList<String>();
 	Image image; ImageView view = new ImageView();
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
-
-	public Profile() {
+	
+	Profile() {
 		HBox Hbox1 = new HBox(268);
 		Hbox1.setTranslateX(40);
 		Hbox1.setTranslateY(165);
@@ -35,13 +36,11 @@ public class Profile extends StackPane{
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
 		Hbox2.getChildren().addAll(getSettingBtn(),getAddBtn(),getRemoveBtn());
-		
 		imagesList.add("profile.jpg"); //must change to get default image or the first image
 		imagesList.add("Test1.jpg");
 		image = new Image(imagesList.get(0));
 		change(image);
-		
-		this.getChildren().addAll(Hbox2,Hbox1,getname(),getBio(),view);
+		this.getChildren().addAll(Hbox2,Hbox1,view,getBio(),getname());
 	}
 
 	public ImageView change(Image image) {
@@ -49,7 +48,7 @@ public class Profile extends StackPane{
 		view.setFitWidth(250);
 		view.setFitHeight(250);
 		view.setTranslateX(1);
-		view.setTranslateY(-70);
+		view.setTranslateY(70);
 		view.setScaleX(1);
 		view.setScaleY(1);
 		view.setPreserveRatio(true);
@@ -86,7 +85,7 @@ public class Profile extends StackPane{
 		userBio = new Text(userBioString);
 		userBio.setWrappingWidth(400);
 		userBio.setTranslateX(10.0f);
-		userBio.setTranslateY(100.0f);
+		userBio.setTranslateY(230.0f);
 		return userBio;
 	}
 
@@ -165,7 +164,7 @@ public class Profile extends StackPane{
 		Button setting = new Button("Settings");
 		setting.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				System.out.println("ok");
+			
 			}
 		});
 		return setting;
@@ -174,7 +173,7 @@ public class Profile extends StackPane{
 	public Text getname() {
 		Text username = new Text(name); //Converts the parameter name to a text
 		username.setTranslateX(4.0f);
-		username.setTranslateY(-210.0f);
+		username.setTranslateY(-70.0f);
 		return username;
 	}
 }
