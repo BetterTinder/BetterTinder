@@ -26,38 +26,17 @@ public class Profile extends GridPane{
 	ArrayList<String> imagesList = new ArrayList<String>(); ArrayList<String> imagesListCopy = new ArrayList<String>(); 
 	Image image; ImageView view = new ImageView();
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 	Profile() {
 		HBox Hbox1 = new HBox(270);
-=======
-=======
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
-	/**
-	 * 
-	 * @param grid1
-	 * @param grid2
-	 */
-	Profile(GridPane grid1, Setting grid2) {
-		HBox Hbox1 = new HBox(268);
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 		Hbox1.setTranslateX(40);
 		Hbox1.setTranslateY(165);
 		Hbox1.getChildren().addAll(getLeftBtn(),getRightBtn());
 		HBox Hbox2 = new HBox(5);
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
-<<<<<<< HEAD
-<<<<<<< HEAD
 		Hbox2.getChildren().addAll(getSettingBtn(),getAddBtn(),getRemoveBtn(),getReviewImage());
 
-=======
-		Hbox2.getChildren().addAll(getSettingBtn(grid1,grid2),getAddBtn(),getRemoveBtn());
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
-=======
-		Hbox2.getChildren().addAll(getSettingBtn(grid1,grid2),getAddBtn(),getRemoveBtn());
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 		imagesList.add("profile.jpg"); //must change to get default image or the first image
 		imagesList.add("Test1.jpg");
 		imagesListCopy.add("profile.jpg");
@@ -71,7 +50,7 @@ public class Profile extends GridPane{
 	}
 	/**
 	 * 
-	 * @return
+	 * returns an image of a star for the review
 	 */
 	public ImageView getReviewImage() {
 		Image reviewImage;
@@ -90,7 +69,7 @@ public class Profile extends GridPane{
 	
 	/**
 	 * 
-	 * @return
+	 * reads for the review rating and displays it to the profile
 	 */
 	public Text getReviewRating() {
 		BufferedReader br = null;
@@ -128,7 +107,7 @@ public class Profile extends GridPane{
 	/**
 	 * 
 	 * @param image
-	 * @return
+	 * @return it updates the pane with correct image when scrolling
 	 */
 	public ImageView change(Image image) {
 		view.setImage(image);
@@ -143,7 +122,7 @@ public class Profile extends GridPane{
 	}
 	/**
 	 * 
-	 * @return
+	 * @return finds and displays the user's bio information as a text on the pane
 	 */
 	public Text getBio() {
 		BufferedReader br = null;
@@ -156,12 +135,12 @@ public class Profile extends GridPane{
 		}
 		StringBuilder sb = new StringBuilder();
 		String bio = null;
-		//try {
-		//	bio = br.readLine();
-		//} catch (IOException e) {
-		//	 TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
+		try {
+			bio = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		while (bio !=null) {
 			sb.append(bio).append("\n");
 			try {
@@ -180,7 +159,7 @@ public class Profile extends GridPane{
 	}
 	/**
 	 * 
-	 * @return
+	 * @return the left button with its action event to shift the array of images to the left, calls the change method
 	 */
 	public Button getLeftBtn(){
 		Button leftscroll = new Button("<");
@@ -215,7 +194,7 @@ public class Profile extends GridPane{
 	}
 	/**
 	 * 
-	 * @return
+	 * @return the right button with its action event to shift the array of images to the right, calls change method
 	 */
 	public Button getAddBtn() { //Reads the file
 		Button add = new Button("Add");
@@ -260,7 +239,7 @@ public class Profile extends GridPane{
 	}
 	/**
 	 * 
-	 * @return
+	 * @return removes the first image being displayed from the imagelist
 	 */
 	public Button getRemoveBtn() {
 		Button remove = new Button("Remove");
@@ -281,40 +260,22 @@ public class Profile extends GridPane{
 		});
 		return remove;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 	/**
 	 * 
-	 * @return
+	 * @return setting button calls for the setting class and changes panes
 	 */
 	public Button getSettingBtn() {
 		Button setting = new Button("Settings");
 		setting.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 
-=======
-
-	public Button getSettingBtn(GridPane gridPane1, Setting gridPane2) {
-		Button setting = new Button("Settings");
-		setting.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				gridPane1.getChildren().add(gridPane2);
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
-=======
-
-	public Button getSettingBtn(GridPane gridPane1, Setting gridPane2) {
-		Button setting = new Button("Settings");
-		setting.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				gridPane1.getChildren().add(gridPane2);
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 			}
 		});
 		return setting;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return reads and displays the user's name
 	 */
 	public Text getname() {
 		Text username = new Text(name); //Converts the parameter name to a text
@@ -322,5 +283,4 @@ public class Profile extends GridPane{
 		username.setTranslateY(-70.0f);
 		return username;
 	}
-
 }
