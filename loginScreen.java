@@ -8,41 +8,30 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-
-public class loginScreen extends Application {
+/**
+ *
+ * @author danielle and Chris G.
+ *
+ */
+public class loginScreen extends Pane {
 
 	
-	private Scene loginScene;
-	private Button signInButton, newAccountButton, dancerAccount, companyAccount, cancel;
-	private TextField usernameField;
-	private PasswordField passwordField;
+	public Scene loginScene;
+	public Button signInButton, newAccountButton, dancerAccount, companyAccount, cancel;
+	public TextField usernameField;
+	public PasswordField passwordField;
 	
 	public static void main(String[] args) {
-		launch(args);
+		System.out.println("Login runnin");
 	}
 	
-	public void start(Stage loginStage) throws Exception {
-		
-		GridPane loginGridPane = createGridPane();
-		
-		loginScene = new Scene(loginGridPane);
-		addLoginControls(loginGridPane);
-		
-		loginStage.setScene(loginScene);
-		loginStage.setMaxHeight(600);
-		loginStage.setMaxWidth(400);
-		loginStage.setMinHeight(600);
-		loginStage.setMinWidth(400);
-		loginStage.setResizable(false);
-		loginStage.show();
-	}
-	
-	private GridPane createGridPane() {
+	loginScreen () {
 		GridPane gridPane = new GridPane();
-		
+	
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setVgap(50);
 		gridPane.setHgap(50);
@@ -56,11 +45,8 @@ public class loginScreen extends Application {
 //		gridPane.setPadding(new Insets (100,100,100,100));
 //		gridPane.setVgap(50);
 //		gridPane.setHgap(50);
-
-		return gridPane;
-	}
-	
-	private void addLoginControls (GridPane gridPane) {
+		
+		//former add control method
 		Label welcomeLabel = new Label("Welcome to RiddleVision");
 		welcomeLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 25));
 		welcomeLabel.setMinSize(200, 100);
@@ -90,7 +76,11 @@ public class loginScreen extends Application {
 		newAccountButton = new Button("New Account");
 		newAccountButton.setMinSize(Control.USE_PREF_SIZE,Control.USE_PREF_SIZE);
 		gridPane.add(newAccountButton, 1, 3);
+		
+		//return
+		this.getChildren().add(gridPane);
 	}
+	
 	
 	public void checkLoginInformation() {
 		
