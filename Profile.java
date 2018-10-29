@@ -21,7 +21,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
-public class Profile extends StackPane{
+public class Profile extends GridPane{
 	String directory = System.getProperty("user.dir"); String dir = directory + ("\\\\");
 	ArrayList<String> imagesList = new ArrayList<String>();
 	Image image; ImageView view = new ImageView();
@@ -44,7 +44,8 @@ public class Profile extends StackPane{
 		imagesList.add("Test1.jpg");
 		image = new Image(imagesList.get(0));
 		change(image);
-		this.getChildren().addAll(Hbox2,Hbox1,view,getBio(),getname());
+		this.setGridLinesVisible(true);
+		this.getChildren().addAll(Hbox2,Hbox1,view,getname());
 	}
 
 	public ImageView change(Image image) {
@@ -70,12 +71,12 @@ public class Profile extends StackPane{
 		}
 		StringBuilder sb = new StringBuilder();
 		String bio = null;
-		//try {
-		//	bio = br.readLine();
-		//} catch (IOException e) {
+		try {
+			bio = br.readLine();
+		} catch (IOException e) {
 		//	 TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
+			e.printStackTrace();
+		}
 		while (bio !=null) {
 			sb.append(bio).append("\n");
 			try {

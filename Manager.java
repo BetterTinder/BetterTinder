@@ -16,12 +16,12 @@ import javafx.stage.Stage;
  */
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
-	Button heelp = new Button("Help");	//global help button @Chris
+	Button danielleEats = new Button("Shreks ass");	//global help button @Chris
 	Setting setting = new Setting(); //this is used in profile; Chris
 	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
-	NewAccount newAcc = new NewAccount();
-	loginScreen login = new loginScreen(rootpane, newAcc);
+	NewAccount newAcc = new NewAccount(rootpane, profile);
+	loginScreen login = new loginScreen(rootpane, newAcc, profile);
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -29,13 +29,13 @@ public class Manager extends Application{
 	}
 	
 	public void start(Stage stage) {
-		rootpane.add(heelp, 5,5); //@Chris
-		heelp.setOnAction(new EventHandler<ActionEvent>(){ 
+		rootpane.add(danielleEats, 0,500); //@Chris
+		danielleEats.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
 			rootpane.getChildren().add(help);
 			}
 		});
-		rootpane.getChildren().add(profile);// This method would be in each button
+		rootpane.getChildren().add(login);// This method would be in each button
 		//rootpane.getChildren().add(newAcc); @Chris
 		//rootpane.getChildren().add(login);
 		Scene scene = new Scene(rootpane,400,500);
