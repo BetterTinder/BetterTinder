@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -28,10 +30,15 @@ public class loginScreen extends Pane {
 	public static void main(String[] args) {
 		System.out.println("Login runnin");
 	}
-	
-	loginScreen () {
+	/**
+	 * 
+	 * @param grid1
+	 * @param newAcc
+	 */
+	loginScreen (GridPane grid1, NewAccount newAcc) {
 		GridPane gridPane = new GridPane();
-	
+		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+		gridPane.setStyle(style);
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setVgap(50);
 		gridPane.setHgap(50);
@@ -76,7 +83,11 @@ public class loginScreen extends Pane {
 		newAccountButton = new Button("New Account");
 		newAccountButton.setMinSize(Control.USE_PREF_SIZE,Control.USE_PREF_SIZE);
 		gridPane.add(newAccountButton, 1, 3);
-		
+		newAccountButton.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				grid1.getChildren().add(newAcc);
+			}
+		});
 		//return
 		this.getChildren().add(gridPane);
 	}

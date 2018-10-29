@@ -26,7 +26,11 @@ public class Profile extends StackPane{
 	ArrayList<String> imagesList = new ArrayList<String>();
 	Image image; ImageView view = new ImageView();
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
-	
+	/**
+	 * 
+	 * @param grid1
+	 * @param grid2
+	 */
 	Profile(GridPane grid1, Setting grid2) {
 		HBox Hbox1 = new HBox(268);
 		Hbox1.setTranslateX(40);

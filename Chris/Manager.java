@@ -11,7 +11,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 /**
  * 
- * @author Michael Fornito
+ * @author Michael Fornito and also Chris did some stuff
  *
  */
 public class Manager extends Application{
@@ -20,8 +20,8 @@ public class Manager extends Application{
 	Setting setting = new Setting(); //this is used in profile; Chris
 	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
-	loginScreen login = new loginScreen();
 	NewAccount newAcc = new NewAccount();
+	loginScreen login = new loginScreen(rootpane, newAcc);
 	
 	public static void main(String[] args) {
 		launch(args);

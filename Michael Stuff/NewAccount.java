@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class NewAccount extends Setting  {
 
     NewAccount() {
-
+    	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField ID = new TextField();
         TextField FirstName = new TextField();
         TextField LastName = new TextField();
@@ -36,6 +36,7 @@ public class NewAccount extends Setting  {
         Label loc = new Label("Location:");
         
         GridPane gridPane = new GridPane();
+        gridPane.setStyle(style);
         gridPane.add(userID,0,0);
         gridPane.add(ID,1,0);
         gridPane.add(pass,0,1);
