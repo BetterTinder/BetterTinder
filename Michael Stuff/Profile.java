@@ -27,10 +27,13 @@ public class Profile extends GridPane{
 	Image image; ImageView view = new ImageView();
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	Profile() {
 		HBox Hbox1 = new HBox(270);
 =======
+=======
+>>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 	/**
 	 * 
 	 * @param grid1
@@ -46,8 +49,12 @@ public class Profile extends GridPane{
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Hbox2.getChildren().addAll(getSettingBtn(),getAddBtn(),getRemoveBtn(),getReviewImage());
 
+=======
+		Hbox2.getChildren().addAll(getSettingBtn(grid1,grid2),getAddBtn(),getRemoveBtn());
+>>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 =======
 		Hbox2.getChildren().addAll(getSettingBtn(grid1,grid2),getAddBtn(),getRemoveBtn());
 >>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
@@ -275,6 +282,7 @@ public class Profile extends GridPane{
 		return remove;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 	 * 
 	 * @return
@@ -284,6 +292,14 @@ public class Profile extends GridPane{
 		setting.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 
+=======
+
+	public Button getSettingBtn(GridPane gridPane1, Setting gridPane2) {
+		Button setting = new Button("Settings");
+		setting.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				gridPane1.getChildren().add(gridPane2);
+>>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 =======
 
 	public Button getSettingBtn(GridPane gridPane1, Setting gridPane2) {
