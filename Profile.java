@@ -23,14 +23,9 @@ import javafx.stage.Stage;
 
 public class Profile extends GridPane{
 	String directory = System.getProperty("user.dir"); String dir = directory + ("\\\\");
-	ArrayList<String> imagesList = new ArrayList<String>(); ArrayList<String> imagesListCopy = new ArrayList<String>(); 
+	ArrayList<String> imagesList = new ArrayList<String>();
 	Image image; ImageView view = new ImageView();
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
-<<<<<<< HEAD
-
-	Profile() {
-		HBox Hbox1 = new HBox(270);
-=======
 	/**
 	 * 
 	 * @param grid1
@@ -38,106 +33,33 @@ public class Profile extends GridPane{
 	 */
 	Profile(GridPane grid1, Setting grid2) {
 		HBox Hbox1 = new HBox(268);
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 		Hbox1.setTranslateX(40);
 		Hbox1.setTranslateY(165);
 		Hbox1.getChildren().addAll(getLeftBtn(),getRightBtn());
 		HBox Hbox2 = new HBox(5);
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
-<<<<<<< HEAD
-		Hbox2.getChildren().addAll(getSettingBtn(),getAddBtn(),getRemoveBtn(),getReviewImage());
-
-=======
 		Hbox2.getChildren().addAll(getSettingBtn(grid1,grid2),getAddBtn(),getRemoveBtn());
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 		imagesList.add("profile.jpg"); //must change to get default image or the first image
 		imagesList.add("Test1.jpg");
-		imagesListCopy.add("profile.jpg");
-		imagesListCopy.add("Test1.jpg");
 		image = new Image(imagesList.get(0));
 		change(image);
-
-		//System.out.println(imagesList);
-		//System.out.println(imagesListCopy);
-		this.getChildren().addAll(Hbox2,Hbox1,view,getBio(),getReviewRating(),getReviewImage(),getname());
+		this.setGridLinesVisible(true);
+		this.getChildren().addAll(Hbox2,Hbox1,view,getname());
 	}
-	/**
-	 * 
-	 * @return
-	 */
-	public ImageView getReviewImage() {
-		Image reviewImage;
-		ImageView view = new ImageView();
-		image = new Image("star.png");
+
+	public ImageView change(Image image) {
 		view.setImage(image);
-		view.setFitWidth(25);
-		view.setFitHeight(25);
-		view.setTranslateX(250.0f);
-		view.setTranslateY(-70.0f);
+		view.setFitWidth(250);
+		view.setFitHeight(250);
+		view.setTranslateX(1);
+		view.setTranslateY(70);
 		view.setScaleX(1);
 		view.setScaleY(1);
 		view.setPreserveRatio(true);
 		return view;
 	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public Text getReviewRating() {
-		BufferedReader br = null;
-		Text review;
-		try {
-			br = new BufferedReader(new FileReader("Review.txt"));
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		StringBuilder sb = new StringBuilder();
-		String reviewString = null;
-		try {
-			reviewString= br.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		while (reviewString !=null) {
-			sb.append(reviewString).append("\n");
-			try {
-				reviewString = br.readLine();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		String reviewString2 = sb.toString();
-		review = new Text(reviewString2);
-		review.setWrappingWidth(400);
-		review.setTranslateX(230.0f);
-		review.setTranslateY(-58.0f);
-		return review;
-	}
-	/**
-	 * 
-	 * @param image
-	 * @return
-	 */
-	public ImageView change(Image image) {
-		view.setImage(image);
-		view.setFitWidth(250);
-		view.setFitHeight(250);
-		view.setTranslateX(75);
-		view.setTranslateY(70);
-		view.setScaleX(1);
-		view.setScaleY(1);
-		//view.setPreserveRatio(true);
-		return view;
-	}
-	/**
-	 * 
-	 * @return
-	 */
+
 	public Text getBio() {
 		BufferedReader br = null;
 		Text userBio;
@@ -149,12 +71,12 @@ public class Profile extends GridPane{
 		}
 		StringBuilder sb = new StringBuilder();
 		String bio = null;
-		//try {
-		//	bio = br.readLine();
-		//} catch (IOException e) {
+		try {
+			bio = br.readLine();
+		} catch (IOException e) {
 		//	 TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
+			e.printStackTrace();
+		}
 		while (bio !=null) {
 			sb.append(bio).append("\n");
 			try {
@@ -171,27 +93,21 @@ public class Profile extends GridPane{
 		userBio.setTranslateY(230.0f);
 		return userBio;
 	}
-	/**
-	 * 
-	 * @return
-	 */
+
 	public Button getLeftBtn(){
+		//Left Scroll
 		Button leftscroll = new Button("<");
 		leftscroll.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Collections.rotate(imagesList, 1);
 				image = new Image(imagesList.get(0));
 				view=change(image);
-				//System.out.println(imagesList);
-				//System.out.println(imagesListCopy);	
+				//System.out.println(imagesList.get(0));
 			}
 		});
 		return leftscroll;
 	}
-	/**
-	 * 
-	 * @return
-	 */
+
 	public Button getRightBtn() {
 		Button rightscroll = new Button(">");
 		rightscroll.setOnAction(new EventHandler<ActionEvent>(){
@@ -199,17 +115,11 @@ public class Profile extends GridPane{
 				Collections.rotate(imagesList, -1);
 				image = new Image(imagesList.get(0));
 				view = change(image);
-				//	System.out.println(imagesList);
-				//	System.out.println(imagesListCopy);	
 			}
 		});
-
 		return rightscroll;
 	}
-	/**
-	 * 
-	 * @return
-	 */
+
 	public Button getAddBtn() { //Reads the file
 		Button add = new Button("Add");
 		add.setOnAction(new EventHandler<ActionEvent>(){
@@ -221,24 +131,13 @@ public class Profile extends GridPane{
 				File file = photoChosen.showOpenDialog(getImageStage);
 				//So no error pops up in the console if the user decided to cancel, because a photo is not required
 				if (file !=null) {
-					if (imagesList.size()<5){ //No more than 5 images
-						String filename = file.getName(); 
-						imagesListCopy.add(filename); //Add the file to the copy
-						imagesList.clear(); //delete the main
-						for (int j = 0 ; j<imagesListCopy.size();j++) { //update the main
-							System.out.println(imagesList);
-							imagesList.add(imagesListCopy.get(j));
-						}
-						String reLocateFileName = dir + filename;//The directory + The files name
-						file.renameTo(new File(reLocateFileName)); //adds the image to directory
-						//		System.out.println(imagesList);
-						//		System.out.println(imagesListCopy);
-						System.out.println(imagesList.size());
-					}else {
-
-					}
-
-				}
+					if (imagesList.size()<5){
+					String filename = file.getName(); //grabs the name of the imported photo
+					imagesList.add(2,filename); //adds it to the list
+					String reLocateFileName = dir + filename;//The directory + The files name
+					file.renameTo(new File(reLocateFileName)); //adds the image to directory
+				}}
+				System.out.print(imagesList.size());
 			}
 			private void checkFileChooser(FileChooser photoChosen) {
 				photoChosen.getExtensionFilters().addAll(
@@ -251,58 +150,34 @@ public class Profile extends GridPane{
 		});
 		return add;
 	}
-	/**
-	 * 
-	 * @return
-	 */
+
 	public Button getRemoveBtn() {
 		Button remove = new Button("Remove");
 		remove.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				String currentfile=	imagesList.get(0);
 				imagesList.remove(0);
-				imagesListCopy.clear();
-				for (int j = 0 ; j<imagesList.size();j++) { //update the main
-					//System.out.println(imagesList);
-					imagesListCopy.add(imagesList.get(j));
-				}
-				//System.out.println(currentfile);
+				System.out.println(currentfile);
 				File fileRemove = new File(currentfile);
 				fileRemove.delete(); //remove from the directory
-
 			}
 		});
 		return remove;
 	}
-<<<<<<< HEAD
-	/**
-	 * 
-	 * @return
-	 */
-	public Button getSettingBtn() {
-		Button setting = new Button("Settings");
-		setting.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-
-=======
 
 	public Button getSettingBtn(GridPane gridPane1, Setting gridPane2) {
 		Button setting = new Button("Settings");
 		setting.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				gridPane1.getChildren().add(gridPane2);
->>>>>>> 5b8e78ac5cd86aa38b45c79e5efd8b79a99f01fc
 			}
 		});
 		return setting;
 	}
-	/**
-	 * 
-	 * @return
-	 */
+
 	public Text getname() {
 		Text username = new Text(name); //Converts the parameter name to a text
-		username.setTranslateX(110.0f);
+		username.setTranslateX(4.0f);
 		username.setTranslateY(-70.0f);
 		return username;
 	}

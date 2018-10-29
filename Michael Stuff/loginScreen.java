@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class loginScreen extends Pane {
+public class LoginScreen extends Pane {
 	
 	private Button signInButton, newAccountButton;
 	private TextField usernameField;
@@ -26,7 +26,7 @@ public class loginScreen extends Pane {
 		System.out.println("Login runnin");
 	}
 	
-	loginScreen(GridPane grid1, NewAccount newAcc, Profile profile) {
+	LoginScreen(GridPane grid1, NewAccount newAcc, Profile, profile) {
 		
 		//Create Grid Pane
 		GridPane gridPane = new GridPane();
@@ -36,8 +36,8 @@ public class loginScreen extends Pane {
 		gridPane.setVgap(50);
 		gridPane.setHgap(50);
 //		gridPane.setGridLinesVisible(true);
-		gridPane.setPrefSize(400, 520);
-
+		gridPane.setPrefSize(400, 600);
+		
 		//create all labels
 		welcomeLabel = new Label("Welcome to Riddle Vision");
 		welcomeLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 25));
@@ -95,8 +95,7 @@ public class loginScreen extends Pane {
 					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
 					usernameField.clear();
 					passwordField.clear();
-					System.out.println("Signed In");
-					gridPane.setVisible(false);
+					System.println.out("Signed In")
 					//go to the profile GUI
 					grid1.getChildren().add(profile);
 				}
@@ -110,7 +109,6 @@ public class loginScreen extends Pane {
 		newAccountButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				grid1.getChildren().add(newAcc);
-				
 			}
 		});
 		
