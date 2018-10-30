@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author super
+ * @author CHRIS G. I MADE THIS
  *
  */
 public class Setting extends Pane  {
@@ -97,6 +97,8 @@ public class Setting extends Pane  {
     Label wal = new Label("Do you enjoy walking?");
     Label mus = new Label("Do you like music?");
     Label dem = new Label("Do you love democracy?");
+    Label zoop = new Label("   ");
+    Label zoop1 = new Label("   ");
     
     Setting() {
 
@@ -128,6 +130,8 @@ public class Setting extends Pane  {
         gridPane.add(comboBox7, 1, 10);
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
+        gridPane.add(zoop, 0, 12);
+        gridPane.add(zoop1, 0, 13);
         gridPane.add(save, 400, 500);
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -233,6 +237,7 @@ public class Setting extends Pane  {
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("Changes saved");
+        		gridPane.setVisible(false);
             	//sendtoDatabase(comboBox.getValue());
             	//sendtoDatabase(comboBox1.getValue());
             	//sendtoDatabase(comboBox2.getValue());
