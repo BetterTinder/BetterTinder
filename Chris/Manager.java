@@ -18,7 +18,8 @@ public class Manager extends Application{
 	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
 	NewAccount newAcc = new NewAccount(rootpane, profile);
-	loginScreen login = new loginScreen(rootpane, newAcc, profile);
+	LoginScreen login = new LoginScreen(rootpane, newAcc, profile);
+	buttons buttons = new buttons();
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -26,13 +27,15 @@ public class Manager extends Application{
 	}
 	
 	public void start(Stage stage) {
-		rootpane.add(danielleEatsAss, 0,500); //@Chris
+		//rootpane.add(danielleEatsAss, 0,500); //@Chris
 		danielleEatsAss.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
 			rootpane.getChildren().add(help);
 			}
 		});
-		rootpane.add(danielleSlorpsSpoons, 1,500); //@Chris
+		//profile.setHgap(50);
+		//profile.add(buttons,0,500);
+		//rootpane.add(danielleSlorpsSpoons, 1,500); //@Chris
 		danielleSlorpsSpoons.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
 			Setting sett=new Setting();
@@ -40,8 +43,10 @@ public class Manager extends Application{
 			rootpane.getChildren().add(prof);
 			}
 		});
+		
 		rootpane.getChildren().add(login);// This method would be in each button
-		Scene scene = new Scene(rootpane,400,500);
+		rootpane.getChildren().add(buttons);
+		Scene scene = new Scene(rootpane,400,520);
 		stage.setScene(scene);
 		stage.show();
 	}
