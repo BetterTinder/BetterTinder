@@ -1,16 +1,9 @@
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * 
@@ -19,7 +12,7 @@ import javafx.stage.Stage;
  */
 public class NewAccount extends Setting  {
 
-    NewAccount() {
+    NewAccount(GridPane grid1, Profile prof) {
     	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField ID = new TextField();
         TextField FirstName = new TextField();
@@ -30,10 +23,6 @@ public class NewAccount extends Setting  {
         Label userFirst = new Label("First Name:");
         Label userLast = new Label("Last Name:");
         Label pass = new Label("Password:");
-        Label agg = new Label("Age:");
-        Label gen = new Label("Gender preference:");
-        Label geb = new Label("Gender:");
-        Label loc = new Label("Location:");
         
         GridPane gridPane = new GridPane();
         gridPane.setStyle(style);
@@ -184,6 +173,7 @@ public class NewAccount extends Setting  {
             	//sendtoDatabase(comboBox8.getValue());
             	//sendtoDatabase(genderBox.getValue());
             	//sendtoDatabase(genderBox1.getValue());
+            	
             	}
         });
         this.getChildren().add(gridPane);

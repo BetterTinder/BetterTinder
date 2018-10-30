@@ -3,11 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 /**
  * 
@@ -16,7 +12,7 @@ import javafx.stage.Stage;
  */
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
-	Button danielleEats = new Button("Shreks ass");	//global help button @Chris
+	Button danielleEatsAss = new Button("Help");	//global help button @Chris
 	Setting setting = new Setting(); //this is used in profile; Chris
 	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
@@ -29,8 +25,8 @@ public class Manager extends Application{
 	}
 	
 	public void start(Stage stage) {
-		rootpane.add(danielleEats, 0,500); //@Chris
-		danielleEats.setOnAction(new EventHandler<ActionEvent>(){ 
+		rootpane.add(danielleEatsAss, 0,500); //@Chris
+		danielleEatsAss.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
 			rootpane.getChildren().add(help);
 			}

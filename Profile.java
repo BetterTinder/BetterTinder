@@ -6,16 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -28,6 +25,7 @@ public class Profile extends GridPane{
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
 
 	Profile(GridPane grid1, Setting sett) {
+		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 		HBox Hbox1 = new HBox(270);
 		Hbox1.setTranslateX(40);
 		Hbox1.setTranslateY(165);
@@ -36,6 +34,7 @@ public class Profile extends GridPane{
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
 		Hbox2.getChildren().addAll(getSettingBtn(grid1,sett),getAddBtn(),getRemoveBtn());
+				//,getReviewImage());
 
 		imagesList.add("profile.jpg"); //must change to get default image or the first image
 		imagesList.add("Test1.jpg");
@@ -43,10 +42,11 @@ public class Profile extends GridPane{
 		imagesListCopy.add("Test1.jpg");
 		image = new Image(imagesList.get(0));
 		change(image);
-
+		this.setStyle(style);
 		//System.out.println(imagesList);
 		//System.out.println(imagesListCopy);
-		this.getChildren().addAll(Hbox2,Hbox1,view,getReviewRating(),getReviewImage(),getname());
+		this.getChildren().addAll(Hbox2,Hbox1,view);
+				//,getBio(),getReviewRating(),getReviewImage(),getname());
 	}
 	/**
 	 * 

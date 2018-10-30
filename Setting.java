@@ -1,22 +1,17 @@
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * 
- * @author super
+ * @author CHRIS G. I MADE THIS
  *
  */
 public class Setting extends Pane  {
@@ -97,6 +92,8 @@ public class Setting extends Pane  {
     Label wal = new Label("Do you enjoy walking?");
     Label mus = new Label("Do you like music?");
     Label dem = new Label("Do you love democracy?");
+    Label zoop = new Label("   ");
+    Label zoop1 = new Label("   ");
     
     Setting() {
 
@@ -128,6 +125,8 @@ public class Setting extends Pane  {
         gridPane.add(comboBox7, 1, 10);
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
+        gridPane.add(zoop, 0, 12);
+        gridPane.add(zoop1, 0, 13);
         gridPane.add(save, 400, 500);
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {

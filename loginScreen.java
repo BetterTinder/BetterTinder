@@ -3,11 +3,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -33,7 +31,7 @@ public class loginScreen extends Pane {
 		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 		gridPane.setStyle(style);
 		gridPane.setAlignment(Pos.CENTER);
-		gridPane.setVgap(50);
+		gridPane.setVgap(10);
 		gridPane.setHgap(50);
 //		gridPane.setGridLinesVisible(true);
 		gridPane.setPrefSize(400, 520);
@@ -61,11 +59,11 @@ public class loginScreen extends Pane {
 		newAccountButton = new Button("New Account");
 		
 		//create HBox for buttons
-		siBox = new HBox(10);
+		siBox = new HBox();
 		siBox.setAlignment(Pos.CENTER);
 		siBox.getChildren().add(signInButton);
 		
-		naBox = new HBox(10);
+		naBox = new HBox();
 		naBox.setAlignment(Pos.CENTER);
 		naBox.getChildren().add(newAccountButton);
 		
