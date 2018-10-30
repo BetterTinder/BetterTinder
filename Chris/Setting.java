@@ -79,7 +79,7 @@ public class Setting extends Pane  {
     
     //label declarations
     String style = "-fx-background-color: rgba(255, 255, 255, 1);";
-    Button save = new Button("Apply Changes");
+    static Button save = new Button("Apply Changes");
     Label agg = new Label("Age:");
     Label gen = new Label("Gender preference:");
     Label geb = new Label("Gender:");
@@ -232,6 +232,7 @@ public class Setting extends Pane  {
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("Changes saved");
+            	
         		gridPane.setVisible(false);
             	//sendtoDatabase(comboBox.getValue());
             	//sendtoDatabase(comboBox1.getValue());

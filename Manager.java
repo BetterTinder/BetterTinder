@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
 	Button danielleEatsAss = new Button("Help");	//global help button @Chris
+	Button danielleSlorpsSpoons=new Button("Profile");
 	Setting setting = new Setting(); //this is used in profile; Chris
 	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
@@ -31,9 +32,14 @@ public class Manager extends Application{
 			rootpane.getChildren().add(help);
 			}
 		});
+		rootpane.add(danielleSlorpsSpoons, 1,500); //@Chris
+		danielleSlorpsSpoons.setOnAction(new EventHandler<ActionEvent>(){ 
+			public void handle(ActionEvent event) {
+			Profile prof=new Profile(rootpane,setting);
+			rootpane.getChildren().add(prof);
+			}
+		});
 		rootpane.getChildren().add(login);// This method would be in each button
-		//rootpane.getChildren().add(newAcc); @Chris
-		//rootpane.getChildren().add(login);
 		Scene scene = new Scene(rootpane,400,500);
 		stage.setScene(scene);
 		stage.show();
