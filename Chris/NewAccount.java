@@ -34,7 +34,7 @@ public class NewAccount extends Setting  {
         gridPane.add(FirstName,1,2);
         gridPane.add(userLast,0,3);
         gridPane.add(LastName,1,3);
-        gridPane.add(comboBox,0,7);
+        gridPane.add(comboBox,1,7);
         gridPane.add(gen, 0, 4);
         gridPane.add(geb, 0, 5);
         gridPane.add(genderBox, 1, 4);
@@ -161,19 +161,23 @@ public class NewAccount extends Setting  {
        	 
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("Changes saved");
-            	//sendtoDatabase(comboBox.getValue());
-            	//sendtoDatabase(comboBox1.getValue());
-            	//sendtoDatabase(comboBox2.getValue());
-            	//sendtoDatabase(comboBox3.getValue());
-            	//sendtoDatabase(comboBox4.getValue());
-            	//sendtoDatabase(comboBox5.getValue());
-            	//sendtoDatabase(comboBox6.getValue());
-            	//sendtoDatabase(comboBox7.getValue());
-            	//sendtoDatabase(comboBox8.getValue());
-            	//sendtoDatabase(genderBox.getValue());
-            	//sendtoDatabase(genderBox1.getValue());
-            	
+            	if(comboBox.getValue()!=null && comboBox1.getValue()!=null) {
+            		grid1.getChildren().add(prof);
+            		System.out.println("Changes saved");
+            	}
+            	else
+            		System.out.println("Please fill in all values");
+            		//sendtoDatabase(comboBox.getValue());
+            		//sendtoDatabase(comboBox1.getValue());
+            		//sendtoDatabase(comboBox2.getValue());
+            		//sendtoDatabase(comboBox3.getValue());
+            		//sendtoDatabase(comboBox4.getValue());
+            		//sendtoDatabase(comboBox5.getValue());
+            		//sendtoDatabase(comboBox6.getValue());
+            		//sendtoDatabase(comboBox7.getValue());
+            		//sendtoDatabase(comboBox8.getValue());
+            		//sendtoDatabase(genderBox.getValue());
+            		//sendtoDatabase(genderBox1.getValue());
             	}
         });
         this.getChildren().add(gridPane);

@@ -232,8 +232,6 @@ public class Setting extends Pane  {
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("Changes saved");
-            	
-        		gridPane.setVisible(false);
             	//sendtoDatabase(comboBox.getValue());
             	//sendtoDatabase(comboBox1.getValue());
             	//sendtoDatabase(comboBox2.getValue());
