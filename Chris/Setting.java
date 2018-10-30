@@ -79,7 +79,7 @@ public class Setting extends Pane  {
     
     //label declarations
     String style = "-fx-background-color: rgba(255, 255, 255, 1);";
-    static Button save = new Button("Apply Changes");
+    Button save = new Button("Apply Changes");
     Label agg = new Label("Age:");
     Label gen = new Label("Gender preference:");
     Label geb = new Label("Gender:");

@@ -35,7 +35,8 @@ public class Manager extends Application{
 		rootpane.add(danielleSlorpsSpoons, 1,500); //@Chris
 		danielleSlorpsSpoons.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
-			Profile prof=new Profile(rootpane,setting);
+			Setting sett=new Setting();
+			Profile prof=new Profile(rootpane,sett);
 			rootpane.getChildren().add(prof);
 			}
 		});
