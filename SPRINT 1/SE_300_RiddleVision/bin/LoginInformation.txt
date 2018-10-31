@@ -1,4 +1,0 @@
-username,password
-danielleEats,shreksAss
-MikeAlsoEats,shreksAss
-Shrek,isLove
