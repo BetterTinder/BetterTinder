@@ -189,9 +189,4 @@ public class NewAccount extends Setting  {
 		});
 		this.getChildren().add(gridPane);
 	}
-	public boolean getValue() {
-		Boolean value = false;
-		if (change == 1) value = true;
-		return value;
-	}
 }
