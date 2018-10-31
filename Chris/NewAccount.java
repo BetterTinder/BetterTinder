@@ -161,27 +161,19 @@ public class NewAccount extends Setting  {
        	 
             @Override
             public void handle(ActionEvent event) {
-            	if(comboBox.getValue()!=null && comboBox1.getValue()!=null) {
+            	if(comboBox.getValue()!=null && comboBox1.getValue()!=null && comboBox2.getValue()!=null && comboBox3.getValue()!=null) {
             		grid1.getChildren().add(prof);
             		System.out.println("Changes saved");
+                    sendToDataBase(comboBox, comboBox1, comboBox2, comboBox3, comboBox4, comboBox5, comboBox6, comboBox7, comboBox8, genderBox, genderBox1);
             	}
             	else
             		System.out.println("Please fill in all values");
-            		//sendtoDatabase(comboBox.getValue());
-            		//sendtoDatabase(comboBox1.getValue());
-            		//sendtoDatabase(comboBox2.getValue());
-            		//sendtoDatabase(comboBox3.getValue());
-            		//sendtoDatabase(comboBox4.getValue());
-            		//sendtoDatabase(comboBox5.getValue());
-            		//sendtoDatabase(comboBox6.getValue());
-            		//sendtoDatabase(comboBox7.getValue());
-            		//sendtoDatabase(comboBox8.getValue());
-            		//sendtoDatabase(genderBox.getValue());
-            		//sendtoDatabase(genderBox1.getValue());
+
             	}
         });
         this.getChildren().add(gridPane);
     }
+    
     /**
      * 
      * @param args

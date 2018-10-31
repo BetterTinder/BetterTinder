@@ -30,7 +30,12 @@ public class LoginScreen extends Pane {
 	public static void main(String[] args) {
 		System.out.println("Login runnin");
 	}
-
+/**
+ * 
+ * @param grid1
+ * @param newAcc
+ * @param profile
+ */
 	LoginScreen(GridPane grid1, NewAccount newAcc, Profile profile) {
 
 		//Create Grid Pane

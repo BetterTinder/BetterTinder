@@ -125,8 +125,6 @@ public class Setting extends Pane  {
         gridPane.add(comboBox7, 1, 10);
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
-        gridPane.add(zoop, 0, 12);
-        gridPane.add(zoop1, 0, 13);
         gridPane.add(save, 400, 500);
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -232,20 +230,23 @@ public class Setting extends Pane  {
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("Changes saved");
-            	//sendtoDatabase(comboBox.getValue());
-            	//sendtoDatabase(comboBox1.getValue());
-            	//sendtoDatabase(comboBox2.getValue());
-            	//sendtoDatabase(comboBox3.getValue());
-            	//sendtoDatabase(comboBox4.getValue());
-            	//sendtoDatabase(comboBox5.getValue());
-            	//sendtoDatabase(comboBox6.getValue());
-            	//sendtoDatabase(comboBox7.getValue());
-            	//sendtoDatabase(comboBox8.getValue());
-            	//sendtoDatabase(genderBox.getValue());
-            	//sendtoDatabase(genderBox1.getValue());
+                sendToDataBase(comboBox, comboBox1, comboBox2, comboBox3, comboBox4, comboBox5, comboBox6, comboBox7, comboBox8, genderBox, genderBox1);
             	}
         });
         this.getChildren().add(gridPane);
+    }
+    public void sendToDataBase(ComboBox comboBox, ComboBox comboBox1, ComboBox comboBox2, ComboBox comboBox3, ComboBox comboBox4, ComboBox comboBox5, ComboBox comboBox6, ComboBox comboBox7, ComboBox comboBox8, ComboBox genderBox, ComboBox genderBox1) {
+    	//sendtoDatabase(comboBox.getValue());
+    	//sendtoDatabase(comboBox1.getValue());
+    	//sendtoDatabase(comboBox2.getValue());
+    	//sendtoDatabase(comboBox3.getValue());
+    	//sendtoDatabase(comboBox4.getValue());
+    	//sendtoDatabase(comboBox5.getValue());
+    	//sendtoDatabase(comboBox6.getValue());
+    	//sendtoDatabase(comboBox7.getValue());
+    	//sendtoDatabase(comboBox8.getValue());
+    	//sendtoDatabase(genderBox.getValue());
+    	//sendtoDatabase(genderBox1.getValue());
     }
     /**
      * 
