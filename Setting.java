@@ -8,13 +8,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * 
- * @author CHRIS G. I MADE THIS
+ * @author CHRIS G.
+ * Allows for the user to change their databse. It extends GridPane
  *
  */
-public class Setting extends Pane  {
+public class Setting extends GridPane  {
 
     //Sting lists for the combo boxes
     ObservableList<String> options = 
@@ -79,7 +81,7 @@ public class Setting extends Pane  {
     
     //label declarations
     String style = "-fx-background-color: rgba(255, 255, 255, 1);";
-    Button save = new Button("Apply Changes");
+    Button save = new Button("Apply");
     Label agg = new Label("Age:");
     Label gen = new Label("Gender preference:");
     Label geb = new Label("Gender:");
@@ -92,8 +94,6 @@ public class Setting extends Pane  {
     Label wal = new Label("Do you enjoy walking?");
     Label mus = new Label("Do you like music?");
     Label dem = new Label("Do you love democracy?");
-    Label zoop = new Label("   ");
-    Label zoop1 = new Label("   ");
     
     Setting() {
 
@@ -125,8 +125,6 @@ public class Setting extends Pane  {
         gridPane.add(comboBox7, 1, 10);
         gridPane.add(dem, 0, 11);
         gridPane.add(comboBox8, 1, 11);
-        gridPane.add(zoop, 0, 12);
-        gridPane.add(zoop1, 0, 13);
         gridPane.add(save, 400, 500);
         //event handlers for the combo boxes
         genderBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -225,28 +223,47 @@ public class Setting extends Pane  {
             	System.out.println(comboBox8.getValue());
             	}
         });
-        
-        //pseudo code methods to sending values to SQL 
-        save.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("Changes saved");
-            	//sendtoDatabase(comboBox.getValue());
-            	//sendtoDatabase(comboBox1.getValue());
-            	//sendtoDatabase(comboBox2.getValue());
-            	//sendtoDatabase(comboBox3.getValue());
-            	//sendtoDatabase(comboBox4.getValue());
-            	//sendtoDatabase(comboBox5.getValue());
-            	//sendtoDatabase(comboBox6.getValue());
-            	//sendtoDatabase(comboBox7.getValue());
-            	//sendtoDatabase(comboBox8.getValue());
-            	//sendtoDatabase(genderBox.getValue());
-            	//sendtoDatabase(genderBox1.getValue());
-            	}
-        });
-        this.getChildren().add(gridPane);
-    }
+    save.setOnAction(new EventHandler<ActionEvent>() {
+      	 
+        @Override
+        public void handle(ActionEvent event) {
+        	System.out.println("Changes saved");
+            sendToDataBase(comboBox, comboBox1, comboBox2, comboBox3, comboBox4, comboBox5, comboBox6, comboBox7, comboBox8, genderBox, genderBox1);
+            Manager manager = new Manager();
+			Stage stage = new Stage();
+			manager.startProfile(stage); //Sends you to Profile
+        	}
+    });
+    this.getChildren().add(gridPane);
+}
+/**
+ * 
+ * @param comboBox
+ * @param comboBox1
+ * @param comboBox2
+ * @param comboBox3
+ * @param comboBox4
+ * @param comboBox5
+ * @param comboBox6
+ * @param comboBox7
+ * @param comboBox8
+ * @param genderBox
+ * @param genderBox1
+ * sends all combo box values to the SQL 
+ */
+public void sendToDataBase(ComboBox comboBox, ComboBox comboBox1, ComboBox comboBox2, ComboBox comboBox3, ComboBox comboBox4, ComboBox comboBox5, ComboBox comboBox6, ComboBox comboBox7, ComboBox comboBox8, ComboBox genderBox, ComboBox genderBox1) {
+	//sendtoDatabase(comboBox.getValue());
+	//sendtoDatabase(comboBox1.getValue());
+	//sendtoDatabase(comboBox2.getValue());
+	//sendtoDatabase(comboBox3.getValue());
+	//sendtoDatabase(comboBox4.getValue());
+	//sendtoDatabase(comboBox5.getValue());
+	//sendtoDatabase(comboBox6.getValue());
+	//sendtoDatabase(comboBox7.getValue());
+	//sendtoDatabase(comboBox8.getValue());
+	//sendtoDatabase(genderBox.getValue());
+	//sendtoDatabase(genderBox1.getValue());
+}
     /**
      * 
      * @param args

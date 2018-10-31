@@ -1,9 +1,5 @@
-
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import javafx.event.ActionEvent;
@@ -24,8 +20,11 @@ public class Profile extends GridPane{
 	Image image; ImageView view = new ImageView();
 	String name = new String("Keanu Reeves"); //Assuming the name will be passed in as a parameter from the manager
 
-	Profile(GridPane grid1, Setting sett) {
+	Profile() {
+		Manager manager = new Manager();
+		Stage stage = new Stage();
 		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+		
 		HBox Hbox1 = new HBox(270);
 		Hbox1.setTranslateX(40);
 		Hbox1.setTranslateY(165);
@@ -33,20 +32,20 @@ public class Profile extends GridPane{
 		HBox Hbox2 = new HBox(5);
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
-		Hbox2.getChildren().addAll(getSettingBtn(grid1,sett),getAddBtn(),getRemoveBtn());
+		Hbox2.getChildren().addAll(getAddBtn(),getRemoveBtn(),getSettingBtn());
 				//,getReviewImage());
-
+		HBox Hbox3 = new HBox(5);
+		Hbox3.getChildren().addAll(manager.MainPane(stage));
+		
 		imagesList.add("profile.jpg"); //must change to get default image or the first image
 		imagesList.add("Test1.jpg");
 		imagesListCopy.add("profile.jpg");
 		imagesListCopy.add("Test1.jpg");
 		image = new Image(imagesList.get(0));
 		change(image);
+		
 		this.setStyle(style);
-		//System.out.println(imagesList);
-		//System.out.println(imagesListCopy);
-		this.getChildren().addAll(Hbox2,Hbox1,view);
-				//,getBio(),getReviewRating(),getReviewImage(),getname());
+		this.getChildren().addAll(Hbox3,Hbox2,Hbox1,view,getname(),getReviewRating(),getBio(),getReviewImage());
 	}
 	/**
 	 * 
@@ -74,6 +73,7 @@ public class Profile extends GridPane{
 	public Text getReviewRating() {
 		BufferedReader br = null;
 		Text review;
+		/*
 		try {
 			br = new BufferedReader(new FileReader("Review.txt"));
 		} catch (FileNotFoundException e1) {
@@ -97,11 +97,14 @@ public class Profile extends GridPane{
 				e.printStackTrace();
 			}
 		}
+		
 		String reviewString2 = sb.toString();
+		*/
+		String reviewString2 = new String("5.0");
 		review = new Text(reviewString2);
 		review.setWrappingWidth(400);
 		review.setTranslateX(230.0f);
-		review.setTranslateY(-58.0f);
+		review.setTranslateY(-70.0f);
 		return review;
 	}
 	/**
@@ -113,7 +116,7 @@ public class Profile extends GridPane{
 		view.setImage(image);
 		view.setFitWidth(250);
 		view.setFitHeight(250);
-		view.setTranslateX(75);
+		view.setTranslateX(80);
 		view.setTranslateY(70);
 		view.setScaleX(1);
 		view.setScaleY(1);
@@ -127,6 +130,7 @@ public class Profile extends GridPane{
 	public Text getBio() {
 		BufferedReader br = null;
 		Text userBio;
+		
 		try {
 			br = new BufferedReader(new FileReader("BioTest.txt"));
 		} catch (FileNotFoundException e1) {
@@ -151,6 +155,8 @@ public class Profile extends GridPane{
 			}
 		}
 		String userBioString = sb.toString();
+		
+		//String userBioString = new  String("Hello my name is Keanu Reeve, falling in love and having a relationship are two different things.");
 		userBio = new Text(userBioString);
 		userBio.setWrappingWidth(400);
 		userBio.setTranslateX(10.0f);
@@ -264,11 +270,13 @@ public class Profile extends GridPane{
 	 * 
 	 * @return setting button calls for the setting class and changes panes
 	 */
-	public Button getSettingBtn(GridPane grid1, Setting sett) {
+	public Button getSettingBtn() {
 		Button setting = new Button("Settings");
 		setting.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				grid1.getChildren().add(sett);
+				Manager manager = new Manager();
+				Stage stage = new Stage();
+				manager.startSet(stage);
 			}
 		});
 		return setting;
