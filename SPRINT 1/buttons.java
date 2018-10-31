@@ -13,7 +13,6 @@ public class buttons extends GridPane {
 	buttons () {
 		HBox hbox = new HBox(10);
 		hbox.setAlignment(Pos.CENTER);
-		
 		Button helpButton = new Button("Help");
 		helpButton.setMinWidth(85);
 		helpButton.setOnAction(event ->{
@@ -37,14 +36,8 @@ public class buttons extends GridPane {
 		button4.setOnAction(event ->{
 			System.out.println("Button 4");			
 		});
-		
-		
 
-		hbox.getChildren().addAll(helpButton, button2, button3, button4);
-		GridPane gridPane = new GridPane();
-		gridPane.add(hbox,0,0);
-		
-		/*
+		//hbox.getChildren().addAll(helpButton, button2, button3, button4);
 		GridPane gridPane = new GridPane();
 		gridPane.add(helpButton, 0, 520);
 		gridPane.add(button2, 1, 520);
@@ -56,11 +49,11 @@ public class buttons extends GridPane {
 		button4.setAlignment(Pos.BOTTOM_CENTER);
 		this.getChildren().add(gridPane);
 		
+		/*
 		stage.setScene(new Scene(hbox));
 		stage.setMaxWidth(400);
 		stage.show();
 		 */
-		this.getChildren().add(gridPane);
 	}
 
 }

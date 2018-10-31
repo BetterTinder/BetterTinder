@@ -18,43 +18,35 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 
-/**
- * 
- * @author Danielle Langelotti
- *
- */
+public class LoginScreen extends Pane {
 
-public class LoginScreen extends GridPane {
-	int change = 0;
 	private Button signInButton, newAccountButton;
 	private TextField usernameField;
 	private PasswordField passwordField;
 	private HBox siBox, naBox;
 	private Label welcomeLabel, usernameLabel, passwordLabel;
-	Manager manager = new Manager();
-	
+
 	public static void main(String[] args) {
-	//	System.out.println("Login runnin");
+		System.out.println("Login runnin");
 	}
-	/**
-	 * 
-	 * @param grid1
-	 * @param newAcc
-	 * @param profile
-	 */
-	LoginScreen() {
+/**
+ * 
+ * @param grid1
+ * @param newAcc
+ * @param profile
+ */
+	LoginScreen(GridPane grid1, NewAccount newAcc, Profile profile) {
 
 		//Create Grid Pane
-	
+		GridPane gridPane = new GridPane();
 		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
-		this.setStyle(style);
-		this.setAlignment(Pos.CENTER);
-		this.setVgap(20);
-		this.setHgap(0);
+		gridPane.setStyle(style);
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setVgap(20);
+		gridPane.setHgap(50);
 		//		gridPane.setGridLinesVisible(true);
-		this.setPrefSize(400, 520);
+		gridPane.setPrefSize(400, 525);
 
 		//create all labels
 		welcomeLabel = new Label("Welcome to Riddle Vision");
@@ -88,13 +80,13 @@ public class LoginScreen extends GridPane {
 		naBox.getChildren().add(newAccountButton);
 
 		//Add Controls to Grid Pane
-		this.add(welcomeLabel, 0, 0);
-		this.add(usernameLabel, 0, 1);
-		this.add(usernameField, 0, 2);
-		this.add(passwordLabel, 0, 3);
-		this.add(passwordField, 0, 4);
-		this.add(siBox, 0 ,5);
-		this.add(naBox, 0, 6);
+		gridPane.add(welcomeLabel, 0, 0);
+		gridPane.add(usernameLabel, 0, 1);
+		gridPane.add(usernameField, 0, 2);
+		gridPane.add(passwordLabel, 0, 3);
+		gridPane.add(passwordField, 0, 4);
+		gridPane.add(siBox, 0 ,5);
+		gridPane.add(naBox, 0, 6);
 
 		//Functionality for Buttons
 		signInButton.setOnAction(event -> {
@@ -103,52 +95,43 @@ public class LoginScreen extends GridPane {
 
 			username = usernameField.getText();
 			password = passwordField.getText();			
-			/*
+
 			if (username.equals("u") && password.equals("p")) { 
 				usernameField.clear();
 				passwordField.clear();
 				System.out.println("Signed In");
-				Manager manager = new Manager();
-				Stage stage = new Stage();
-				manager.startProfile(stage); //switches to profile
+				grid1.getChildren().add(profile);
 			}
-			*/
-			
 			if (username.isEmpty()) {
 				createAlert(Alert.AlertType.ERROR, "No username was entered!");
 			} else if (password.isEmpty()) {
 				createAlert(Alert.AlertType.ERROR, "No password was entered!");		
 			} else {
-				
 				boolean valid = checkLoginInformation("LoginInformation.txt",username,password);
-
+				
 				if (valid == true) {
 					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
 					usernameField.clear();
 					passwordField.clear();
-//					System.out.println("Signed In");
-					Manager manager = new Manager();
-					Stage stage = new Stage();
-					manager.startProfile(stage); //switches to profile
-					
+					System.out.println("Signed In");
+					grid1.getChildren().add(profile);
 				}
 				else {
 					createAlert(Alert.AlertType.ERROR, "Try Again!");
 				}
-				
 			}
 		});
 
 
 		newAccountButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-				Manager manager = new Manager();
-				Stage stage = new Stage();
-				manager.startNewAcc(stage); //switches to new account
+				grid1.getChildren().add(newAcc);
 			}
 		});
 
 		//return
+		this.getChildren().add(gridPane);
+
 	}
 
 	private Alert createAlert(Alert.AlertType type, String string) {
@@ -195,4 +178,5 @@ public class LoginScreen extends GridPane {
 		return valid;
 
 	}
+
 }
