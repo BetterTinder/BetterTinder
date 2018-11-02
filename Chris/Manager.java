@@ -14,8 +14,8 @@ import javafx.stage.Stage;
  */
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
-	Button danielleEatsAss = new Button("Help");	//global help button @Chris
-	Button danielleSlorpsSpoons=new Button("Profile");
+	Button helpb = new Button("Help");	//global help button @Chris
+	Button prof=new Button("Profile");
 	Setting setting = new Setting(); //this is used in profile; Chris
 	Profile profile = new Profile(rootpane,setting); //This will be global
 	Help help = new Help();//This will be global
@@ -31,19 +31,19 @@ public class Manager extends Application{
 	//hbox.getChildren().addAll(helpButton, button2, button3, button4);
 	
 	public static void main(String[] args) {
-		launch(args);
-		
+		launch(args);	
 	}
 	
 	public void start(Stage stage) {
-		danielleEatsAss.setMinWidth(400);
-		danielleSlorpsSpoons.setMinWidth(400);
-		danielleEatsAss.setOnAction(new EventHandler<ActionEvent>(){ 
+		helpb.setMinWidth(400);
+		prof.setMinWidth(400);
+		helpb.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
-			rootpane.getChildren().add(help);
+			Help helps = new Help();
+			rootpane.getChildren().add(helps);
 			}
 		});
-		danielleSlorpsSpoons.setOnAction(new EventHandler<ActionEvent>(){ 
+		prof.setOnAction(new EventHandler<ActionEvent>(){ 
 			public void handle(ActionEvent event) {
 			Setting sett=new Setting();
 			Profile prof=new Profile(rootpane,sett);
@@ -54,8 +54,8 @@ public class Manager extends Application{
 		//profile.add(buttons,0,500);
 		rootpane.getChildren().add(login);// This method would be in each button
 		//rootpane.getChildren().add(buttons);
-		rootpane.add(danielleEatsAss, 0,496); //@Chris
-		rootpane.add(danielleSlorpsSpoons, 0,497); //@Chris
+		rootpane.add(helpb, 0,496); //@Chris
+		rootpane.add(prof, 0,497); //@Chris
 		
 		Scene scene = new Scene(rootpane,400,520);
 		stage.setScene(scene);

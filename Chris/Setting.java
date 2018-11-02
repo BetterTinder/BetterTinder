@@ -235,6 +235,21 @@ public class Setting extends Pane  {
         });
         this.getChildren().add(gridPane);
     }
+    /**
+     * 
+     * @param comboBox
+     * @param comboBox1
+     * @param comboBox2
+     * @param comboBox3
+     * @param comboBox4
+     * @param comboBox5
+     * @param comboBox6
+     * @param comboBox7
+     * @param comboBox8
+     * @param genderBox
+     * @param genderBox1
+     * sends all combo box values to the SQL 
+     */
     public void sendToDataBase(ComboBox comboBox, ComboBox comboBox1, ComboBox comboBox2, ComboBox comboBox3, ComboBox comboBox4, ComboBox comboBox5, ComboBox comboBox6, ComboBox comboBox7, ComboBox comboBox8, ComboBox genderBox, ComboBox genderBox1) {
     	//sendtoDatabase(comboBox.getValue());
     	//sendtoDatabase(comboBox1.getValue());
