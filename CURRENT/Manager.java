@@ -1,18 +1,21 @@
+import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion.Setting;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import sun.java2d.cmm.Profile;
 /**
  * 
  * @author Michael Fornito and also Chris did some stuff
  *
  */
-public class Manager extends Application{
+public class Manager extends Application {
 	GridPane rootpane = new GridPane();
 	Setting setting = new Setting(); //this is used in profile; Chris
 	Profile profile = new Profile(rootpane,setting); //This will be global
@@ -43,9 +46,9 @@ public class Manager extends Application{
 		btnBox.setAlignment(Pos.CENTER);
 
 		Button helpBtn = new Button("Help");
-		helpButton.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
-		helpButton.setMinSize(85, 20);
-		helpButton.setOnAction(event -> {
+		helpBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
+		helpBtn.setMinSize(85, 20);
+		helpBtn.setOnAction(event -> {
 			System.out.println("Help Button");	
 			Help helps = new Help();
 			rootpane.getChildren().add(helps);
@@ -74,6 +77,8 @@ public class Manager extends Application{
 		matchedBtn.setOnAction(event -> {
 			System.out.println("Matched");
 		});
+		
+		btnBox.getChildren().addAll(helpBtn,profileBtn,findBtn,matchedBtn);
 
 
 
