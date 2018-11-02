@@ -22,11 +22,6 @@ public class Manager extends Application{
 	NewAccount newAcc = new NewAccount(rootpane, profile);
 	LoginScreen login = new LoginScreen(rootpane, newAcc, profile);
 	//buttons buttons = new buttons();
-	HBox hbox = new HBox(10);
-	Button helpButton = new Button("Help");
-	Button button2 = new Button("My Profile");
-	Button button3 = new Button("Find");
-	Button button4 = new Button("Matched");	
 
 	//hbox.getChildren().addAll(helpButton, button2, button3, button4);
 	
