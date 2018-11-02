@@ -1,6 +1,11 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 /**
  * 
  * @author Chris G and Michael Fornito
@@ -10,9 +15,7 @@ public class Help extends GridPane  {
 
 	Help(){
 		VBox vbox = new VBox(20);
-		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
-		GridPane gridPane = new GridPane();
-        gridPane.setStyle(style);
+		Stage stage = new Stage();
 		Text profile = new Text(profileHelp());
 		Text matched = new Text(MatchedHelp());
 		Text finduser = new Text(findUserHelp());
@@ -20,10 +23,23 @@ public class Help extends GridPane  {
 		profile.setWrappingWidth(380);
 		matched.setWrappingWidth(380);
 		finduser.setWrappingWidth(380);
+	
 		
-		vbox.getChildren().addAll(profile,finduser,matched);
+		vbox.getChildren().addAll(profile,matched,finduser,getButton());
 		
-		this.getChildren().addAll(gridPane, vbox);
+		this.getChildren().addAll(vbox);
+	}
+	private Button getButton() {
+		Button button = new Button("Back");
+		button.setOnAction(new EventHandler<ActionEvent>(){ 
+			public void handle(ActionEvent event) {
+				Manager manager = new Manager();
+				Stage stage = new Stage();
+				manager.startProfile(stage);
+			}
+		});
+		
+		return button;
 	}
 	private String findUserHelp() {
 		String finduser = new String("The Find Users button allows you to find your potential matches"

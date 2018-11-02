@@ -10,7 +10,9 @@ public class Help extends GridPane  {
 
 	Help(){
 		VBox vbox = new VBox(20);
-		
+		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+		GridPane gridPane = new GridPane();
+        gridPane.setStyle(style);
 		Text profile = new Text(profileHelp());
 		Text matched = new Text(MatchedHelp());
 		Text finduser = new Text(findUserHelp());
@@ -21,7 +23,7 @@ public class Help extends GridPane  {
 		
 		vbox.getChildren().addAll(profile,finduser,matched);
 		
-		this.getChildren().addAll(vbox);
+		this.getChildren().addAll(gridPane, vbox);
 	}
 	private String findUserHelp() {
 		String finduser = new String("The Find Users button allows you to find your potential matches"
