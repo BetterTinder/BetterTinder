@@ -65,35 +65,34 @@ public class Setting extends Pane  {
     	    );
     
     //combo box declarations
-    ComboBox<String> genderBox = new ComboBox<String>(optionn);
-    ComboBox<String> genderBox1 = new ComboBox<String>(optionn);
+    ComboBox<String> genderPref = new ComboBox<String>(optionn);
+    ComboBox<String> genderIden = new ComboBox<String>(optionn);
     ComboBox<String> comboBox = new ComboBox<String>(options);
-    ComboBox<String> comboBox1 = new ComboBox<String>(option);
-    ComboBox<String> comboBox2 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox3 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox4 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox5 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox6 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox7 = new ComboBox<String>(yesno);
-    ComboBox<String> comboBox8 = new ComboBox<String>(yesno);
+    ComboBox<String> ageBox = new ComboBox<String>(option);
+    ComboBox<String> dogBox = new ComboBox<String>(yesno);
+    ComboBox<String> dogHaveBox = new ComboBox<String>(yesno);
+    ComboBox<String> vegetarianBox = new ComboBox<String>(yesno);
+    ComboBox<String> movieBox = new ComboBox<String>(yesno);
+    ComboBox<String> walkingBox = new ComboBox<String>(yesno);
+    ComboBox<String> musicBox = new ComboBox<String>(yesno);
+    ComboBox<String> democracyBox = new ComboBox<String>(yesno);
     
     //label declarations
     String style = "-fx-background-color: rgba(255, 255, 255, 1);";
     Button save = new Button("Apply Changes");
-    Label agg = new Label("Age:");
-    Label gen = new Label("Gender preference:");
-    Label geb = new Label("Gender:");
-    Label loc = new Label("Location:");
-    Label inr = new Label("Intrests:");
+    Label age = new Label("Age:");
+    Label genPrefLabel = new Label("Gender preference:");
+    Label genIdenLabel = new Label("Gender:");
+    Label location = new Label("Location:");
+    Label intrest = new Label("Intrests:");
     Label dog = new Label("Do you like dogs?");
-    Label doge = new Label("Do you have a dog?");
-    Label veg = new Label("Do you eat meat?");
-    Label mov = new Label("Do you enjoy movies?");
-    Label wal = new Label("Do you enjoy walking?");
-    Label mus = new Label("Do you like music?");
-    Label dem = new Label("Do you love democracy?");
-    Label zoop = new Label("   ");
-    Label zoop1 = new Label("   ");
+    Label dogHave = new Label("Do you have a dog?");
+    Label vegetarian = new Label("Do you eat meat?");
+    Label movie = new Label("Do you enjoy movies?");
+    Label walking = new Label("Do you enjoy walking?");
+    Label music = new Label("Do you like music?");
+    Label democracy = new Label("Do you love democracy?");
+    Label fuck = new Label("Do you want a quick fuck?");
     
     Setting() {
 
@@ -103,44 +102,44 @@ public class Setting extends Pane  {
         gridPane.setStyle(style);
         gridPane.setPadding(new Insets(25));
         gridPane.add(comboBox,1,3);
-        gridPane.add(gen, 0, 0);
-        gridPane.add(geb, 0, 1);
-        gridPane.add(genderBox, 1, 0);
-        gridPane.add(genderBox1, 1, 1);
-        gridPane.add(agg, 0, 2);
-        gridPane.add(comboBox1, 1, 2);
-        gridPane.add(loc, 0, 3);
-        gridPane.add(inr, 0, 4);
+        gridPane.add(genPrefLabel, 0, 0);
+        gridPane.add(genIdenLabel, 0, 1);
+        gridPane.add(genderPref, 1, 0);
+        gridPane.add(genderIden, 1, 1);
+        gridPane.add(age, 0, 2);
+        gridPane.add(ageBox, 1, 2);
+        gridPane.add(location, 0, 3);
+        gridPane.add(intrest, 0, 4);
         gridPane.add(dog, 0, 5);
-        gridPane.add(comboBox2, 1, 5);
-        gridPane.add(doge, 0, 6);
-        gridPane.add(comboBox3, 1, 6);
-        gridPane.add(veg, 0, 7);
-        gridPane.add(comboBox4, 1, 7);
-        gridPane.add(mov, 0, 8);
-        gridPane.add(comboBox5, 1, 8);
-        gridPane.add(wal, 0, 9);
-        gridPane.add(comboBox6, 1, 9);
-        gridPane.add(mus, 0, 10);
-        gridPane.add(comboBox7, 1, 10);
-        gridPane.add(dem, 0, 11);
-        gridPane.add(comboBox8, 1, 11);
+        gridPane.add(dogBox, 1, 5);
+        gridPane.add(dogHave, 0, 6);
+        gridPane.add(dogHaveBox, 1, 6);
+        gridPane.add(vegetarian, 0, 7);
+        gridPane.add(vegetarianBox, 1, 7);
+        gridPane.add(movie, 0, 8);
+        gridPane.add(movieBox, 1, 8);
+        gridPane.add(walking, 0, 9);
+        gridPane.add(walkingBox, 1, 9);
+        gridPane.add(music, 0, 10);
+        gridPane.add(musicBox, 1, 10);
+        gridPane.add(democracy, 0, 11);
+        gridPane.add(democracyBox, 1, 11);
         gridPane.add(save, 400, 500);
         //event handlers for the combo boxes
-        genderBox.setOnAction(new EventHandler<ActionEvent>() {
+        genderPref.setOnAction(new EventHandler<ActionEvent>() {
           	 
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("The user would like sleep with the gender of:");
-            	System.out.println(genderBox.getValue());
+            	System.out.println("Gender preferne fuck you danielle ce:");
+            	System.out.println(genderPref.getValue());
             }
         });
-        genderBox1.setOnAction(new EventHandler<ActionEvent>() {
+        genderIden.setOnAction(new EventHandler<ActionEvent>() {
         	 
             @Override
             public void handle(ActionEvent event) {
-            	System.out.println("The user would like to identify as:");
-            	System.out.println(genderBox1.getValue());
+            	System.out.println("The user would like to identify as preference:");
+            	System.out.println(genderIden.getValue());
             	}
         });
         comboBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -151,76 +150,76 @@ public class Setting extends Pane  {
             	System.out.println(comboBox.getValue());
             	}
         });
-        comboBox1.setOnAction(new EventHandler<ActionEvent>() {
+        ageBox.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user would like to change their age");
-            	System.out.println(comboBox1.getValue());
+            	System.out.println(ageBox.getValue());
             	}
         });
-        comboBox2.setOnAction(new EventHandler<ActionEvent>() {
+        dogBox.setOnAction(new EventHandler<ActionEvent>() {
         	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox2.getValue());
+            	System.out.println(dogBox.getValue());
             	}
         });
-        comboBox3.setOnAction(new EventHandler<ActionEvent>() {
+        dogHaveBox.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox3.getValue());
+            	System.out.println(dogHaveBox.getValue());
             	}
         });
-        comboBox3.setOnAction(new EventHandler<ActionEvent>() {
+        dogHaveBox.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox3.getValue());
+            	System.out.println(dogHaveBox.getValue());
             	}
         });
-        comboBox4.setOnAction(new EventHandler<ActionEvent>() {
+        vegetarianBox.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox4.getValue());
+            	System.out.println(vegetarianBox.getValue());
             	}
         });
-        comboBox5.setOnAction(new EventHandler<ActionEvent>() {
+        movieBox.setOnAction(new EventHandler<ActionEvent>() {
        	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox5.getValue());
+            	System.out.println(movieBox.getValue());
             	}
         });
-        comboBox6.setOnAction(new EventHandler<ActionEvent>() {
+        walkingBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox6.getValue());
+            	System.out.println(walkingBox.getValue());
             	}
         });
-        comboBox7.setOnAction(new EventHandler<ActionEvent>() {
+        musicBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox7.getValue());
+            	System.out.println(musicBox.getValue());
             	}
         });
-        comboBox8.setOnAction(new EventHandler<ActionEvent>() {
+        democracyBox.setOnAction(new EventHandler<ActionEvent>() {
           	 
             @Override
             public void handle(ActionEvent event) {
             	System.out.println("The user has answered:");
-            	System.out.println(comboBox8.getValue());
+            	System.out.println(democracyBox.getValue());
             	}
         });
         
@@ -229,8 +228,10 @@ public class Setting extends Pane  {
        	 
             @Override
             public void handle(ActionEvent event) {
+            	if(comboBox.getValue()!=null && ageBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
+                sendToDataBase(comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
             	System.out.println("Changes saved");
-                sendToDataBase(comboBox, comboBox1, comboBox2, comboBox3, comboBox4, comboBox5, comboBox6, comboBox7, comboBox8, genderBox, genderBox1);
+            	}
             	}
         });
         this.getChildren().add(gridPane);
@@ -238,30 +239,30 @@ public class Setting extends Pane  {
     /**
      * 
      * @param comboBox
-     * @param comboBox1
-     * @param comboBox2
-     * @param comboBox3
-     * @param comboBox4
-     * @param comboBox5
-     * @param comboBox6
-     * @param comboBox7
-     * @param comboBox8
-     * @param genderBox
-     * @param genderBox1
+     * @param ageBox
+     * @param dogBox
+     * @param dogHaveBox
+     * @param vegetarianBox
+     * @param movieBox
+     * @param walkingBox
+     * @param musicBox
+     * @param democracyBox
+     * @param genderPref
+     * @param genderIden
      * sends all combo box values to the SQL 
      */
-    public void sendToDataBase(ComboBox comboBox, ComboBox comboBox1, ComboBox comboBox2, ComboBox comboBox3, ComboBox comboBox4, ComboBox comboBox5, ComboBox comboBox6, ComboBox comboBox7, ComboBox comboBox8, ComboBox genderBox, ComboBox genderBox1) {
+    public void sendToDataBase(ComboBox comboBox, ComboBox ageBox, ComboBox dogBox, ComboBox dogHaveBox, ComboBox vegetarianBox, ComboBox movieBox, ComboBox walkingBox, ComboBox musicBox, ComboBox democracyBox, ComboBox genderPref, ComboBox genderIden) {
     	//sendtoDatabase(comboBox.getValue());
-    	//sendtoDatabase(comboBox1.getValue());
-    	//sendtoDatabase(comboBox2.getValue());
-    	//sendtoDatabase(comboBox3.getValue());
-    	//sendtoDatabase(comboBox4.getValue());
-    	//sendtoDatabase(comboBox5.getValue());
-    	//sendtoDatabase(comboBox6.getValue());
-    	//sendtoDatabase(comboBox7.getValue());
-    	//sendtoDatabase(comboBox8.getValue());
-    	//sendtoDatabase(genderBox.getValue());
-    	//sendtoDatabase(genderBox1.getValue());
+    	//sendtoDatabase(ageBox.getValue());
+    	//sendtoDatabase(dogBox.getValue());
+    	//sendtoDatabase(dogHaveBox.getValue());
+    	//sendtoDatabase(vegetarianBox.getValue());
+    	//sendtoDatabase(movieBox.getValue());
+    	//sendtoDatabase(walkingBox.getValue());
+    	//sendtoDatabase(musicBox.getValue());
+    	//sendtoDatabase(democracyBox.getValue());
+    	//sendtoDatabase(genderPref.getValue());
+    	//sendtoDatabase(genderIden.getValue());
     }
     /**
      * 
