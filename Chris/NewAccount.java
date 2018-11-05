@@ -12,6 +12,11 @@ import javafx.scene.layout.HBox;
  */
 public class NewAccount extends Setting  {
 
+	/**
+	 * the new account pane constructor. It adds things to the pane
+	 * @param hbox
+	 * @param prof
+	 */
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
     	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
@@ -162,13 +167,16 @@ public class NewAccount extends Setting  {
             	if(comboBox.getValue()!=null && ageBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
             		sendToProfile();
             		System.out.println("Changes saved");
+            		//sendToDatabase isn't here, because I left it in Settings
                     sendToDataBase(comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
             	}
             	else
             		System.out.println("Please fill in all values");
 
             	}
-
+/**
+ * this sends the user to the profile screen after creating their account
+ */
             private void sendToProfile() {
         		gridPane.getChildren().clear();
         		gridPane.getChildren().add(prof);

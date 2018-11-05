@@ -92,6 +92,11 @@ public class Setting extends GridPane  {
     Label music = new Label("Do you like music?");
     Label democracy = new Label("Do you love democracy?");
 
+    /**
+     * a constructor, the constructor for the setting pane
+     * @param hbox
+     * @param rootpane
+     */
 	Setting(HBox hbox, GridPane rootpane) {
 
 
@@ -234,7 +239,7 @@ public class Setting extends GridPane  {
 		this.getChildren().add(gridPane);
 	}
 	/**
-	 * 
+	 * this method will send all the comboBox values to SQL
 	 * @param comboBox
 	 * @param comboBox1
 	 * @param comboBox2
@@ -247,7 +252,7 @@ public class Setting extends GridPane  {
 	 * @param genderBox
 	 * @param genderBox1
 	 */
-	public void sendToDataBase(ComboBox comboBox, ComboBox comboBox1, ComboBox comboBox2, ComboBox comboBox3, ComboBox comboBox4, ComboBox comboBox5, ComboBox comboBox6, ComboBox comboBox7, ComboBox comboBox8, ComboBox genderBox, ComboBox genderBox1) {
+	public void sendToDataBase(ComboBox<String> comboBox, ComboBox<String> comboBox1, ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
 		//sendtoDatabase(comboBox.getValue());
 		//sendtoDatabase(comboBox1.getValue());
 		//sendtoDatabase(comboBox2.getValue());
@@ -261,6 +266,7 @@ public class Setting extends GridPane  {
 		//sendtoDatabase(genderBox1.getValue());
 	}
 	/**
+	 * closes setting and sends the user back to profile
 	 * @param hbox 
 	 */
 	private void sendToProfile(HBox hbox,GridPane rootpane) {
