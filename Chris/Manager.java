@@ -63,7 +63,6 @@ public class Manager extends Application{
 		profileBtn.setMinSize(85, 20);
 		profileBtn.setOnAction(event -> {
 			System.out.println("My Profile");
-			Setting sett = new Setting(addButtons(grid1),grid1);
 			Profile prof = new Profile(addButtons(grid1), grid1);
 			grid1.getChildren().add(prof);
 

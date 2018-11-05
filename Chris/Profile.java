@@ -1,4 +1,4 @@
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,7 +72,7 @@ public class Profile extends GridPane{
 	 * returns an image of a star for the review
 	 */
 	public ImageView getReviewImage() {
-		Image reviewImage;
+		//Image reviewImage;
 		ImageView view = new ImageView();
 		image = new Image("star.png");
 		view.setImage(image);
@@ -91,7 +91,7 @@ public class Profile extends GridPane{
 	 * reads for the review rating and displays it to the profile
 	 */
 	public Text getReviewRating() {
-		BufferedReader br = null;
+		//BufferedReader br = null;
 		Text review = new Text("5.0");
 		review.setWrappingWidth(400);
 		review.setTranslateX(230.0f);
@@ -119,7 +119,7 @@ public class Profile extends GridPane{
 	 * @return finds and displays the user's bio information as a text on the pane
 	 */
 	public Text getBio() {
-		BufferedReader br = null;
+		//BufferedReader br = null;
 		Text userBio;
 		String userBioString = new  String("Hello my name is Keanu Reeve, falling in love and having a relationship are two different things.");
 		userBio = new Text(userBioString);
