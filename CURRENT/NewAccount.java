@@ -19,6 +19,34 @@ public class NewAccount extends Setting  {
 	 */
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
+    	
+		ageSlider.setMin(18);
+		ageSlider.setMax(60);
+		ageSlider.setValue(18);
+        ageSlider.setBlockIncrement(5);
+        ageSlider.setMajorTickUnit(5);
+        ageSlider.setShowTickLabels(true);
+        ageSlider.setShowTickMarks(true);
+        ageSlider.setSnapToTicks(true);
+        
+        ageMinSlider.setMin(18);
+		ageMinSlider.setMax(60);
+		ageMinSlider.setValue(18);
+        ageMinSlider.setBlockIncrement(5);
+        ageMinSlider.setMajorTickUnit(5);
+        ageMinSlider.setShowTickLabels(true);
+        ageMinSlider.setShowTickMarks(true);
+        ageMinSlider.setSnapToTicks(true);
+        
+        ageMaxSlider.setMin(18);
+		ageMaxSlider.setMax(60);
+		ageMaxSlider.setValue(18);
+        ageMaxSlider.setBlockIncrement(5);
+        ageMaxSlider.setMajorTickUnit(5);
+        ageMaxSlider.setShowTickLabels(true);
+        ageMaxSlider.setShowTickMarks(true);
+        ageMaxSlider.setSnapToTicks(true);
+        
     	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField name = new TextField();
         TextField FirstName = new TextField();
@@ -44,13 +72,13 @@ public class NewAccount extends Setting  {
         gridPane.add(genderPref, 1, 4);
         gridPane.add(genderIden, 1, 5);
         gridPane.add(age, 0, 6);
-        gridPane.add(ageBox, 1, 6);
+        gridPane.add(ageSlider, 1, 6);
         gridPane.add(location, 0, 7);
         gridPane.add(agePref, 0, 8);
         gridPane.add(ageMin, 0, 9);
-        gridPane.add(ageMinBox, 1, 9);
+        gridPane.add(ageMinSlider, 1, 9);
         gridPane.add(ageMax, 0, 10);
-        gridPane.add(ageMaxBox, 1, 10);
+        gridPane.add(ageMaxSlider, 1, 10);
         gridPane.add(intrest, 0, 11);
         gridPane.add(dog, 0, 12);
         gridPane.add(dogBox, 1, 12);
@@ -91,14 +119,6 @@ public class NewAccount extends Setting  {
             public void handle(ActionEvent event) {
             	System.out.println("The user would like to change their location");
             	System.out.println(comboBox.getValue());
-            	}
-        });
-        ageBox.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change their age");
-            	System.out.println(ageBox.getValue());
             	}
         });
         dogBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -165,32 +185,16 @@ public class NewAccount extends Setting  {
             	System.out.println(democracyBox.getValue());
             	}
         });
-        ageMinBox.setOnAction(new EventHandler<ActionEvent>() {
-        	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(ageMinBox.getValue());
-            	}
-        });
-        ageMaxBox.setOnAction(new EventHandler<ActionEvent>() {
-         	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(ageMaxBox.getValue());
-            	}
-        });
         save.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	if(ageMinBox.getValue()!=null && ageMaxBox.getValue()!=null && comboBox.getValue()!=null && ageBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
-            		if (Integer.parseInt(ageMinBox.getValue())<Integer.parseInt(ageMaxBox.getValue())) {
-            		sendToProfile();
-            		System.out.println("Changes saved");
-            		//sendToDatabase isn't here, because I left it in Settings
-                    sendToDataBase(ageMinBox, ageMaxBox, comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
-                    userToDatabase(name, FirstName, LastName, Password);
+            	if(comboBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
+            		if (ageMinSlider.getValue()<ageMaxSlider.getValue()) {
+            			sendToProfile();
+            			System.out.println("Changes saved");
+            			//sendToDatabase isn't here, because I left it in Settings
+            			sendToDataBase(ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+            			userToDatabase(name, FirstName, LastName, Password);
             		}
             		else {
             			System.out.println("correct yo age");

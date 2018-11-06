@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 /**
@@ -30,32 +31,6 @@ public class Setting extends GridPane  {
 					"No",
 					"Prefer not to answer"
 					);
-	ObservableList<String> option = 
-			FXCollections.observableArrayList(
-					"18",
-					"19",
-					"20",
-					"21",
-					"22",
-					"23",
-					"24",
-					"25",
-					"26",
-					"27",
-					"28",
-					"29",
-					"30",
-					"31",
-					"32",
-					"33",
-					"34",
-					"35",
-					"36",
-					"37",
-					"38",
-					"39",
-					"40"
-					);
 	ObservableList<String> optionn = 
 			FXCollections.observableArrayList(
 					"Male",
@@ -67,7 +42,6 @@ public class Setting extends GridPane  {
 	ComboBox<String> genderPref = new ComboBox<String>(optionn);
     ComboBox<String> genderIden = new ComboBox<String>(optionn);
     ComboBox<String> comboBox = new ComboBox<String>(options);
-    ComboBox<String> ageBox = new ComboBox<String>(option);
     ComboBox<String> dogBox = new ComboBox<String>(yesno);
     ComboBox<String> dogHaveBox = new ComboBox<String>(yesno);
     ComboBox<String> vegetarianBox = new ComboBox<String>(yesno);
@@ -75,9 +49,12 @@ public class Setting extends GridPane  {
     ComboBox<String> walkingBox = new ComboBox<String>(yesno);
     ComboBox<String> musicBox = new ComboBox<String>(yesno);
     ComboBox<String> democracyBox = new ComboBox<String>(yesno);
-    ComboBox<String> ageMinBox = new ComboBox<String>(option);
-    ComboBox<String> ageMaxBox = new ComboBox<String>(option);
-
+    
+    //age slider declarations
+    Slider ageSlider = new Slider();
+    Slider ageMinSlider = new Slider();
+    Slider ageMaxSlider = new Slider();
+    
 	//label declarations
 	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
     Button save = new Button("Apply Changes");
@@ -95,7 +72,7 @@ public class Setting extends GridPane  {
     Label movie = new Label("Do you enjoy film?");
     Label walking = new Label("Do you enjoy excersizing?");
     Label music = new Label("Do you like music?");
-    Label democracy = new Label("Would you look for a long term relationship?");
+    Label democracy = new Label("Do you want a long term relationship?");
     /**
      * a constructor, the constructor for the setting pane
      * @param hbox
@@ -103,7 +80,33 @@ public class Setting extends GridPane  {
      */
 	Setting(HBox hbox, GridPane rootpane) {
 
-
+		ageSlider.setMin(18);
+		ageSlider.setMax(60);
+		ageSlider.setValue(18);
+        ageSlider.setBlockIncrement(5);
+        ageSlider.setMajorTickUnit(5);
+        ageSlider.setShowTickLabels(true);
+        ageSlider.setShowTickMarks(true);
+        ageSlider.setSnapToTicks(true);
+        
+        ageMinSlider.setMin(18);
+		ageMinSlider.setMax(60);
+		ageMinSlider.setValue(18);
+        ageMinSlider.setBlockIncrement(5);
+        ageMinSlider.setMajorTickUnit(5);
+        ageMinSlider.setShowTickLabels(true);
+        ageMinSlider.setShowTickMarks(true);
+        ageMinSlider.setSnapToTicks(true);
+        
+        ageMaxSlider.setMin(18);
+		ageMaxSlider.setMax(60);
+		ageMaxSlider.setValue(18);
+        ageMaxSlider.setBlockIncrement(5);
+        ageMaxSlider.setMajorTickUnit(5);
+        ageMaxSlider.setShowTickLabels(true);
+        ageMaxSlider.setShowTickMarks(true);
+        ageMaxSlider.setSnapToTicks(true);
+        
 		//adding all of it to the gridpane
 		GridPane gridPane = new GridPane();
         gridPane.setStyle(style);
@@ -114,14 +117,17 @@ public class Setting extends GridPane  {
         gridPane.add(genderPref, 1, 0);
         gridPane.add(genderIden, 1, 1);
         gridPane.add(age, 0, 2);
-        gridPane.add(ageBox, 1, 2);
+        //gridPane.add(ageBox, 1, 2);
+        gridPane.add(ageSlider, 1, 2);
         gridPane.add(location, 0, 3);
         gridPane.add(intrest, 0, 4);
         gridPane.add(agePref, 0, 5);
         gridPane.add(ageMin, 0, 6);
-        gridPane.add(ageMinBox, 1, 6);
+        //gridPane.add(ageMinBox, 1, 6);
+        gridPane.add(ageMinSlider, 1, 6);
         gridPane.add(ageMax, 0, 7);
-        gridPane.add(ageMaxBox, 1, 7);
+        //gridPane.add(ageMaxBox, 1, 7);
+        gridPane.add(ageMaxSlider, 1, 7);
         gridPane.add(dog, 0, 8);
         gridPane.add(dogBox, 1, 8);
         gridPane.add(dogHave, 0, 9);
@@ -160,14 +166,6 @@ public class Setting extends GridPane  {
             public void handle(ActionEvent event) {
             	System.out.println("The user would like to change their location");
             	System.out.println(comboBox.getValue());
-            	}
-        });
-        ageBox.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change their age");
-            	System.out.println(ageBox.getValue());
             	}
         });
         dogBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -234,28 +232,12 @@ public class Setting extends GridPane  {
             	System.out.println(democracyBox.getValue());
             	}
         });
-        ageMinBox.setOnAction(new EventHandler<ActionEvent>() {
-         	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(ageMinBox.getValue());
-            	}
-        });
-        ageMaxBox.setOnAction(new EventHandler<ActionEvent>() {
-         	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(ageMaxBox.getValue());
-            	}
-        });
 		//pseudo code methods to sending values to SQL 
 		save.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (Integer.parseInt(ageMinBox.getValue())<Integer.parseInt(ageMaxBox.getValue())) {
-					sendToDataBase(ageMinBox, ageMaxBox, comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+				if (ageMinSlider.getValue()<ageMaxSlider.getValue()) {
+					sendToDataBase(ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
 				sendToProfile(hbox,rootpane);
 				System.out.println("Changes saved");
 				}
@@ -280,9 +262,9 @@ public class Setting extends GridPane  {
 	 * @param genderBox
 	 * @param genderBox1
 	 */
-	public void sendToDataBase(ComboBox<String> ageMinBox, ComboBox<String> ageMaxBox, ComboBox<String> comboBox, ComboBox<String> comboBox1, ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
+	public void sendToDataBase(Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider, ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
 		//sendtoDatabase(comboBox.getValue());
-		//sendtoDatabase(comboBox1.getValue());
+		//sendtoDatabase(ageSlider.getValue());
 		//sendtoDatabase(comboBox2.getValue());
 		//sendtoDatabase(comboBox3.getValue());
 		//sendtoDatabase(comboBox4.getValue());
@@ -292,8 +274,8 @@ public class Setting extends GridPane  {
 		//sendtoDatabase(comboBox8.getValue());
 		//sendtoDatabase(genderBox.getValue());
 		//sendtoDatabase(genderBox1.getValue());
-		//sendtoDatabase(ageMinBox.getValue());
-		//sendtoDatabase(ageMaxBox.getValue());	
+		//sendtoDatabase(ageMinSlider.getValue());
+		//sendtoDatabase(ageMaxSlider.getValue());	
 	}
 	/**
 	 * closes setting and sends the user back to profile
