@@ -24,7 +24,7 @@ public class NewAccount extends Setting  {
         TextField FirstName = new TextField();
         TextField LastName = new TextField();
         TextField Password = new TextField();
-        Label username = new Label("User ID:");
+        Label username = new Label("Username:");
         Label userFirst = new Label("First Name:");
         Label userLast = new Label("Last Name:");
         Label pass = new Label("Password:");
@@ -165,16 +165,36 @@ public class NewAccount extends Setting  {
             	System.out.println(democracyBox.getValue());
             	}
         });
-        
+        ageMinBox.setOnAction(new EventHandler<ActionEvent>() {
+        	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(ageMinBox.getValue());
+            	}
+        });
+        ageMaxBox.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(ageMaxBox.getValue());
+            	}
+        });
         save.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
             	if(ageMinBox.getValue()!=null && ageMaxBox.getValue()!=null && comboBox.getValue()!=null && ageBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
+            		if (Integer.parseInt(ageMinBox.getValue())<Integer.parseInt(ageMaxBox.getValue())) {
             		sendToProfile();
             		System.out.println("Changes saved");
             		//sendToDatabase isn't here, because I left it in Settings
                     sendToDataBase(ageMinBox, ageMaxBox, comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
                     userToDatabase(name, FirstName, LastName, Password);
+            		}
+            		else {
+            			System.out.println("correct yo age");
+            		}
             	}
             	else
             		System.out.println("Please fill in all values");

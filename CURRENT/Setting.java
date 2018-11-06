@@ -90,12 +90,12 @@ public class Setting extends GridPane  {
     Label ageMin = new Label("From:");
     Label ageMax = new Label("To:");
     Label dog = new Label("Do you like dogs?");
-    Label dogHave = new Label("Do you want one night stands?");
+    Label dogHave = new Label("Do you enjoy one night stands?");
     Label vegetarian = new Label("Do you eat meat?");
     Label movie = new Label("Do you enjoy film?");
     Label walking = new Label("Do you enjoy excersizing?");
     Label music = new Label("Do you like music?");
-    Label democracy = new Label("Do you want a long term relationship?");
+    Label democracy = new Label("Would you look for a long term relationship?");
     /**
      * a constructor, the constructor for the setting pane
      * @param hbox
@@ -234,9 +234,24 @@ public class Setting extends GridPane  {
             	System.out.println(democracyBox.getValue());
             	}
         });
+        ageMinBox.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(ageMinBox.getValue());
+            	}
+        });
+        ageMaxBox.setOnAction(new EventHandler<ActionEvent>() {
+         	 
+            @Override
+            public void handle(ActionEvent event) {
+            	System.out.println("The user has answered:");
+            	System.out.println(ageMaxBox.getValue());
+            	}
+        });
 		//pseudo code methods to sending values to SQL 
 		save.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				if (Integer.parseInt(ageMinBox.getValue())<Integer.parseInt(ageMaxBox.getValue())) {
