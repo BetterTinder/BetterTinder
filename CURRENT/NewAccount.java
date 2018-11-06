@@ -169,19 +169,35 @@ public class NewAccount extends Setting  {
             		System.out.println("Changes saved");
             		//sendToDatabase isn't here, because I left it in Settings
                     sendToDataBase(comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+                    userToDatabase(name, FirstName, LastName, Password);
             	}
             	else
             		System.out.println("Please fill in all values");
 
             	}
-/**
- * this sends the user to the profile screen after creating their account
- */
+            
+            /**
+             * sends the newAccount specific vars to the SQL database
+             * @param name
+             * @param firstName
+             * @param lastName
+             * @param password
+             */            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password) {
+				//sendToDatabase.name.getText();
+            	//sendToDatabase.firstName.getText();
+            	//sendToDatabase.LastName.getText();
+            	//sendToDatabase.password.getText();
+			}
+
+            /**
+ 			* this sends the user to the profile screen after creating their account
+ 			*/
             private void sendToProfile() {
         		gridPane.getChildren().clear();
         		gridPane.getChildren().add(prof);
         	}
         });
+        
         this.getChildren().add(gridPane);
     }           
     
