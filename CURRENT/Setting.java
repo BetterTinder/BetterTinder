@@ -75,6 +75,8 @@ public class Setting extends GridPane  {
     ComboBox<String> walkingBox = new ComboBox<String>(yesno);
     ComboBox<String> musicBox = new ComboBox<String>(yesno);
     ComboBox<String> democracyBox = new ComboBox<String>(yesno);
+    ComboBox<String> ageMinBox = new ComboBox<String>(option);
+    ComboBox<String> ageMaxBox = new ComboBox<String>(option);
 
 	//label declarations
 	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
@@ -84,14 +86,16 @@ public class Setting extends GridPane  {
     Label genIdenLabel = new Label("Gender:");
     Label location = new Label("Location:");
     Label intrest = new Label("Intrests:");
+    Label agePref = new Label("Age preference:");
+    Label ageMin = new Label("From:");
+    Label ageMax = new Label("To:");
     Label dog = new Label("Do you like dogs?");
-    Label dogHave = new Label("Do you have a dog?");
+    Label dogHave = new Label("Do you want one night stands?");
     Label vegetarian = new Label("Do you eat meat?");
-    Label movie = new Label("Do you enjoy movies?");
-    Label walking = new Label("Do you enjoy walking?");
+    Label movie = new Label("Do you enjoy film?");
+    Label walking = new Label("Do you enjoy excersizing?");
     Label music = new Label("Do you like music?");
-    Label democracy = new Label("Do you love democracy?");
-
+    Label democracy = new Label("Do you want a long term relationship?");
     /**
      * a constructor, the constructor for the setting pane
      * @param hbox
@@ -113,20 +117,25 @@ public class Setting extends GridPane  {
         gridPane.add(ageBox, 1, 2);
         gridPane.add(location, 0, 3);
         gridPane.add(intrest, 0, 4);
-        gridPane.add(dog, 0, 5);
-        gridPane.add(dogBox, 1, 5);
-        gridPane.add(dogHave, 0, 6);
-        gridPane.add(dogHaveBox, 1, 6);
-        gridPane.add(vegetarian, 0, 7);
-        gridPane.add(vegetarianBox, 1, 7);
-        gridPane.add(movie, 0, 8);
-        gridPane.add(movieBox, 1, 8);
-        gridPane.add(walking, 0, 9);
-        gridPane.add(walkingBox, 1, 9);
-        gridPane.add(music, 0, 10);
-        gridPane.add(musicBox, 1, 10);
-        gridPane.add(democracy, 0, 11);
-        gridPane.add(democracyBox, 1, 11);
+        gridPane.add(agePref, 0, 5);
+        gridPane.add(ageMin, 0, 6);
+        gridPane.add(ageMinBox, 1, 6);
+        gridPane.add(ageMax, 0, 7);
+        gridPane.add(ageMaxBox, 1, 7);
+        gridPane.add(dog, 0, 8);
+        gridPane.add(dogBox, 1, 8);
+        gridPane.add(dogHave, 0, 9);
+        gridPane.add(dogHaveBox, 1, 9);
+        gridPane.add(vegetarian, 0, 10);
+        gridPane.add(vegetarianBox, 1, 10);
+        gridPane.add(movie, 0, 11);
+        gridPane.add(movieBox, 1, 11);
+        gridPane.add(walking, 0, 12);
+        gridPane.add(walkingBox, 1, 12);
+        gridPane.add(music, 0, 13);
+        gridPane.add(musicBox, 1, 13);
+        gridPane.add(democracy, 0, 14);
+        gridPane.add(democracyBox, 1, 14);
         gridPane.add(save, 400, 500);
 		//event handlers for the combo boxes
         genderPref.setOnAction(new EventHandler<ActionEvent>() {
@@ -230,11 +239,15 @@ public class Setting extends GridPane  {
 
 			@Override
 			public void handle(ActionEvent event) {
+				if (Integer.parseInt(ageMinBox.getValue())<Integer.parseInt(ageMaxBox.getValue())) {
+					sendToDataBase(ageMinBox, ageMaxBox, comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
 				sendToProfile(hbox,rootpane);
 				System.out.println("Changes saved");
-				sendToDataBase(comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
-            	}
-
+				}
+				else {
+					System.out.print("Please input correct age limits");
+				}
+			}
 		});
 		this.getChildren().add(gridPane);
 	}
@@ -252,7 +265,7 @@ public class Setting extends GridPane  {
 	 * @param genderBox
 	 * @param genderBox1
 	 */
-	public void sendToDataBase(ComboBox<String> comboBox, ComboBox<String> comboBox1, ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
+	public void sendToDataBase(ComboBox<String> ageMinBox, ComboBox<String> ageMaxBox, ComboBox<String> comboBox, ComboBox<String> comboBox1, ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
 		//sendtoDatabase(comboBox.getValue());
 		//sendtoDatabase(comboBox1.getValue());
 		//sendtoDatabase(comboBox2.getValue());
@@ -264,6 +277,8 @@ public class Setting extends GridPane  {
 		//sendtoDatabase(comboBox8.getValue());
 		//sendtoDatabase(genderBox.getValue());
 		//sendtoDatabase(genderBox1.getValue());
+		//sendtoDatabase(ageMinBox.getValue());
+		//sendtoDatabase(ageMaxBox.getValue());	
 	}
 	/**
 	 * closes setting and sends the user back to profile

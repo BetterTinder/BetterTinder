@@ -46,21 +46,26 @@ public class NewAccount extends Setting  {
         gridPane.add(age, 0, 6);
         gridPane.add(ageBox, 1, 6);
         gridPane.add(location, 0, 7);
-        gridPane.add(intrest, 0, 8);
-        gridPane.add(dog, 0, 9);
-        gridPane.add(dogBox, 1, 9);
-        gridPane.add(dogHave, 0, 10);
-        gridPane.add(dogHaveBox, 1, 10);
-        gridPane.add(vegetarian, 0, 11);
-        gridPane.add(vegetarianBox, 1, 11);
-        gridPane.add(movie, 0, 12);
-        gridPane.add(movieBox, 1, 12);
-        gridPane.add(walking, 0, 13);
-        gridPane.add(walkingBox, 1, 13);
-        gridPane.add(music, 0, 14);
-        gridPane.add(musicBox, 1, 14);
-        gridPane.add(democracy, 0, 15);
-        gridPane.add(democracyBox, 1, 15);
+        gridPane.add(agePref, 0, 8);
+        gridPane.add(ageMin, 0, 9);
+        gridPane.add(ageMinBox, 1, 9);
+        gridPane.add(ageMax, 0, 10);
+        gridPane.add(ageMaxBox, 1, 10);
+        gridPane.add(intrest, 0, 11);
+        gridPane.add(dog, 0, 12);
+        gridPane.add(dogBox, 1, 12);
+        gridPane.add(dogHave, 0, 13);
+        gridPane.add(dogHaveBox, 1, 13);
+        gridPane.add(vegetarian, 0, 14);
+        gridPane.add(vegetarianBox, 1, 14);
+        gridPane.add(movie, 0, 15);
+        gridPane.add(movieBox, 1, 15);
+        gridPane.add(walking, 0, 16);
+        gridPane.add(walkingBox, 1, 16);
+        gridPane.add(music, 0, 17);
+        gridPane.add(musicBox, 1, 17);
+        gridPane.add(democracy, 0, 18);
+        gridPane.add(democracyBox, 1, 18);
         gridPane.add(save, 400, 500);
 
         //event handlers for the combo boxes
@@ -164,11 +169,11 @@ public class NewAccount extends Setting  {
         save.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	if(comboBox.getValue()!=null && ageBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
+            	if(ageMinBox.getValue()!=null && ageMaxBox.getValue()!=null && comboBox.getValue()!=null && ageBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
             		sendToProfile();
             		System.out.println("Changes saved");
             		//sendToDatabase isn't here, because I left it in Settings
-                    sendToDataBase(comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+                    sendToDataBase(ageMinBox, ageMaxBox, comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
                     userToDatabase(name, FirstName, LastName, Password);
             	}
             	else
