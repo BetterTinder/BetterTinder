@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
-	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+	String style = "-fx-background-color: rgba(255, 0, 255, .25);";
 	Setting setting = new Setting(addButtons(rootpane), rootpane); 
 
 	public static void main(String[] args) {

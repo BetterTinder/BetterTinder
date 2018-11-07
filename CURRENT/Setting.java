@@ -112,10 +112,10 @@ public class Setting extends GridPane  {
         gridPane.setStyle(style);
         gridPane.setPadding(new Insets(25));
         gridPane.add(comboBox,1,3);
-        gridPane.add(genPrefLabel, 0, 0);
-        gridPane.add(genIdenLabel, 0, 1);
-        gridPane.add(genderPref, 1, 0);
-        gridPane.add(genderIden, 1, 1);
+        gridPane.add(genPrefLabel, 0, 1);
+        gridPane.add(genIdenLabel, 0, 0);
+        gridPane.add(genderPref, 1, 1);
+        gridPane.add(genderIden, 1, 0);
         gridPane.add(age, 0, 2);
         //gridPane.add(ageBox, 1, 2);
         gridPane.add(ageSlider, 1, 2);
@@ -142,7 +142,7 @@ public class Setting extends GridPane  {
         gridPane.add(musicBox, 1, 13);
         gridPane.add(democracy, 0, 14);
         gridPane.add(democracyBox, 1, 14);
-        gridPane.add(save, 400, 500);
+        gridPane.add(save, 1, 500);
 		//event handlers for the combo boxes
         genderPref.setOnAction(new EventHandler<ActionEvent>() {
          	 

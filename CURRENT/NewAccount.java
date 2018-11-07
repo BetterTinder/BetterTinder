@@ -47,7 +47,7 @@ public class NewAccount extends Setting  {
         ageMaxSlider.setShowTickMarks(true);
         ageMaxSlider.setSnapToTicks(true);
         
-    	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+        String style = "-fx-background-color: rgba(255, 0, 255, .5);";
         TextField name = new TextField();
         TextField FirstName = new TextField();
         TextField LastName = new TextField();
@@ -67,10 +67,10 @@ public class NewAccount extends Setting  {
         gridPane.add(userLast,0,3);
         gridPane.add(LastName,1,3);
         gridPane.add(comboBox,1,7);
-        gridPane.add(genPrefLabel, 0, 4);
-        gridPane.add(genIdenLabel, 0, 5);
-        gridPane.add(genderPref, 1, 4);
-        gridPane.add(genderIden, 1, 5);
+        gridPane.add(genPrefLabel, 0, 5);
+        gridPane.add(genIdenLabel, 0, 4);
+        gridPane.add(genderPref, 1, 5);
+        gridPane.add(genderIden, 1, 4);
         gridPane.add(age, 0, 6);
         gridPane.add(ageSlider, 1, 6);
         gridPane.add(location, 0, 7);
@@ -94,7 +94,7 @@ public class NewAccount extends Setting  {
         gridPane.add(musicBox, 1, 17);
         gridPane.add(democracy, 0, 18);
         gridPane.add(democracyBox, 1, 18);
-        gridPane.add(save, 400, 500);
+        gridPane.add(save, 1, 500);
 
         //event handlers for the combo boxes
         genderPref.setOnAction(new EventHandler<ActionEvent>() {
