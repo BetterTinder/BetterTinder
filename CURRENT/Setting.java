@@ -236,7 +236,7 @@ public class Setting extends GridPane  {
 		save.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (ageMinSlider.getValue()<ageMaxSlider.getValue()) {
+				if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {
 					sendToDataBase(ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
 				sendToProfile(hbox,rootpane);
 				System.out.println("Changes saved");

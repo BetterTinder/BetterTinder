@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -47,7 +48,7 @@ public class NewAccount extends Setting  {
         ageMaxSlider.setShowTickMarks(true);
         ageMaxSlider.setSnapToTicks(true);
         
-        String style = "-fx-background-color: rgba(255, 0, 255, .5);";
+        String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField name = new TextField();
         TextField FirstName = new TextField();
         TextField LastName = new TextField();
@@ -57,6 +58,7 @@ public class NewAccount extends Setting  {
         Label userLast = new Label("Last Name:");
         Label pass = new Label("Password:");
         GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(25));
         gridPane.setStyle(style);
         gridPane.add(username,0,0);
         gridPane.add(name,1,0);
@@ -189,7 +191,7 @@ public class NewAccount extends Setting  {
             @Override
             public void handle(ActionEvent event) {
             	if(comboBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
-            		if (ageMinSlider.getValue()<ageMaxSlider.getValue()) {
+            		if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {
             			sendToProfile();
             			System.out.println("Changes saved");
             			//sendToDatabase isn't here, because I left it in Settings
