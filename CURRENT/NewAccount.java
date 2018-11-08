@@ -48,6 +48,15 @@ public class NewAccount extends Setting  {
         ageMaxSlider.setShowTickMarks(true);
         ageMaxSlider.setSnapToTicks(true);
         
+        matchPercentage.setMin(0);
+        matchPercentage.setMax(100);
+		matchPercentage.setValue(75);
+		matchPercentage.setBlockIncrement(5);
+        matchPercentage.setMajorTickUnit(10);
+        matchPercentage.setShowTickLabels(true);
+        matchPercentage.setShowTickMarks(true);
+        matchPercentage.setSnapToTicks(true);
+        
         String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField name = new TextField();
         TextField FirstName = new TextField();
@@ -68,34 +77,36 @@ public class NewAccount extends Setting  {
         gridPane.add(FirstName,1,2);
         gridPane.add(userLast,0,3);
         gridPane.add(LastName,1,3);
-        gridPane.add(comboBox,1,7);
+        gridPane.add(comboBox,1,6);
         gridPane.add(genPrefLabel, 0, 5);
         gridPane.add(genIdenLabel, 0, 4);
         gridPane.add(genderPref, 1, 5);
         gridPane.add(genderIden, 1, 4);
-        gridPane.add(age, 0, 6);
-        gridPane.add(ageSlider, 1, 6);
-        gridPane.add(location, 0, 7);
-        gridPane.add(agePref, 0, 8);
-        gridPane.add(ageMin, 0, 9);
-        gridPane.add(ageMinSlider, 1, 9);
-        gridPane.add(ageMax, 0, 10);
-        gridPane.add(ageMaxSlider, 1, 10);
-        gridPane.add(intrest, 0, 11);
-        gridPane.add(dog, 0, 12);
-        gridPane.add(dogBox, 1, 12);
-        gridPane.add(dogHave, 0, 13);
-        gridPane.add(dogHaveBox, 1, 13);
-        gridPane.add(vegetarian, 0, 14);
-        gridPane.add(vegetarianBox, 1, 14);
-        gridPane.add(movie, 0, 15);
-        gridPane.add(movieBox, 1, 15);
-        gridPane.add(walking, 0, 16);
-        gridPane.add(walkingBox, 1, 16);
-        gridPane.add(music, 0, 17);
-        gridPane.add(musicBox, 1, 17);
-        gridPane.add(democracy, 0, 18);
-        gridPane.add(democracyBox, 1, 18);
+        gridPane.add(match, 0, 7);
+        gridPane.add(matchPercentage, 1, 7);
+        gridPane.add(age, 0, 8);
+        gridPane.add(ageSlider, 1, 8);
+        gridPane.add(location, 0, 6);
+        gridPane.add(agePref, 0, 9);
+        gridPane.add(ageMin, 0, 10);
+        gridPane.add(ageMinSlider, 1, 10);
+        gridPane.add(ageMax, 0, 11);
+        gridPane.add(ageMaxSlider, 1, 11);
+        gridPane.add(intrest, 0, 12);
+        gridPane.add(dog, 0, 13);
+        gridPane.add(dogBox, 1, 13);
+        gridPane.add(dogHave, 0, 14);
+        gridPane.add(dogHaveBox, 1, 14);
+        gridPane.add(vegetarian, 0, 15);
+        gridPane.add(vegetarianBox, 1, 15);
+        gridPane.add(movie, 0, 16);
+        gridPane.add(movieBox, 1, 16);
+        gridPane.add(walking, 0, 17);
+        gridPane.add(walkingBox, 1, 17);
+        gridPane.add(music, 0, 18);
+        gridPane.add(musicBox, 1, 18);
+        gridPane.add(democracy, 0, 19);
+        gridPane.add(democracyBox, 1, 19);
         gridPane.add(save, 1, 500);
 
         //event handlers for the combo boxes
@@ -195,7 +206,7 @@ public class NewAccount extends Setting  {
             			sendToProfile();
             			System.out.println("Changes saved");
             			//sendToDatabase isn't here, because I left it in Settings
-            			sendToDataBase(ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+            			sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
             			userToDatabase(name, FirstName, LastName, Password);
             		}
             		else {

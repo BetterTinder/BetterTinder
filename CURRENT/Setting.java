@@ -54,6 +54,7 @@ public class Setting extends GridPane  {
     Slider ageSlider = new Slider();
     Slider ageMinSlider = new Slider();
     Slider ageMaxSlider = new Slider();
+    Slider matchPercentage = new Slider();
     
 	//label declarations
 	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
@@ -72,6 +73,7 @@ public class Setting extends GridPane  {
     Label movie = new Label("Do you enjoy film?");
     Label walking = new Label("Do you enjoy excersizing?");
     Label music = new Label("Do you like music?");
+    Label match = new Label("What match percent do you desire?");
     Label democracy = new Label("Do you want a long term relationship?");
     /**
      * a constructor, the constructor for the setting pane
@@ -107,41 +109,49 @@ public class Setting extends GridPane  {
         ageMaxSlider.setShowTickMarks(true);
         ageMaxSlider.setSnapToTicks(true);
         
+        matchPercentage.setMin(0);
+        matchPercentage.setMax(100);
+		matchPercentage.setValue(75);
+		matchPercentage.setBlockIncrement(5);
+        matchPercentage.setMajorTickUnit(10);
+        matchPercentage.setShowTickLabels(true);
+        matchPercentage.setShowTickMarks(true);
+        matchPercentage.setSnapToTicks(true);
+        
 		//adding all of it to the gridpane
 		GridPane gridPane = new GridPane();
         gridPane.setStyle(style);
         gridPane.setPadding(new Insets(25));
-        gridPane.add(comboBox,1,3);
+        gridPane.add(comboBox,1,2);
         gridPane.add(genPrefLabel, 0, 1);
         gridPane.add(genIdenLabel, 0, 0);
         gridPane.add(genderPref, 1, 1);
         gridPane.add(genderIden, 1, 0);
-        gridPane.add(age, 0, 2);
-        //gridPane.add(ageBox, 1, 2);
-        gridPane.add(ageSlider, 1, 2);
-        gridPane.add(location, 0, 3);
-        gridPane.add(intrest, 0, 4);
+        gridPane.add(match, 0, 3);
+        gridPane.add(matchPercentage, 1, 3);
+        gridPane.add(age, 0, 4);
+        gridPane.add(ageSlider, 1, 4);
+        gridPane.add(location, 0, 2);
+        gridPane.add(intrest, 0, 8);
         gridPane.add(agePref, 0, 5);
         gridPane.add(ageMin, 0, 6);
-        //gridPane.add(ageMinBox, 1, 6);
         gridPane.add(ageMinSlider, 1, 6);
         gridPane.add(ageMax, 0, 7);
-        //gridPane.add(ageMaxBox, 1, 7);
         gridPane.add(ageMaxSlider, 1, 7);
-        gridPane.add(dog, 0, 8);
-        gridPane.add(dogBox, 1, 8);
-        gridPane.add(dogHave, 0, 9);
-        gridPane.add(dogHaveBox, 1, 9);
-        gridPane.add(vegetarian, 0, 10);
-        gridPane.add(vegetarianBox, 1, 10);
-        gridPane.add(movie, 0, 11);
-        gridPane.add(movieBox, 1, 11);
-        gridPane.add(walking, 0, 12);
-        gridPane.add(walkingBox, 1, 12);
-        gridPane.add(music, 0, 13);
-        gridPane.add(musicBox, 1, 13);
-        gridPane.add(democracy, 0, 14);
-        gridPane.add(democracyBox, 1, 14);
+        gridPane.add(dog, 0, 9);
+        gridPane.add(dogBox, 1, 9);
+        gridPane.add(dogHave, 0, 10);
+        gridPane.add(dogHaveBox, 1, 10);
+        gridPane.add(vegetarian, 0, 11);
+        gridPane.add(vegetarianBox, 1, 11);
+        gridPane.add(movie, 0, 12);
+        gridPane.add(movieBox, 1, 12);
+        gridPane.add(walking, 0, 13);
+        gridPane.add(walkingBox, 1, 13);
+        gridPane.add(music, 0, 14);
+        gridPane.add(musicBox, 1, 14);
+        gridPane.add(democracy, 0, 15);
+        gridPane.add(democracyBox, 1, 15);
         gridPane.add(save, 1, 500);
 		//event handlers for the combo boxes
         genderPref.setOnAction(new EventHandler<ActionEvent>() {
@@ -237,7 +247,7 @@ public class Setting extends GridPane  {
 			@Override
 			public void handle(ActionEvent event) {
 				if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {
-					sendToDataBase(ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+					sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
 				sendToProfile(hbox,rootpane);
 				System.out.println("Changes saved");
 				}
@@ -262,7 +272,7 @@ public class Setting extends GridPane  {
 	 * @param genderBox
 	 * @param genderBox1
 	 */
-	public void sendToDataBase(Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider, ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
+	public void sendToDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider, ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
 		//sendtoDatabase(comboBox.getValue());
 		//sendtoDatabase(ageSlider.getValue());
 		//sendtoDatabase(comboBox2.getValue());
@@ -275,7 +285,8 @@ public class Setting extends GridPane  {
 		//sendtoDatabase(genderBox.getValue());
 		//sendtoDatabase(genderBox1.getValue());
 		//sendtoDatabase(ageMinSlider.getValue());
-		//sendtoDatabase(ageMaxSlider.getValue());	
+		//sendtoDatabase(ageMaxSlider.getValue());
+		//sendtoDatabase(mathcPercentage.getValue());
 	}
 	/**
 	 * closes setting and sends the user back to profile

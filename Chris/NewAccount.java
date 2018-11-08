@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -19,7 +20,44 @@ public class NewAccount extends Setting  {
 	 */
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
-    	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+    	
+		ageSlider.setMin(18);
+		ageSlider.setMax(60);
+		ageSlider.setValue(18);
+        ageSlider.setBlockIncrement(5);
+        ageSlider.setMajorTickUnit(5);
+        ageSlider.setShowTickLabels(true);
+        ageSlider.setShowTickMarks(true);
+        ageSlider.setSnapToTicks(true);
+        
+        ageMinSlider.setMin(18);
+		ageMinSlider.setMax(60);
+		ageMinSlider.setValue(18);
+        ageMinSlider.setBlockIncrement(5);
+        ageMinSlider.setMajorTickUnit(5);
+        ageMinSlider.setShowTickLabels(true);
+        ageMinSlider.setShowTickMarks(true);
+        ageMinSlider.setSnapToTicks(true);
+        
+        ageMaxSlider.setMin(18);
+		ageMaxSlider.setMax(60);
+		ageMaxSlider.setValue(18);
+        ageMaxSlider.setBlockIncrement(5);
+        ageMaxSlider.setMajorTickUnit(5);
+        ageMaxSlider.setShowTickLabels(true);
+        ageMaxSlider.setShowTickMarks(true);
+        ageMaxSlider.setSnapToTicks(true);
+        
+        matchPercentage.setMin(0);
+        matchPercentage.setMax(100);
+		matchPercentage.setValue(75);
+		matchPercentage.setBlockIncrement(5);
+        matchPercentage.setMajorTickUnit(10);
+        matchPercentage.setShowTickLabels(true);
+        matchPercentage.setShowTickMarks(true);
+        matchPercentage.setSnapToTicks(true);
+        
+        String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField name = new TextField();
         TextField FirstName = new TextField();
         TextField LastName = new TextField();
@@ -29,6 +67,7 @@ public class NewAccount extends Setting  {
         Label userLast = new Label("Last Name:");
         Label pass = new Label("Password:");
         GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(25));
         gridPane.setStyle(style);
         gridPane.add(username,0,0);
         gridPane.add(name,1,0);
@@ -38,35 +77,37 @@ public class NewAccount extends Setting  {
         gridPane.add(FirstName,1,2);
         gridPane.add(userLast,0,3);
         gridPane.add(LastName,1,3);
-        gridPane.add(comboBox,1,7);
-        gridPane.add(genPrefLabel, 0, 4);
-        gridPane.add(genIdenLabel, 0, 5);
-        gridPane.add(genderPref, 1, 4);
-        gridPane.add(genderIden, 1, 5);
-        gridPane.add(age, 0, 6);
-        gridPane.add(ageBox, 1, 6);
-        gridPane.add(location, 0, 7);
-        gridPane.add(agePref, 0, 8);
-        gridPane.add(ageMin, 0, 9);
-        gridPane.add(ageMinBox, 1, 9);
-        gridPane.add(ageMax, 0, 10);
-        gridPane.add(ageMaxBox, 1, 10);
-        gridPane.add(intrest, 0, 11);
-        gridPane.add(dog, 0, 12);
-        gridPane.add(dogBox, 1, 12);
-        gridPane.add(dogHave, 0, 13);
-        gridPane.add(dogHaveBox, 1, 13);
-        gridPane.add(vegetarian, 0, 14);
-        gridPane.add(vegetarianBox, 1, 14);
-        gridPane.add(movie, 0, 15);
-        gridPane.add(movieBox, 1, 15);
-        gridPane.add(walking, 0, 16);
-        gridPane.add(walkingBox, 1, 16);
-        gridPane.add(music, 0, 17);
-        gridPane.add(musicBox, 1, 17);
-        gridPane.add(democracy, 0, 18);
-        gridPane.add(democracyBox, 1, 18);
-        gridPane.add(save, 400, 500);
+        gridPane.add(comboBox,1,6);
+        gridPane.add(genPrefLabel, 0, 5);
+        gridPane.add(genIdenLabel, 0, 4);
+        gridPane.add(genderPref, 1, 5);
+        gridPane.add(genderIden, 1, 4);
+        gridPane.add(match, 0, 7);
+        gridPane.add(matchPercentage, 1, 7);
+        gridPane.add(age, 0, 8);
+        gridPane.add(ageSlider, 1, 8);
+        gridPane.add(location, 0, 6);
+        gridPane.add(agePref, 0, 9);
+        gridPane.add(ageMin, 0, 10);
+        gridPane.add(ageMinSlider, 1, 10);
+        gridPane.add(ageMax, 0, 11);
+        gridPane.add(ageMaxSlider, 1, 11);
+        gridPane.add(intrest, 0, 12);
+        gridPane.add(dog, 0, 13);
+        gridPane.add(dogBox, 1, 13);
+        gridPane.add(dogHave, 0, 14);
+        gridPane.add(dogHaveBox, 1, 14);
+        gridPane.add(vegetarian, 0, 15);
+        gridPane.add(vegetarianBox, 1, 15);
+        gridPane.add(movie, 0, 16);
+        gridPane.add(movieBox, 1, 16);
+        gridPane.add(walking, 0, 17);
+        gridPane.add(walkingBox, 1, 17);
+        gridPane.add(music, 0, 18);
+        gridPane.add(musicBox, 1, 18);
+        gridPane.add(democracy, 0, 19);
+        gridPane.add(democracyBox, 1, 19);
+        gridPane.add(save, 1, 500);
 
         //event handlers for the combo boxes
         genderPref.setOnAction(new EventHandler<ActionEvent>() {
@@ -91,14 +132,6 @@ public class NewAccount extends Setting  {
             public void handle(ActionEvent event) {
             	System.out.println("The user would like to change their location");
             	System.out.println(comboBox.getValue());
-            	}
-        });
-        ageBox.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change their age");
-            	System.out.println(ageBox.getValue());
             	}
         });
         dogBox.setOnAction(new EventHandler<ActionEvent>() {
@@ -165,32 +198,16 @@ public class NewAccount extends Setting  {
             	System.out.println(democracyBox.getValue());
             	}
         });
-        ageMinBox.setOnAction(new EventHandler<ActionEvent>() {
-        	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(ageMinBox.getValue());
-            	}
-        });
-        ageMaxBox.setOnAction(new EventHandler<ActionEvent>() {
-         	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(ageMaxBox.getValue());
-            	}
-        });
         save.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	if(ageMinBox.getValue()!=null && ageMaxBox.getValue()!=null && comboBox.getValue()!=null && ageBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
-            		if (Integer.parseInt(ageMinBox.getValue())<Integer.parseInt(ageMaxBox.getValue())) {
-            		sendToProfile();
-            		System.out.println("Changes saved");
-            		//sendToDatabase isn't here, because I left it in Settings
-                    sendToDataBase(ageMinBox, ageMaxBox, comboBox, ageBox, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
-                    userToDatabase(name, FirstName, LastName, Password);
+            	if(comboBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
+            		if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {
+            			sendToProfile();
+            			System.out.println("Changes saved");
+            			//sendToDatabase isn't here, because I left it in Settings
+            			sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+            			userToDatabase(name, FirstName, LastName, Password);
             		}
             		else {
             			System.out.println("correct yo age");
