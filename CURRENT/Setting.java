@@ -11,16 +11,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 /**
  * 
- * @author CHRIS G., Michael Fornito
+ * @author CHRIS G. yeet
  *
  */
 public class Setting extends GridPane  {
+	
 	//age slider declarations
 	Slider ageSlider = new Slider();
 	Slider ageMinSlider = new Slider();
 	Slider ageMaxSlider = new Slider();
 	Slider matchPercentage = new Slider();
 	Button save = new Button("Apply Changes");
+	
 	//combo box declarations
 	ComboBox<String> genderPref = new ComboBox<String>(getGenderOptions());
 	ComboBox<String> genderIden = new ComboBox<String>(getGenderOptions());
@@ -59,10 +61,10 @@ public class Setting extends GridPane  {
 	Setting(HBox hbox, GridPane rootpane) {
 
 		GridPane gridPane = addGrid();
-		getAgeSlider();
-		getAgeMin();
-		getAgeMax();
-		getMatchPercent();
+		getAgeSlider(ageSlider);
+		getAgeSlider(ageMinSlider);
+		getAgeSlider(ageMaxSlider);
+		getMatchSlider(matchPercentage);
 		//Below are Test Case Methods, should be later removed for instead the JUnit
 		getGenderPref();
 		getGenderId();
@@ -106,37 +108,18 @@ public class Setting extends GridPane  {
 						);
 		return options;
 	}
-	public void getMatchPercent() {
-		matchPercentage.setMin(0);
-		matchPercentage.setMax(100);
-		matchPercentage.setValue(75);
-		matchPercentage.setBlockIncrement(5);
-		matchPercentage.setMajorTickUnit(10);
-		matchPercentage.setShowTickLabels(true);
-		matchPercentage.setShowTickMarks(true);
-		matchPercentage.setSnapToTicks(true);
+	public void getMatchSlider(Slider matchSlider) {
+		matchSlider.setMin(0);
+		matchSlider.setMax(100);
+		matchSlider.setValue(75);
+		matchSlider.setBlockIncrement(5);
+		matchSlider.setMajorTickUnit(10);
+		matchSlider.setShowTickLabels(true);
+		matchSlider.setShowTickMarks(true);
+		matchSlider.setSnapToTicks(true);
 	}
-	public void getAgeMax() {
-		ageMaxSlider.setMin(18);
-		ageMaxSlider.setMax(60);
-		ageMaxSlider.setValue(18);
-		ageMaxSlider.setBlockIncrement(5);
-		ageMaxSlider.setMajorTickUnit(5);
-		ageMaxSlider.setShowTickLabels(true);
-		ageMaxSlider.setShowTickMarks(true);
-		ageMaxSlider.setSnapToTicks(true);
-	}
-	public void getAgeMin() {
-		ageMinSlider.setMin(18);
-		ageMinSlider.setMax(60);
-		ageMinSlider.setValue(18);
-		ageMinSlider.setBlockIncrement(5);
-		ageMinSlider.setMajorTickUnit(5);
-		ageMinSlider.setShowTickLabels(true);
-		ageMinSlider.setShowTickMarks(true);
-		ageMinSlider.setSnapToTicks(true);
-	}
-	public void getAgeSlider() {
+	//mashed three methods into one because I am an actual god
+	public void getAgeSlider(Slider ageSlider) {
 		ageSlider.setMin(18);
 		ageSlider.setMax(60);
 		ageSlider.setValue(18);
@@ -146,6 +129,7 @@ public class Setting extends GridPane  {
 		ageSlider.setShowTickMarks(true);
 		ageSlider.setSnapToTicks(true);
 	}
+	
 	public GridPane addGrid() {
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(25));
