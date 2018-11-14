@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import java.sql.SQLException;
 /**
  * 
  * @author CHRIS G. yeet
@@ -188,21 +189,13 @@ public class Setting extends GridPane  {
 	public void sendToDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
 			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
 			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
-		//sendtoDatabase(comboBox.getValue());
-		//sendtoDatabase(ageSlider.getValue());
-		//sendtoDatabase(comboBox2.getValue());
-		//sendtoDatabase(comboBox3.getValue());
-		//sendtoDatabase(comboBox4.getValue());
-		//sendtoDatabase(comboBox5.getValue());
-		//sendtoDatabase(comboBox6.getValue());
-		//sendtoDatabase(comboBox7.getValue());
-		//sendtoDatabase(comboBox8.getValue());
-		//sendtoDatabase(genderBox.getValue());
-		//sendtoDatabase(genderBox1.getValue());
-		//sendtoDatabase(ageMinSlider.getValue());
-		//sendtoDatabase(ageMaxSlider.getValue());
-		//sendtoDatabase(matchPercentage.getValue());
-		//sendtoDatabase(comboBox.getValue());
+		SQLData sqlData = SQLData.getInstance();
+		String ageVal = new String(Double.toString(ageSlider.getValue()));
+		String ageMinVal = new String(Double.toString(ageSlider.getValue()));
+		String ageMaxVal = new String(Double.toString(ageSlider.getValue()));
+		String matchVal = new String(Double.toString(ageSlider.getValue()));
+		String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
+		sqlData.newUser("", values);
 		System.out.println(ageSlider.getValue());
 		System.out.println(comboBox2.getValue());
 		System.out.println(comboBox3.getValue());
