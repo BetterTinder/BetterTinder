@@ -219,7 +219,7 @@ public class NewAccount extends Setting  {
             	}
             
             /**
-             * sends the newAccount specific vars to the SQL database
+             * sends the newAccount specific variables to the SQL database
              * @param name
              * @param firstName
              * @param lastName

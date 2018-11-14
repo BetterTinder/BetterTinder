@@ -21,23 +21,6 @@ public class NewAccount extends Setting  {
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
     	
-		Label age = new Label("Age:");
-		Label genPrefLabel = new Label("Gender preference:");
-		Label genIdenLabel = new Label("Gender:");
-		Label location = new Label("Location:");
-		Label intrest = new Label("Intrests:");
-		Label agePref = new Label("Age preference:");
-		Label ageMin = new Label("From:");
-		Label ageMax = new Label("To:");
-		Label dog = new Label("Do you like dogs?");
-		Label dogHave = new Label("Do you enjoy one night stands?");
-		Label vegetarian = new Label("Do you eat meat?");
-		Label movie = new Label("Do you enjoy film?");
-		Label walking = new Label("Do you enjoy excersizing?");
-		Label music = new Label("Do you like music?");
-		Label match = new Label("What match percent do you desire?");
-		Label democracy = new Label("Do you want a long term relationship?");
-		
 		ageSlider.setMin(18);
 		ageSlider.setMax(60);
 		ageSlider.setValue(18);
@@ -83,7 +66,6 @@ public class NewAccount extends Setting  {
         Label userFirst = new Label("First Name:");
         Label userLast = new Label("Last Name:");
         Label pass = new Label("Password:");
-
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(25));
         gridPane.setStyle(style);
@@ -237,13 +219,12 @@ public class NewAccount extends Setting  {
             	}
             
             /**
-             * sends the newAccount specific vars to the SQL database
+             * sends the newAccount specific variables to the SQL database
              * @param name
              * @param firstName
              * @param lastName
              * @param password
-             */
-            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password) {
+             */            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password) {
 				//sendToDatabase.name.getText();
             	//sendToDatabase.firstName.getText();
             	//sendToDatabase.LastName.getText();

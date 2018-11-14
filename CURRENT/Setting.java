@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 /**
@@ -33,12 +32,32 @@ public class Setting extends GridPane  {
 	ComboBox<String> walkingBox = new ComboBox<String>(getResponse());
 	ComboBox<String> musicBox = new ComboBox<String>(getResponse());
 	ComboBox<String> democracyBox = new ComboBox<String>(getResponse());
+	
+	//label declarations
+	Label age = new Label("Age:");
+	Label genPrefLabel = new Label("Gender preference:");
+	Label genIdenLabel = new Label("Gender:");
+	Label location = new Label("Location:");
+	Label intrest = new Label("Intrests:");
+	Label agePref = new Label("Age preference:");
+	Label ageMin = new Label("From:");
+	Label ageMax = new Label("To:");
+	Label dog = new Label("Do you like dogs?");
+	Label dogHave = new Label("Do you enjoy one night stands?");
+	Label vegetarian = new Label("Do you eat meat?");
+	Label movie = new Label("Do you enjoy film?");
+	Label walking = new Label("Do you enjoy excersizing?");
+	Label music = new Label("Do you like music?");
+	Label match = new Label("What match percent do you desire?");
+	Label democracy = new Label("Do you want a long term relationship?");
+	
 	/**
 	 * a constructor, the constructor for the setting pane
 	 * @param hbox
 	 * @param rootpane
 	 */
 	Setting(HBox hbox, GridPane rootpane) {
+
 		GridPane gridPane = addGrid();
 		getAgeSlider();
 		getAgeMin();
@@ -128,24 +147,6 @@ public class Setting extends GridPane  {
 		ageSlider.setSnapToTicks(true);
 	}
 	public GridPane addGrid() {
-		//label declarations
-		Label age = new Label("Age:");
-		Label genPrefLabel = new Label("Gender preference:");
-		Label genIdenLabel = new Label("Gender:");
-		Label location = new Label("Location:");
-		Label intrest = new Label("Intrests:");
-		Label agePref = new Label("Age preference:");
-		Label ageMin = new Label("From:");
-		Label ageMax = new Label("To:");
-		Label dog = new Label("Do you like dogs?");
-		Label dogHave = new Label("Do you enjoy one night stands?");
-		Label vegetarian = new Label("Do you eat meat?");
-		Label movie = new Label("Do you enjoy film?");
-		Label walking = new Label("Do you enjoy excersizing?");
-		Label music = new Label("Do you like music?");
-		Label match = new Label("What match percent do you desire?");
-		Label democracy = new Label("Do you want a long term relationship?");
-
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(25));
 		gridPane.add(comboBox,1,2);
