@@ -66,16 +66,6 @@ public class Setting extends GridPane  {
 		getAgeSlider(ageMaxSlider);
 		getMatchSlider(matchPercentage);
 		//Below are Test Case Methods, should be later removed for instead the JUnit
-		getGenderPref();
-		getGenderId();
-		getComboBox();
-		getPreferPet();
-		getHavePet();
-		getVegan();
-		getMovie();
-		getParty();
-		getMusic();
-		getRepresent();
 		getSave(hbox, rootpane);
 		this.getChildren().add(gridPane);
 	}
@@ -118,7 +108,7 @@ public class Setting extends GridPane  {
 		matchSlider.setShowTickMarks(true);
 		matchSlider.setSnapToTicks(true);
 	}
-	//mashed three methods into one because I am an actual god
+	//mashed three methods into one
 	public void getAgeSlider(Slider ageSlider) {
 		ageSlider.setMin(18);
 		ageSlider.setMax(60);
@@ -181,106 +171,6 @@ public class Setting extends GridPane  {
 			}
 		});
 	}
-	private void getRepresent() {
-		democracyBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(democracyBox.getValue());
-			}
-		});
-	}
-	private void getMusic() {
-		musicBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(musicBox.getValue());
-			}
-		});
-	}
-	private void getParty() {
-		walkingBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(walkingBox.getValue());
-			}
-		});
-	}
-	private void getMovie() {
-		movieBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(movieBox.getValue());
-			}
-		});
-	}
-	private void getVegan() {
-		vegetarianBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(vegetarianBox.getValue());
-			}
-		});
-	}
-	private void getHavePet() {
-		dogHaveBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(dogHaveBox.getValue());
-			}
-		});
-	}
-	private void getPreferPet() {
-		dogBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(dogBox.getValue());
-			}
-		});
-	}
-	private void getComboBox() {
-		comboBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user would like to change their location");
-				System.out.println(comboBox.getValue());
-			}
-		});
-	}
-	private void getGenderId() {
-		genderIden.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user would like to identify as preference:");
-				System.out.println(genderIden.getValue());
-			}
-		});
-	}
-	private void getGenderPref() {
-		genderPref.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("Gender prefer:");
-				System.out.println(genderPref.getValue());
-			}
-		});
-	}
 	/**
 	 * this method will send all the comboBox values to SQL
 	 * @param comboBox
@@ -311,7 +201,21 @@ public class Setting extends GridPane  {
 		//sendtoDatabase(genderBox1.getValue());
 		//sendtoDatabase(ageMinSlider.getValue());
 		//sendtoDatabase(ageMaxSlider.getValue());
-		//sendtoDatabase(mathcPercentage.getValue());
+		//sendtoDatabase(matchPercentage.getValue());
+		//sendtoDatabase(comboBox.getValue());
+		System.out.println(ageSlider.getValue());
+		System.out.println(comboBox2.getValue());
+		System.out.println(comboBox3.getValue());
+		System.out.println(comboBox4.getValue());
+		System.out.println(comboBox5.getValue());
+		System.out.println(comboBox6.getValue());
+		System.out.println(comboBox7.getValue());
+		System.out.println(comboBox8.getValue());
+		System.out.println(genderBox.getValue());
+		System.out.println(genderBox1.getValue());
+		System.out.println(ageMinSlider.getValue());
+		System.out.println(ageMaxSlider.getValue());
+		System.out.println(matchPercentage.getValue());
 	}
 	/**
 	 * closes setting and sends the user back to profile
