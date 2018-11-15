@@ -47,8 +47,8 @@ public class Setting extends GridPane  {
 	Label ageMax = new Label("To:");
 	Label dog = new Label("Do you like dogs?");
 	Label dogHave = new Label("Do you enjoy one night stands?");
-	Label vegetarian = new Label("Do you eat meat?");
-	Label movie = new Label("Do you enjoy film?");
+	Label vegetarian = new Label("Are you vegetarian?");
+	Label movie = new Label("Do you like staying in?");
 	Label walking = new Label("Do you enjoy excersizing?");
 	Label music = new Label("Do you like music?");
 	Label match = new Label("What match percent do you desire?");
@@ -195,7 +195,8 @@ public class Setting extends GridPane  {
 		String ageMaxVal = new String(Double.toString(ageSlider.getValue()));
 		String matchVal = new String(Double.toString(ageSlider.getValue()));
 		String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
-		sqlData.newUser("", values);
+		sqlData.newUser("Location, Age, Dog, One Night, Vegetarian, Movie, Excercise, Music, Relationship, Gender, Gender Preference, Min Age, Max Age, Match", values);
+		//print statements I'll delete later
 		System.out.println(ageSlider.getValue());
 		System.out.println(comboBox2.getValue());
 		System.out.println(comboBox3.getValue());
