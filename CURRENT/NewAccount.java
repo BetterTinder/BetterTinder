@@ -206,7 +206,6 @@ public class NewAccount extends Setting  {
             			sendToProfile();
             			System.out.println("Changes saved");
             			//sendToDatabase isn't here, because I left it in Settings
-            			sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
             			userToDatabase(name, FirstName, LastName, Password);
             		}
             		else {
@@ -225,10 +224,10 @@ public class NewAccount extends Setting  {
              * @param lastName
              * @param password
              */            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password) {
-				//sendToDatabase.name.getText();
-            	//sendToDatabase.firstName.getText();
-            	//sendToDatabase.LastName.getText();
-            	//sendToDatabase.password.getText();
+            	sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+            	SQLData sqlData = SQLData.getInstance();
+        		String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText()};
+        		sqlData.newUser("Username, Password, FirstName, LastName", values);
 			}
 
             /**
