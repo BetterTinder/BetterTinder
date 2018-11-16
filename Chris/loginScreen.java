@@ -96,7 +96,10 @@ public class LoginScreen extends Pane {
 				boolean valid = checkLoginInformation("LoginInformation.txt",username,password);
 
 				if (valid == true) {
-					//				if (username.equals("username") && password.equals("password")) {
+					//if (username.equals("username") && password.equals("password")) {
+					SQLData sqlData = SQLData.getInstance();
+	        		String[] values = {usernameField.getText(), passwordField.getText()};
+	        		//sqlData.newUser("Username, Password", values); //don't uncomment till SQL works
 					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
 					usernameField.clear();
 					passwordField.clear();
