@@ -99,7 +99,7 @@ public class LoginScreen extends Pane {
 					//if (username.equals("username") && password.equals("password")) {
 					SQLData sqlData = SQLData.getInstance();
 	        		String[] values = {usernameField.getText(), passwordField.getText()};
-	        		//sqlData.newUser("Username, Password", values); //don't uncomment till SQL works
+	        		sqlData.newUser("Username, Password", values); //don't uncomment till SQL works
 					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
 					usernameField.clear();
 					passwordField.clear();
