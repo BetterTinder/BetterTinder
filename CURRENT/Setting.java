@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import java.sql.SQLException;
 /**
  * 
  * @author CHRIS G. yeet
@@ -69,6 +68,7 @@ public class Setting extends GridPane  {
 		//Below are Test Case Methods, should be later removed for instead the JUnit
 		getSave(hbox, rootpane);
 		this.getChildren().add(gridPane);
+		
 	}
 	public ObservableList<String> getGenderOptions() {
 		ObservableList<String> gender= 
@@ -99,6 +99,10 @@ public class Setting extends GridPane  {
 						);
 		return options;
 	}
+	/**
+	 * 
+	 * @param matchSlider
+	 */
 	public void getMatchSlider(Slider matchSlider) {
 		matchSlider.setMin(0);
 		matchSlider.setMax(100);
@@ -110,6 +114,9 @@ public class Setting extends GridPane  {
 		matchSlider.setSnapToTicks(true);
 	}
 	//mashed three methods into one
+	/**
+	 * @param ageSlider
+	 */
 	public void getAgeSlider(Slider ageSlider) {
 		ageSlider.setMin(18);
 		ageSlider.setMax(60);
@@ -120,7 +127,14 @@ public class Setting extends GridPane  {
 		ageSlider.setShowTickMarks(true);
 		ageSlider.setSnapToTicks(true);
 	}
-	
+	public void setDefaultVal(ComboBox<String> combo, String collum)
+	{
+		String currentUser = LoginScreen.getCurrentUser();
+		int index = 0;
+		SQLData sqlData = SQLData.getInstance();
+		if(sqlData.readData(currentUser, collum).equals("Port Orange"))
+		comboBox.getSelectionModel().select(index);
+	}
 	public GridPane addGrid() {
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(25));

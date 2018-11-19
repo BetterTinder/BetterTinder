@@ -15,7 +15,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-
+/**
+ * authored by danielle and Chris
+ * @return
+ */
 public class LoginScreen extends Pane {
 
 	private Button signInButton, newAccountButton;
@@ -23,11 +26,25 @@ public class LoginScreen extends Pane {
 	private PasswordField passwordField;
 	private HBox siBox, naBox;
 	private Label welcomeLabel, usernameLabel, passwordLabel;
-
+	private static String User;
 	public static void main(String[] args) {
 		System.out.println("Login runnin");
 	}
-
+	public void SetUser(String currentUser)
+	{
+		User=currentUser;
+	}
+	public static String getCurrentUser()
+	{
+		String currentUser=User;
+		return currentUser;
+	}
+	/**
+	 * 
+	 * @param grid1
+	 * @param newAcc
+	 * @param profile
+	 */
 	LoginScreen(GridPane grid1, NewAccount newAcc, Profile profile) {
 
 		//Create Grid Pane
@@ -97,23 +114,27 @@ public class LoginScreen extends Pane {
 
 				if (valid == true) {
 					//if (username.equals("username") && password.equals("password")) {
+					/*
 					SQLData sqlData = SQLData.getInstance();
 	        		String[] values = {usernameField.getText(), passwordField.getText()};
 	        		sqlData.newUser("Username, Password", values); //don't uncomment till SQL works
+	        		*/
 					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
+					String currentUser = usernameField.getText();
+					SetUser(currentUser);
 					usernameField.clear();
 					passwordField.clear();
 					System.out.println("Signed In");
 					grid1.getChildren().clear();
 					grid1.getChildren().add(profile);
 				}
-				else {
+				else {	
 					createAlert(Alert.AlertType.ERROR, "Try Again!");
 				}
 			}
 		});
-
-
+		
+		
 		newAccountButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				grid1.getChildren().clear();
