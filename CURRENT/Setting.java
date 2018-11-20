@@ -65,6 +65,18 @@ public class Setting extends GridPane  {
 		getAgeSlider(ageMinSlider);
 		getAgeSlider(ageMaxSlider);
 		getMatchSlider(matchPercentage);
+		/*
+		if(LoginScreen.getCurrentUser()!=null) {
+		setDefaultLocVal("Location");
+		setDefaultVal(dogBox, "Dog");
+		setDefaultVal(dogHaveBox, "One Night");
+		setDefaultVal(vegetarianBox, "Vegetarian");
+		setDefaultVal(movieBox, "Movie");
+		setDefaultVal(walkingBox, "Excercise");
+		setDefaultVal(musicBox, "Music");
+		setDefaultVal(democracyBox, "Relationship");
+		}
+		*/
 		//Below are Test Case Methods, should be later removed for instead the JUnit
 		getSave(hbox, rootpane);
 		this.getChildren().add(gridPane);
@@ -127,14 +139,48 @@ public class Setting extends GridPane  {
 		ageSlider.setShowTickMarks(true);
 		ageSlider.setSnapToTicks(true);
 	}
-	public void setDefaultVal(ComboBox<String> combo, String collum)
+	/**
+	 * sets the starting val of the comboboxes by pulling from the database, except for location
+	 * @param combo
+	 * @param collum
+	 */
+	public void setDefaultLocVal(String collumn)
 	{
 		String currentUser = LoginScreen.getCurrentUser();
 		int index = 0;
 		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.readData(currentUser, collum).equals("Port Orange"))
+		if(sqlData.readData(currentUser, collumn).equals("Port Orange"))
+			index = 1;
+		else if(sqlData.readData(currentUser, collumn).equals("Daytona"))
+			index = 2;
+		else if(sqlData.readData(currentUser, collumn).equals("Deland"))
+			index = 3;
+		else if(sqlData.readData(currentUser, collumn).equals("Ormond Beach"))
+			index = 4;
 		comboBox.getSelectionModel().select(index);
 	}
+	/**
+	 * sets the starting val of the comboboxes by pulling from the database
+	 * @param combo
+	 * @param collum
+	 */
+	public void setDefaultVal(ComboBox<String> combo, String collumn)
+	{
+		String currentUser = LoginScreen.getCurrentUser();
+		int index;
+		SQLData sqlData = SQLData.getInstance();
+		if(sqlData.readData(currentUser, collumn).equals("Yes"))
+			index = 0;
+		else if(sqlData.readData(currentUser, collumn).equals("No"))
+			index = 1;
+		else 
+			index = 2;
+		combo.getSelectionModel().select(index);
+	}
+	/**
+	 * add all comboBoxes, Labels, and Sliders to the pane.
+	 * @return
+	 */
 	public GridPane addGrid() {
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(25));

@@ -30,15 +30,6 @@ public class LoginScreen extends Pane {
 	public static void main(String[] args) {
 		System.out.println("Login runnin");
 	}
-	public void SetUser(String currentUser)
-	{
-		User=currentUser;
-	}
-	public static String getCurrentUser()
-	{
-		String currentUser=User;
-		return currentUser;
-	}
 	/**
 	 * 
 	 * @param grid1
@@ -118,10 +109,10 @@ public class LoginScreen extends Pane {
 					SQLData sqlData = SQLData.getInstance();
 	        		String[] values = {usernameField.getText(), passwordField.getText()};
 	        		sqlData.newUser("Username, Password", values); //don't uncomment till SQL works
-	        		*/
+	        		*/						
 					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
 					String currentUser = usernameField.getText();
-					SetUser(currentUser);
+					//SetUser(currentUser);
 					usernameField.clear();
 					passwordField.clear();
 					System.out.println("Signed In");
