@@ -64,16 +64,6 @@ public class Setting extends GridPane  {
 		getAgeMax();
 		getMatchPercent();
 		//Below are Test Case Methods, should be later removed for instead the JUnit
-		getGenderPref();
-		getGenderId();
-		getComboBox();
-		getPreferPet();
-		getHavePet();
-		getVegan();
-		getMovie();
-		getParty();
-		getMusic();
-		getRepresent();
 		getSave(hbox, rootpane);
 		this.getChildren().add(gridPane);
 	}
@@ -199,106 +189,6 @@ public class Setting extends GridPane  {
 			}
 		});
 	}
-	private void getRepresent() {
-		democracyBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(democracyBox.getValue());
-			}
-		});
-	}
-	private void getMusic() {
-		musicBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(musicBox.getValue());
-			}
-		});
-	}
-	private void getParty() {
-		walkingBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(walkingBox.getValue());
-			}
-		});
-	}
-	private void getMovie() {
-		movieBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(movieBox.getValue());
-			}
-		});
-	}
-	private void getVegan() {
-		vegetarianBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(vegetarianBox.getValue());
-			}
-		});
-	}
-	private void getHavePet() {
-		dogHaveBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(dogHaveBox.getValue());
-			}
-		});
-	}
-	private void getPreferPet() {
-		dogBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user has answered:");
-				System.out.println(dogBox.getValue());
-			}
-		});
-	}
-	private void getComboBox() {
-		comboBox.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user would like to change their location");
-				System.out.println(comboBox.getValue());
-			}
-		});
-	}
-	private void getGenderId() {
-		genderIden.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("The user would like to identify as preference:");
-				System.out.println(genderIden.getValue());
-			}
-		});
-	}
-	private void getGenderPref() {
-		genderPref.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("Gender prefer:");
-				System.out.println(genderPref.getValue());
-			}
-		});
-	}
 	/**
 	 * this method will send all the comboBox values to SQL
 	 * @param comboBox
@@ -316,21 +206,28 @@ public class Setting extends GridPane  {
 	public void sendToDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
 			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
 			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
-		//sendtoDatabase(comboBox.getValue());
-		//sendtoDatabase(ageSlider.getValue());
-		//sendtoDatabase(comboBox2.getValue());
-		//sendtoDatabase(comboBox3.getValue());
-		//sendtoDatabase(comboBox4.getValue());
-		//sendtoDatabase(comboBox5.getValue());
-		//sendtoDatabase(comboBox6.getValue());
-		//sendtoDatabase(comboBox7.getValue());
-		//sendtoDatabase(comboBox8.getValue());
-		//sendtoDatabase(genderBox.getValue());
-		//sendtoDatabase(genderBox1.getValue());
-		//sendtoDatabase(ageMinSlider.getValue());
-		//sendtoDatabase(ageMaxSlider.getValue());
-		//sendtoDatabase(mathcPercentage.getValue());
-	}
+			SQLData sqlData = SQLData.getInstance();
+			String ageVal = new String(Double.toString(ageSlider.getValue()));
+			String ageMinVal = new String(Double.toString(ageSlider.getValue()));
+			String ageMaxVal = new String(Double.toString(ageSlider.getValue()));
+			String matchVal = new String(Double.toString(ageSlider.getValue()));
+			String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
+			sqlData.newUser("Location, Age, Dog, OneNight, Vegetarian, Movie, Excercise, Music, Relationship, Gender, GenderPreference, MinAge, MaxAge, Match", values);
+			//print statements I'll delete later
+			System.out.println(ageSlider.getValue());
+			System.out.println(comboBox2.getValue());
+			System.out.println(comboBox3.getValue());
+			System.out.println(comboBox4.getValue());
+			System.out.println(comboBox5.getValue());
+			System.out.println(comboBox6.getValue());
+			System.out.println(comboBox7.getValue());
+			System.out.println(comboBox8.getValue());
+			System.out.println(genderBox.getValue());
+			System.out.println(genderBox1.getValue());
+			System.out.println(ageMinSlider.getValue());
+			System.out.println(ageMaxSlider.getValue());
+			System.out.println(matchPercentage.getValue());
+		}
 	/**
 	 * closes setting and sends the user back to profile
 	 * @param hbox 
