@@ -1,7 +1,8 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -17,8 +18,16 @@ public class UserGUIMethods extends GridPane{
 	String directory = System.getProperty("user.dir"); String dir = directory + ("\\\\");
 	ArrayList<String> imagesList = new ArrayList<String>(); ArrayList<String> imagesListCopy = new ArrayList<String>(); 
 	Image image; ImageView view = new ImageView();
+	UserID userID = new UserID();
+	String currentUser;
 	
 	UserGUIMethods(HBox hBox, GridPane rootpane) {
+		try {
+			currentUser = userID.getUserID();
+			System.out.println("Testing:"+ currentUser);
+		} catch (IOException e) {
+			userID.alertUser();
+		}
 	}
 	/**
 	 * 
@@ -26,7 +35,7 @@ public class UserGUIMethods extends GridPane{
 	 * Has the left and right scroll buttons
 	 */
 	public HBox getHbox1() {
-		HBox Hbox1 = new HBox(270);
+		HBox Hbox1 = new HBox(260);
 		Hbox1.setTranslateX(40);
 		Hbox1.setTranslateY(165);
 		Hbox1.getChildren().addAll(getLeftBtn(),getRightBtn());
@@ -73,7 +82,6 @@ public class UserGUIMethods extends GridPane{
 		view.setPreserveRatio(true);
 		return view;
 	}
-
 	/**
 	 * 
 	 * reads for the review rating and displays it to the profile
@@ -238,7 +246,10 @@ public class UserGUIMethods extends GridPane{
 	 * @return reads and displays the user's name
 	 */
 	public Text getname() {
-		Text username = new Text("Keanu"); //Converts the parameter name to a text
+		Text username = new Text("Keanu"); //Test dummy information
+
+		//Below is for the online database (SQL), grab the currentUser
+		
 		username.setTranslateX(110.0f);
 		username.setTranslateY(-70.0f);
 		return username;

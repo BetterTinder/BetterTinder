@@ -20,43 +20,10 @@ public class NewAccount extends Setting  {
 	 */
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
-    	
-		ageSlider.setMin(18);
-		ageSlider.setMax(60);
-		ageSlider.setValue(18);
-        ageSlider.setBlockIncrement(5);
-        ageSlider.setMajorTickUnit(5);
-        ageSlider.setShowTickLabels(true);
-        ageSlider.setShowTickMarks(true);
-        ageSlider.setSnapToTicks(true);
-        
-        ageMinSlider.setMin(18);
-		ageMinSlider.setMax(60);
-		ageMinSlider.setValue(18);
-        ageMinSlider.setBlockIncrement(5);
-        ageMinSlider.setMajorTickUnit(5);
-        ageMinSlider.setShowTickLabels(true);
-        ageMinSlider.setShowTickMarks(true);
-        ageMinSlider.setSnapToTicks(true);
-        
-        ageMaxSlider.setMin(18);
-		ageMaxSlider.setMax(60);
-		ageMaxSlider.setValue(18);
-        ageMaxSlider.setBlockIncrement(5);
-        ageMaxSlider.setMajorTickUnit(5);
-        ageMaxSlider.setShowTickLabels(true);
-        ageMaxSlider.setShowTickMarks(true);
-        ageMaxSlider.setSnapToTicks(true);
-        
-        matchPercentage.setMin(0);
-        matchPercentage.setMax(100);
-		matchPercentage.setValue(75);
-		matchPercentage.setBlockIncrement(5);
-        matchPercentage.setMajorTickUnit(10);
-        matchPercentage.setShowTickLabels(true);
-        matchPercentage.setShowTickMarks(true);
-        matchPercentage.setSnapToTicks(true);
-        
+    	getAgeSlider();
+		getAgeMin();
+		getAgeMax();
+		getMatchPercent();   
         String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField name = new TextField();
         TextField FirstName = new TextField();
@@ -218,16 +185,20 @@ public class NewAccount extends Setting  {
             	}
             
             /**
-             * sends the newAccount specific variables to the SQL database
+             * sends the newAccount specific vars to the SQL database
              * @param name
              * @param firstName
              * @param lastName
              * @param password
-             */            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password) {
-            	sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
-            	SQLData sqlData = SQLData.getInstance();
-        		String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText()};
-        		sqlData.newUser("Username, Password, FirstName, LastName", values);
+             */
+            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password) {
+            	UserID userID = new UserID();
+            	//userID.makeUserID(userID); //need to make a label for the userID and then have this method grab it            
+            		sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+                	SQLData sqlData = SQLData.getInstance();
+            		String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText()};
+            		sqlData.newUser("Username, Password, FirstName, LastName", values);
+
 			}
 
             /**

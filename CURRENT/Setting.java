@@ -11,17 +11,35 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 /**
  * 
- * @author CHRIS G. yeet
+ * @author CHRIS G., Michael Fornito
  *
  */
 public class Setting extends GridPane  {
-	
+	//label declarations
+	Label age = new Label("Age:");
+	Label genPrefLabel = new Label("Gender preference:");
+	Label genIdenLabel = new Label("Gender:");
+	Label location = new Label("Location:");
+	Label intrest = new Label("Intrests:");
+	Label agePref = new Label("Age preference:");
+	Label ageMin = new Label("From:");
+	Label ageMax = new Label("To:");
+	Label dog = new Label("Do you like dogs?");
+	Label dogHave = new Label("Do you enjoy one night stands?");
+	Label vegetarian = new Label("Do you eat meat?");
+	Label movie = new Label("Do you enjoy film?");
+	Label walking = new Label("Do you enjoy excersizing?");
+	Label music = new Label("Do you like music?");
+	Label match = new Label("What match percent do you desire?");
+	Label democracy = new Label("Do you want a long term relationship?");
+
 	//age slider declarations
 	Slider ageSlider = new Slider();
 	Slider ageMinSlider = new Slider();
 	Slider ageMaxSlider = new Slider();
 	Slider matchPercentage = new Slider();
 	Button save = new Button("Apply Changes");
+	UserID userID = new UserID();
 	
 	//combo box declarations
 	ComboBox<String> genderPref = new ComboBox<String>(getGenderOptions());
@@ -34,54 +52,32 @@ public class Setting extends GridPane  {
 	ComboBox<String> walkingBox = new ComboBox<String>(getResponse());
 	ComboBox<String> musicBox = new ComboBox<String>(getResponse());
 	ComboBox<String> democracyBox = new ComboBox<String>(getResponse());
-	
-	//label declarations
-	Label age = new Label("Age:");
-	Label genPrefLabel = new Label("Gender preference:");
-	Label genIdenLabel = new Label("Gender:");
-	Label location = new Label("Location:");
-	Label intrest = new Label("Intrests:");
-	Label agePref = new Label("Age preference:");
-	Label ageMin = new Label("From:");
-	Label ageMax = new Label("To:");
-	Label dog = new Label("Do you like dogs?");
-	Label dogHave = new Label("Do you enjoy one night stands?");
-	Label vegetarian = new Label("Are you vegetarian?");
-	Label movie = new Label("Do you like staying in?");
-	Label walking = new Label("Do you enjoy excersizing?");
-	Label music = new Label("Do you like music?");
-	Label match = new Label("What match percent do you desire?");
-	Label democracy = new Label("Do you want a long term relationship?");
-	
 	/**
 	 * a constructor, the constructor for the setting pane
 	 * @param hbox
 	 * @param rootpane
 	 */
 	Setting(HBox hbox, GridPane rootpane) {
-
 		GridPane gridPane = addGrid();
-		getAgeSlider(ageSlider);
-		getAgeSlider(ageMinSlider);
-		getAgeSlider(ageMaxSlider);
-		getMatchSlider(matchPercentage);
-		/*
-		if(LoginScreen.getCurrentUser()!=null) {
-		setDefaultLocVal("Location");
-		setDefaultVal(dogBox, "Dog");
-		setDefaultVal(dogHaveBox, "One Night");
-		setDefaultVal(vegetarianBox, "Vegetarian");
-		setDefaultVal(movieBox, "Movie");
-		setDefaultVal(walkingBox, "Excercise");
-		setDefaultVal(musicBox, "Music");
-		setDefaultVal(democracyBox, "Relationship");
-		}
-		*/
+		getAgeSlider();
+		getAgeMin();
+		getAgeMax();
+		getMatchPercent();
 		//Below are Test Case Methods, should be later removed for instead the JUnit
+		getGenderPref();
+		getGenderId();
+		getComboBox();
+		getPreferPet();
+		getHavePet();
+		getVegan();
+		getMovie();
+		getParty();
+		getMusic();
+		getRepresent();
 		getSave(hbox, rootpane);
 		this.getChildren().add(gridPane);
-		
 	}
+	
 	public ObservableList<String> getGenderOptions() {
 		ObservableList<String> gender= 
 				FXCollections.observableArrayList(
@@ -111,25 +107,37 @@ public class Setting extends GridPane  {
 						);
 		return options;
 	}
-	/**
-	 * 
-	 * @param matchSlider
-	 */
-	public void getMatchSlider(Slider matchSlider) {
-		matchSlider.setMin(0);
-		matchSlider.setMax(100);
-		matchSlider.setValue(75);
-		matchSlider.setBlockIncrement(5);
-		matchSlider.setMajorTickUnit(10);
-		matchSlider.setShowTickLabels(true);
-		matchSlider.setShowTickMarks(true);
-		matchSlider.setSnapToTicks(true);
+	public void getMatchPercent() {
+		matchPercentage.setMin(0);
+		matchPercentage.setMax(100);
+		matchPercentage.setValue(75);
+		matchPercentage.setBlockIncrement(5);
+		matchPercentage.setMajorTickUnit(10);
+		matchPercentage.setShowTickLabels(true);
+		matchPercentage.setShowTickMarks(true);
+		matchPercentage.setSnapToTicks(true);
 	}
-	//mashed three methods into one
-	/**
-	 * @param ageSlider
-	 */
-	public void getAgeSlider(Slider ageSlider) {
+	public void getAgeMax() {
+		ageMaxSlider.setMin(18);
+		ageMaxSlider.setMax(60);
+		ageMaxSlider.setValue(18);
+		ageMaxSlider.setBlockIncrement(5);
+		ageMaxSlider.setMajorTickUnit(5);
+		ageMaxSlider.setShowTickLabels(true);
+		ageMaxSlider.setShowTickMarks(true);
+		ageMaxSlider.setSnapToTicks(true);
+	}
+	public void getAgeMin() {
+		ageMinSlider.setMin(18);
+		ageMinSlider.setMax(60);
+		ageMinSlider.setValue(18);
+		ageMinSlider.setBlockIncrement(5);
+		ageMinSlider.setMajorTickUnit(5);
+		ageMinSlider.setShowTickLabels(true);
+		ageMinSlider.setShowTickMarks(true);
+		ageMinSlider.setSnapToTicks(true);
+	}
+	public void getAgeSlider() {
 		ageSlider.setMin(18);
 		ageSlider.setMax(60);
 		ageSlider.setValue(18);
@@ -139,48 +147,7 @@ public class Setting extends GridPane  {
 		ageSlider.setShowTickMarks(true);
 		ageSlider.setSnapToTicks(true);
 	}
-	/**
-	 * sets the starting val of the comboboxes by pulling from the database, except for location
-	 * @param combo
-	 * @param collum
-	 */
-	public void setDefaultLocVal(String collumn)
-	{
-		String currentUser = LoginScreen.getCurrentUser();
-		int index = 0;
-		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.readData(currentUser, collumn).equals("Port Orange"))
-			index = 1;
-		else if(sqlData.readData(currentUser, collumn).equals("Daytona"))
-			index = 2;
-		else if(sqlData.readData(currentUser, collumn).equals("Deland"))
-			index = 3;
-		else if(sqlData.readData(currentUser, collumn).equals("Ormond Beach"))
-			index = 4;
-		comboBox.getSelectionModel().select(index);
-	}
-	/**
-	 * sets the starting val of the comboboxes by pulling from the database
-	 * @param combo
-	 * @param collum
-	 */
-	public void setDefaultVal(ComboBox<String> combo, String collumn)
-	{
-		String currentUser = LoginScreen.getCurrentUser();
-		int index;
-		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.readData(currentUser, collumn).equals("Yes"))
-			index = 0;
-		else if(sqlData.readData(currentUser, collumn).equals("No"))
-			index = 1;
-		else 
-			index = 2;
-		combo.getSelectionModel().select(index);
-	}
-	/**
-	 * add all comboBoxes, Labels, and Sliders to the pane.
-	 * @return
-	 */
+	
 	public GridPane addGrid() {
 		GridPane gridPane = new GridPane();
 		gridPane.setPadding(new Insets(25));
@@ -232,6 +199,106 @@ public class Setting extends GridPane  {
 			}
 		});
 	}
+	private void getRepresent() {
+		democracyBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user has answered:");
+				System.out.println(democracyBox.getValue());
+			}
+		});
+	}
+	private void getMusic() {
+		musicBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user has answered:");
+				System.out.println(musicBox.getValue());
+			}
+		});
+	}
+	private void getParty() {
+		walkingBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user has answered:");
+				System.out.println(walkingBox.getValue());
+			}
+		});
+	}
+	private void getMovie() {
+		movieBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user has answered:");
+				System.out.println(movieBox.getValue());
+			}
+		});
+	}
+	private void getVegan() {
+		vegetarianBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user has answered:");
+				System.out.println(vegetarianBox.getValue());
+			}
+		});
+	}
+	private void getHavePet() {
+		dogHaveBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user has answered:");
+				System.out.println(dogHaveBox.getValue());
+			}
+		});
+	}
+	private void getPreferPet() {
+		dogBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user has answered:");
+				System.out.println(dogBox.getValue());
+			}
+		});
+	}
+	private void getComboBox() {
+		comboBox.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user would like to change their location");
+				System.out.println(comboBox.getValue());
+			}
+		});
+	}
+	private void getGenderId() {
+		genderIden.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("The user would like to identify as preference:");
+				System.out.println(genderIden.getValue());
+			}
+		});
+	}
+	private void getGenderPref() {
+		genderPref.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Gender prefer:");
+				System.out.println(genderPref.getValue());
+			}
+		});
+	}
 	/**
 	 * this method will send all the comboBox values to SQL
 	 * @param comboBox
@@ -249,27 +316,20 @@ public class Setting extends GridPane  {
 	public void sendToDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
 			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
 			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
-		SQLData sqlData = SQLData.getInstance();
-		String ageVal = new String(Double.toString(ageSlider.getValue()));
-		String ageMinVal = new String(Double.toString(ageSlider.getValue()));
-		String ageMaxVal = new String(Double.toString(ageSlider.getValue()));
-		String matchVal = new String(Double.toString(ageSlider.getValue()));
-		String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
-		sqlData.newUser("Location, Age, Dog, One Night, Vegetarian, Movie, Excercise, Music, Relationship, Gender, Gender Preference, Min Age, Max Age, Match", values);
-		//print statements I'll delete later
-		System.out.println(ageSlider.getValue());
-		System.out.println(comboBox2.getValue());
-		System.out.println(comboBox3.getValue());
-		System.out.println(comboBox4.getValue());
-		System.out.println(comboBox5.getValue());
-		System.out.println(comboBox6.getValue());
-		System.out.println(comboBox7.getValue());
-		System.out.println(comboBox8.getValue());
-		System.out.println(genderBox.getValue());
-		System.out.println(genderBox1.getValue());
-		System.out.println(ageMinSlider.getValue());
-		System.out.println(ageMaxSlider.getValue());
-		System.out.println(matchPercentage.getValue());
+		//sendtoDatabase(comboBox.getValue());
+		//sendtoDatabase(ageSlider.getValue());
+		//sendtoDatabase(comboBox2.getValue());
+		//sendtoDatabase(comboBox3.getValue());
+		//sendtoDatabase(comboBox4.getValue());
+		//sendtoDatabase(comboBox5.getValue());
+		//sendtoDatabase(comboBox6.getValue());
+		//sendtoDatabase(comboBox7.getValue());
+		//sendtoDatabase(comboBox8.getValue());
+		//sendtoDatabase(genderBox.getValue());
+		//sendtoDatabase(genderBox1.getValue());
+		//sendtoDatabase(ageMinSlider.getValue());
+		//sendtoDatabase(ageMaxSlider.getValue());
+		//sendtoDatabase(mathcPercentage.getValue());
 	}
 	/**
 	 * closes setting and sends the user back to profile

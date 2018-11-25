@@ -16,8 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 /**
- * authored by danielle and Chris
- * @return
+ * 
+ * @author Danielle and Michael
+ *
  */
 public class LoginScreen extends Pane {
 
@@ -26,29 +27,40 @@ public class LoginScreen extends Pane {
 	private PasswordField passwordField;
 	private HBox siBox, naBox;
 	private Label welcomeLabel, usernameLabel, passwordLabel;
-	private static String User;
+
 	public static void main(String[] args) {
 		System.out.println("Login runnin");
 	}
-	/**
-	 * 
-	 * @param grid1
-	 * @param newAcc
-	 * @param profile
-	 */
+
 	LoginScreen(GridPane grid1, NewAccount newAcc, Profile profile) {
-
-		//Create Grid Pane
 		GridPane gridPane = new GridPane();
-		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
-		gridPane.setStyle(style);
-		gridPane.setAlignment(Pos.CENTER);
-		gridPane.setVgap(10);
-		gridPane.setHgap(0);
-		//gridPane.setGridLinesVisible(true);
-		gridPane.setPrefSize(400, 520);
+		setGrid(gridPane);
+		createLabels();
+		createFields();
+		signInButton = new Button("Sign In");
+		newAccountButton = new Button("New Account");
+		setBox();
+		controlGrid(gridPane);
+		getSignBtn(grid1, profile);
+		getNewAccBtn(grid1, newAcc);
 
-		//create all labels
+		//return
+		this.getChildren().add(gridPane);
+	}
+/**
+ * creates the fields for username and passwrd
+ */
+	private void createFields() {
+		usernameField = new TextField();
+		usernameField.setPromptText("Username");
+
+		passwordField = new PasswordField();
+		passwordField.setPromptText("Password");
+	}
+/**
+ * creates the labels
+ */
+	private void createLabels() {
 		welcomeLabel = new Label("Welcome to Riddle Vision");
 		welcomeLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 25));
 		welcomeLabel.setMinSize(200, 100);
@@ -57,29 +69,12 @@ public class LoginScreen extends Pane {
 		usernameLabel = new Label("Username:");
 
 		passwordLabel = new Label("Password:");
-
-		//create fields
-		usernameField = new TextField();
-		usernameField.setPromptText("Username");
-
-		passwordField = new PasswordField();
-		passwordField.setPromptText("Password");
-
-		//create Buttons
-		signInButton = new Button("Sign In");
-
-		newAccountButton = new Button("New Account");
-
-		//create HBox for buttons
-		siBox = new HBox(10);
-		siBox.setAlignment(Pos.CENTER);
-		siBox.getChildren().add(signInButton);
-
-		naBox = new HBox(10);
-		naBox.setAlignment(Pos.CENTER);
-		naBox.getChildren().add(newAccountButton);
-
-		//Add Controls to Grid Pane
+	}
+/**
+ * 
+ * @param gridPane
+ */
+	private void controlGrid(GridPane gridPane) {
 		gridPane.add(welcomeLabel, 0, 0);
 		gridPane.add(usernameLabel, 0, 1);
 		gridPane.add(usernameField, 0, 2);
@@ -87,57 +82,87 @@ public class LoginScreen extends Pane {
 		gridPane.add(passwordField, 0, 4);
 		gridPane.add(siBox, 0 ,5);
 		gridPane.add(naBox, 0, 6);
+	}
+/**
+ * 
+ * @param gridPane
+ */
+	private void setGrid(GridPane gridPane) {
+		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+		gridPane.setStyle(style);
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setVgap(10);
+		gridPane.setHgap(0);
+		//gridPane.setGridLinesVisible(true);
+		gridPane.setPrefSize(400, 520);
+	}
+/**
+ * creates the hboxs for alignment for the sign in and new account buttons
+ */
+	private void setBox() {
+		siBox = new HBox(10);
+		siBox.setAlignment(Pos.CENTER);
+		siBox.getChildren().add(signInButton);
 
-		//Functionality for Buttons
-		signInButton.setOnAction(event -> {
-			String username = new String();
-			String password = new String();
-
-			username = usernameField.getText();
-			password = passwordField.getText();			
-
-			if (username.isEmpty()) {
-				createAlert(Alert.AlertType.ERROR, "No username was entered!");
-			} else if (password.isEmpty()) {
-				createAlert(Alert.AlertType.ERROR, "No password was entered!");		
-			} else {
-				boolean valid = checkLoginInformation("LoginInformation.txt",username,password);
-
-				if (valid == true) {
-					//if (username.equals("username") && password.equals("password")) {
-					/*
-					SQLData sqlData = SQLData.getInstance();
-	        		String[] values = {usernameField.getText(), passwordField.getText()};
-	        		sqlData.newUser("Username, Password", values); //don't uncomment till SQL works
-	        		*/						
-					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
-					String currentUser = usernameField.getText();
-					//SetUser(currentUser);
-					usernameField.clear();
-					passwordField.clear();
-					System.out.println("Signed In");
-					grid1.getChildren().clear();
-					grid1.getChildren().add(profile);
-				}
-				else {	
-					createAlert(Alert.AlertType.ERROR, "Try Again!");
-				}
-			}
-		});
-		
-		
+		naBox = new HBox(10);
+		naBox.setAlignment(Pos.CENTER);
+		naBox.getChildren().add(newAccountButton);
+	}
+/**
+ * 
+ * @param grid1
+ * @param newAcc
+ */
+	private void getNewAccBtn(GridPane grid1, NewAccount newAcc) {
 		newAccountButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				grid1.getChildren().clear();
 				grid1.getChildren().add(newAcc);
 			}
 		});
-
-		//return
-		this.getChildren().add(gridPane);
-
 	}
+/**
+ * 
+ * @param grid1
+ * @param profile
+ */
+	private void getSignBtn(GridPane grid1, Profile profile) {
+		signInButton.setOnAction(event -> {
+			String userID = new String();
+			String password = new String();
 
+			userID = usernameField.getText();
+			password = passwordField.getText();			
+
+			if (userID.isEmpty()) {
+				createAlert(Alert.AlertType.ERROR, "No username was entered!");
+			} else if (password.isEmpty()) {
+				createAlert(Alert.AlertType.ERROR, "No password was entered!");		
+			} else {
+				boolean valid = checkLoginInformation("LoginInformation.txt",userID,password);
+
+				if (valid == true) {
+					UserID makeID = new UserID();
+					makeID.makeUserID(userID);
+					createAlert(Alert.AlertType.CONFIRMATION, "Signed In!");
+					usernameField.clear();
+					passwordField.clear();
+					System.out.println("Signed In");
+					grid1.getChildren().clear();
+					grid1.getChildren().add(profile);
+				}
+				else {
+					createAlert(Alert.AlertType.ERROR, "Try Again!");
+				}
+			}
+		});
+	}
+/**
+ * 
+ * @param type
+ * @param string
+ * @return
+ */
 	private Alert createAlert(Alert.AlertType type, String string) {
 		Alert alert = new Alert(type);
 		alert.setHeaderText(null);
@@ -145,7 +170,13 @@ public class LoginScreen extends Pane {
 		alert.showAndWait();
 		return alert;
 	}
-
+/**
+ * 
+ * @param fileName
+ * @param username
+ * @param password
+ * @return
+ */
 	private boolean checkLoginInformation(String fileName, String username, String password) {
 
 		List<String> loginInfo = new ArrayList<String>();
