@@ -63,7 +63,6 @@ public class Setting extends GridPane  {
 		getAgeMin();
 		getAgeMax();
 		getMatchPercent();
-		//Below are Test Case Methods, should be later removed for instead the JUnit
 		getSave(hbox, rootpane);
 		this.getChildren().add(gridPane);
 	}
@@ -228,6 +227,39 @@ public class Setting extends GridPane  {
 			System.out.println(ageMaxSlider.getValue());
 			System.out.println(matchPercentage.getValue());
 		}
+	/**
+	 * sets the combo boxes to their value in SQL
+	 */
+	public void runOnButton() {
+		setDefaultVal(comboBox, "Location");
+		setDefaultVal(dogBox, "Dog");
+		setDefaultVal(dogHaveBox, "OneNight");
+		setDefaultVal(vegetarianBox, "Vegetarian");
+		setDefaultVal(movieBox, "Movie");
+		setDefaultVal(walkingBox, "Excercise");
+		setDefaultVal(musicBox, "Music");
+		setDefaultVal(democracyBox, "Relationship");
+	}
+	/**
+	 * sets the starting val of the comboboxes by pulling from the database, except for location
+	 * @param combo
+	 * @param collum
+	 **/
+	public void setDefaultVal(ComboBox<String> combo, String collumn)
+	{
+		String currentUser = "Chris1";//UserID.getUserID
+		int index = 0;
+		SQLData sqlData = SQLData.getInstance();
+		if(sqlData.readData(currentUser, collumn).equals("Port Orange") || sqlData.readData(currentUser, collumn).equals("No"))
+			index = 1;
+		else if(sqlData.readData(currentUser, collumn).equals("Daytona") || sqlData.readData(currentUser, collumn).equals("Prefer not to answer"))
+			index = 2;
+		else if(sqlData.readData(currentUser, collumn).equals("Deland"))
+			index = 3;
+		else if(sqlData.readData(currentUser, collumn).equals("Ormond Beach"))
+			index = 4;
+		combo.getSelectionModel().select(index);
+	}
 	/**
 	 * closes setting and sends the user back to profile
 	 * @param hbox 

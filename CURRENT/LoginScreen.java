@@ -139,8 +139,7 @@ public class LoginScreen extends Pane {
 			} else if (password.isEmpty()) {
 				createAlert(Alert.AlertType.ERROR, "No password was entered!");		
 			} else {
-				boolean valid = checkLoginInformation("LoginInformation.txt",userID,password);
-
+				boolean valid = checkLoginInformation("LoginInformation.txt",userID,password);//need to replace this with SQL stuff
 				if (valid == true) {
 					UserID makeID = new UserID();
 					makeID.makeUserID(userID);

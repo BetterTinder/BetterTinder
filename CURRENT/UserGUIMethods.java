@@ -1,4 +1,3 @@
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -237,6 +236,7 @@ public class UserGUIMethods extends GridPane{
 			public void handle(ActionEvent event) {
 				root.getChildren().clear();
 				root.getChildren().add(set);
+				set.runOnButton();
 			}
 		});
 		return setting;
