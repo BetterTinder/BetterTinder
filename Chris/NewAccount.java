@@ -1,7 +1,9 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -20,43 +22,10 @@ public class NewAccount extends Setting  {
 	 */
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
-    	
-		ageSlider.setMin(18);
-		ageSlider.setMax(60);
-		ageSlider.setValue(18);
-        ageSlider.setBlockIncrement(5);
-        ageSlider.setMajorTickUnit(5);
-        ageSlider.setShowTickLabels(true);
-        ageSlider.setShowTickMarks(true);
-        ageSlider.setSnapToTicks(true);
-        
-        ageMinSlider.setMin(18);
-		ageMinSlider.setMax(60);
-		ageMinSlider.setValue(18);
-        ageMinSlider.setBlockIncrement(5);
-        ageMinSlider.setMajorTickUnit(5);
-        ageMinSlider.setShowTickLabels(true);
-        ageMinSlider.setShowTickMarks(true);
-        ageMinSlider.setSnapToTicks(true);
-        
-        ageMaxSlider.setMin(18);
-		ageMaxSlider.setMax(60);
-		ageMaxSlider.setValue(18);
-        ageMaxSlider.setBlockIncrement(5);
-        ageMaxSlider.setMajorTickUnit(5);
-        ageMaxSlider.setShowTickLabels(true);
-        ageMaxSlider.setShowTickMarks(true);
-        ageMaxSlider.setSnapToTicks(true);
-        
-        matchPercentage.setMin(0);
-        matchPercentage.setMax(100);
-		matchPercentage.setValue(75);
-		matchPercentage.setBlockIncrement(5);
-        matchPercentage.setMajorTickUnit(10);
-        matchPercentage.setShowTickLabels(true);
-        matchPercentage.setShowTickMarks(true);
-        matchPercentage.setSnapToTicks(true);
-        
+    	getAgeSlider();
+		getAgeMin();
+		getAgeMax();
+		getMatchPercent();   
         String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField name = new TextField();
         TextField FirstName = new TextField();
@@ -206,7 +175,7 @@ public class NewAccount extends Setting  {
             			sendToProfile();
             			System.out.println("Changes saved");
             			//sendToDatabase isn't here, because I left it in Settings
-            			userToDatabase(name, FirstName, LastName, Password);
+            			userToDatabase(name, FirstName, LastName, Password, matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
             		}
             		else {
             			System.out.println("correct yo age");
@@ -218,17 +187,29 @@ public class NewAccount extends Setting  {
             	}
             
             /**
-             * sends the newAccount specific variables to the SQL database
+             * sends the newAccount specific vars to the SQL database
              * @param name
              * @param firstName
              * @param lastName
              * @param password
-             */            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password) {
-            	sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
-            	SQLData sqlData = SQLData.getInstance();
-        		String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText()};
-        		sqlData.newUser("Username, Password, FirstName, LastName", values);
-			}
+             */
+            public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password, Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
+        			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
+        			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
+            	UserID userID = new UserID();
+            	//userID.makeUserID(userID); //need to make a label for the userID and then have this method grab it            
+            		SQLData sqlData = SQLData.getInstance();
+            		int ageInt = (int)ageSlider.getValue();
+        			int ageMinInt = (int)ageSlider.getValue();
+        			int ageMaxInt = (int)ageSlider.getValue();
+        			int matchInt = (int)ageSlider.getValue();
+        			String ageVal = new String(Integer.toString(ageInt));
+        			String ageMinVal = new String(Integer.toString(ageMinInt));
+        			String ageMaxVal = new String(Integer.toString(ageMaxInt));
+        			String matchVal = new String(Integer.toString(matchInt));
+            		String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText(), comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
+            		sqlData.newUser("Username, Password, FirstName, LastName, Location, Age, Dog, One_Night, Vegetarian, Movie, Exercise, Music, Relationship, Gender, Gender_Preference, Min_Age, Max_Age, Match", values);
+            }
 
             /**
  			* this sends the user to the profile screen after creating their account

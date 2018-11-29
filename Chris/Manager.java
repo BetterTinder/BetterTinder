@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
 	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
-	Setting setting = new Setting(addButtons(rootpane), rootpane); 
+	UserID userID = new UserID();
 
 	public static void main(String[] args) {
 		launch(args);	
@@ -24,12 +24,15 @@ public class Manager extends Application{
 	 * 
 	 * @return
 	 */
+	
 	public Profile InitalizeProfile() {
 		Profile profile = new Profile(addButtons(rootpane),rootpane); 
 		return profile;
 	}
 
 	public void start(Stage stage) {
+		String tempUserID = "default";
+		userID.makeUserID(tempUserID);
 		NewAccount newAcc = new NewAccount(addButtons(rootpane), InitalizeProfile());
 		LoginScreen login = new LoginScreen(rootpane, newAcc, InitalizeProfile());
 		rootpane.getChildren().add(login);
@@ -107,7 +110,7 @@ public class Manager extends Application{
 		findBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
 		findBtn.setMinSize(85, 20);
 		findBtn.setOnAction(event -> {
-			FindUsers find = new FindUsers(addButtons(grid1),grid1);
+			FindUsers<String> find = new FindUsers<String>(addButtons(grid1),grid1);
 			grid1.getChildren().add(find);
 			System.out.println("Find");
 		});
