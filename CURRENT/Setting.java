@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -206,12 +208,16 @@ public class Setting extends GridPane  {
 			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
 			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
 			SQLData sqlData = SQLData.getInstance();
-			String ageVal = new String(Double.toString(ageSlider.getValue()));
-			String ageMinVal = new String(Double.toString(ageSlider.getValue()));
-			String ageMaxVal = new String(Double.toString(ageSlider.getValue()));
-			String matchVal = new String(Double.toString(ageSlider.getValue()));
+			int ageInt = (int)ageSlider.getValue();
+			int ageMinInt = (int)ageSlider.getValue();
+			int ageMaxInt = (int)ageSlider.getValue();
+			int matchInt = (int)ageSlider.getValue();
+			String ageVal = new String(Integer.toString(ageInt));
+			String ageMinVal = new String(Integer.toString(ageMinInt));
+			String ageMaxVal = new String(Integer.toString(ageMaxInt));
+			String matchVal = new String(Integer.toString(matchInt));
 			String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
-			sqlData.newUser("Location, Age, Dog, OneNight, Vegetarian, Movie, Excercise, Music, Relationship, Gender, GenderPreference, MinAge, MaxAge, Match", values);
+			sqlData.newUser("Location, Age, Dog, One_Night, Vegetarian, Movie, Exercise, Music, Relationship, Gender, Gender_Preference, Min_Age, Max_Age, Match", values);
 			//print statements I'll delete later
 			System.out.println(ageSlider.getValue());
 			System.out.println(comboBox2.getValue());
@@ -236,18 +242,24 @@ public class Setting extends GridPane  {
 		setDefaultVal(dogHaveBox, "OneNight");
 		setDefaultVal(vegetarianBox, "Vegetarian");
 		setDefaultVal(movieBox, "Movie");
-		setDefaultVal(walkingBox, "Excercise");
+		setDefaultVal(walkingBox, "Exercise");
 		setDefaultVal(musicBox, "Music");
 		setDefaultVal(democracyBox, "Relationship");
 	}
 	/**
-	 * sets the starting val of the comboboxes by pulling from the database, except for location
+	 * sets the starting val of the combo boxes by pulling from the database, except for location
 	 * @param combo
 	 * @param collum
 	 **/
 	public void setDefaultVal(ComboBox<String> combo, String collumn)
 	{
-		String currentUser = "Chris1";//UserID.getUserID
+		String currentUser = " ";
+		try {
+			currentUser = userID.getUserID();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int index = 0;
 		SQLData sqlData = SQLData.getInstance();
 		if(sqlData.readData(currentUser, collumn).equals("Port Orange") || sqlData.readData(currentUser, collumn).equals("No"))

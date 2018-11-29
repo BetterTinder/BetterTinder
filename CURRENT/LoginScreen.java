@@ -139,7 +139,7 @@ public class LoginScreen extends Pane {
 			} else if (password.isEmpty()) {
 				createAlert(Alert.AlertType.ERROR, "No password was entered!");		
 			} else {
-				boolean valid = checkLoginInformation("LoginInformation.txt",userID,password);//need to replace this with SQL stuff
+				boolean valid = checkLoginInformation(userID,password);//need to replace this with SQL stuff
 				if (valid == true) {
 					UserID makeID = new UserID();
 					makeID.makeUserID(userID);
@@ -176,8 +176,14 @@ public class LoginScreen extends Pane {
  * @param password
  * @return
  */
-	private boolean checkLoginInformation(String fileName, String username, String password) {
-
+	private boolean checkLoginInformation(String username, String password) {
+		Boolean valid = false;
+		SQLData sqlData = SQLData.getInstance();
+		if(sqlData.userExists(username)==true)
+			if(sqlData.readData(username, "Password").equals(password))
+				valid = true;
+		return valid;
+/*
 		List<String> loginInfo = new ArrayList<String>();
 		Boolean valid = false;
 
@@ -210,6 +216,6 @@ public class LoginScreen extends Pane {
 			count++;
 		}
 		return valid;
-
+*/
 	}
 }

@@ -31,7 +31,7 @@ public class Manager extends Application{
 	}
 
 	public void start(Stage stage) {
-		String tempUserID = "";
+		String tempUserID = "default";
 		userID.makeUserID(tempUserID);
 		NewAccount newAcc = new NewAccount(addButtons(rootpane), InitalizeProfile());
 		LoginScreen login = new LoginScreen(rootpane, newAcc, InitalizeProfile());

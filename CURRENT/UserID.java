@@ -18,7 +18,6 @@ import javafx.scene.control.Alert.AlertType;
  *
  */
 public class UserID {
-String userID = "";
 	/**
 	 * 
 	 * @return the userID
@@ -26,7 +25,7 @@ String userID = "";
 	 */
 	public String getUserID() throws IOException{
 		String directory = System.getProperty("user.dir"); String dir = directory + ("\\\\");
-		String userID ="";
+		String userID ="defeault";
 		String path = dir+"UserID.txt";
 				userID = new String(Files.readAllBytes(Paths.get(path)));
 		return userID;
