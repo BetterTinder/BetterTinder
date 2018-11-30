@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -139,7 +135,7 @@ public class LoginScreen extends Pane {
 			} else if (password.isEmpty()) {
 				createAlert(Alert.AlertType.ERROR, "No password was entered!");		
 			} else {
-				boolean valid = checkLoginInformation(userID,password);//need to replace this with SQL stuff
+				boolean valid = checkLoginInformation(userID,password);
 				if (valid == true) {
 					UserID makeID = new UserID();
 					makeID.makeUserID(userID);
@@ -179,9 +175,14 @@ public class LoginScreen extends Pane {
 	private boolean checkLoginInformation(String username, String password) {
 		Boolean valid = false;
 		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.userExists(username)==true)
-			if(sqlData.readData(username, "Password").equals(password))
+		if(sqlData.userExists(username)==true) {
+			System.out.println("fuck my gay father with a garden hose");
+			System.out.println(sqlData.readData(username, "Password"));
+			if(sqlData.readData(username, "Password") == password) {
+				System.out.println("OH BABY A TRIPLE");
 				valid = true;
+			}
+		}
 		return valid;
 /*
 		List<String> loginInfo = new ArrayList<String>();
