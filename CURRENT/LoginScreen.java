@@ -42,7 +42,6 @@ public class LoginScreen extends Pane {
 		controlGrid(gridPane);
 		getSignBtn(grid1, profile);
 		getNewAccBtn(grid1, newAcc);
-
 		//return
 		this.getChildren().add(gridPane);
 	}
@@ -121,7 +120,6 @@ public class LoginScreen extends Pane {
 		});
 	}
 /**
- * 
  * @param grid1
  * @param profile
  */
@@ -184,10 +182,10 @@ public class LoginScreen extends Pane {
 		if(sqlData.userExists(username)==true) {
 			System.out.println("fuck my gay father with a garden hose");
 			String[] col = {"Password"};
-			System.out.println("datalist " + sqlData.readData(username, col));
 			List<String> dataPass = sqlData.readData(username, col);
 			List<String> passList = new ArrayList<String>();
 			passList.add(password);
+			System.out.println("datalist " + sqlData.readData(username, col));
 			System.out.println("entered " + password);
 			System.out.println("database " + dataPass);
 			if(passList.equals(dataPass)) {
