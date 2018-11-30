@@ -113,6 +113,7 @@ public class NewAccount extends Setting  {
 				makeID.makeUserID(userID);
             	//userID.makeUserID(userID); //need to make a label for the userID and then have this method grab it            
             		SQLData sqlData = SQLData.getInstance();
+            		sqlData.makeCon(sqlData);
             		int ageInt = (int)ageSlider.getValue();
         			int ageMinInt = (int)ageMinSlider.getValue();
         			int ageMaxInt = (int)ageMaxSlider.getValue();
@@ -123,6 +124,7 @@ public class NewAccount extends Setting  {
         			String matchVal = new String(Integer.toString(matchInt));
             		String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText(), comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
             		sqlData.newUser("Username, Password, FirstName, LastName, Location, Age, Dog, One_Night, Vegetarian, Movie, Exercise, Music, Relationship, Gender, Gender_Preference, Min_Age, Max_Age, Match", values);
+            		sqlData.closeCon();
             }
 
             /**

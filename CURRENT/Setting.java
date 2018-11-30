@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import java.util.List;
+import java.util.ArrayList;
 /**
  * 
  * @author CHRIS G., Michael Fornito
@@ -259,7 +261,6 @@ public class Setting extends GridPane  {
 		else if(sqlData.readData(currentUser, collumn).equals("Ormond Beach"))
 			index = 4;
 		else
-			System.out.println("FUCK");
 		combo.getSelectionModel().select(index);
 	}
 	/**
