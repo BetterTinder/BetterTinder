@@ -69,7 +69,6 @@ public class Manager extends Application{
 		return btnBox;
 	}
 	/**
-	 * 
 	 * @param grid1
 	 * @return
 	 */

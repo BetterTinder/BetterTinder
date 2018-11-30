@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -207,7 +205,7 @@ public class Setting extends GridPane  {
 	public void runOnButton() {
 		setDefaultVal(comboBox, "Location");
 		setDefaultVal(dogBox, "Dog");
-		setDefaultVal(dogHaveBox, "OneNight");
+		setDefaultVal(dogHaveBox, "One_Night");
 		setDefaultVal(vegetarianBox, "Vegetarian");
 		setDefaultVal(movieBox, "Movie");
 		setDefaultVal(walkingBox, "Exercise");
@@ -248,9 +246,11 @@ public class Setting extends GridPane  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int index = 0;
+		int index = 5;
 		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.readData(currentUser, collumn).equals("Port Orange") || sqlData.readData(currentUser, collumn).equals("No") || sqlData.readData(currentUser, collumn).equals("Female"))
+		if(sqlData.readData(currentUser, collumn).equals("Holly Hill") || sqlData.readData(currentUser, collumn).equals("Yes") || sqlData.readData(currentUser, collumn).equals("Male"))
+			index = 0;
+		else if(sqlData.readData(currentUser, collumn).equals("Port Orange") || sqlData.readData(currentUser, collumn).equals("No") || sqlData.readData(currentUser, collumn).equals("Female"))
 			index = 1;
 		else if(sqlData.readData(currentUser, collumn).equals("Daytona") || sqlData.readData(currentUser, collumn).equals("Prefer not to answer") || sqlData.readData(currentUser, collumn).equals("Other"))
 			index = 2;
@@ -258,6 +258,8 @@ public class Setting extends GridPane  {
 			index = 3;
 		else if(sqlData.readData(currentUser, collumn).equals("Ormond Beach"))
 			index = 4;
+		else
+			System.out.println("FUCK");
 		combo.getSelectionModel().select(index);
 	}
 	/**

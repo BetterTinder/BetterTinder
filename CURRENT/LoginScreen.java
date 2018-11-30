@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -158,6 +161,7 @@ public class LoginScreen extends Pane {
  * @param string
  * @return
  */
+	
 	private Alert createAlert(Alert.AlertType type, String string) {
 		Alert alert = new Alert(type);
 		alert.setHeaderText(null);
@@ -165,6 +169,7 @@ public class LoginScreen extends Pane {
 		alert.showAndWait();
 		return alert;
 	}
+	
 /**
  * 
  * @param fileName
@@ -172,13 +177,20 @@ public class LoginScreen extends Pane {
  * @param password
  * @return
  */
+	
 	private boolean checkLoginInformation(String username, String password) {
 		Boolean valid = false;
 		SQLData sqlData = SQLData.getInstance();
 		if(sqlData.userExists(username)==true) {
 			System.out.println("fuck my gay father with a garden hose");
-			System.out.println(sqlData.readData(username, "Password"));
-			if(sqlData.readData(username, "Password") == password) {
+			String[] col = {"Password"};
+			System.out.println("datalist " + sqlData.readData(username, col));
+			List<String> dataPass = sqlData.readData(username, col);
+			List<String> passList = new ArrayList<String>();
+			passList.add(password);
+			System.out.println("entered " + password);
+			System.out.println("database " + dataPass);
+			if(passList.equals(dataPass)) {
 				System.out.println("OH BABY A TRIPLE");
 				valid = true;
 			}
