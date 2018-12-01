@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 /**
  * 
- * @author Danielle and Michael
+ * @author Danielle and Chris did SQL
  *
  */
 public class LoginScreen extends Pane {
@@ -177,14 +177,15 @@ public class LoginScreen extends Pane {
 	private boolean checkLoginInformation(String username, String password) {
 		Boolean valid = false;
 		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
 		if(sqlData.userExists(username)==true) {
 			String[] desiredcol = {"Password"};
 			List<String> passList = new ArrayList<String>();
 			passList.add(password);
 			if(passList.equals(sqlData.readData(username, desiredcol))) {
-				System.out.println("OH BABY A TRIPLE");
 				valid = true;
 			}
+			sqlData.closeCon();
 		}
 		return valid;
 	}
