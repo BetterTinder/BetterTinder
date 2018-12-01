@@ -112,8 +112,8 @@ public class NewAccount extends Setting  {
             	UserID makeID = new UserID();
 				makeID.makeUserID(userID);
             	//userID.makeUserID(userID); //need to make a label for the userID and then have this method grab it            
-            		SQLData sqlData = SQLData.getInstance();
-            		sqlData.makeCon(sqlData);
+					SQLData sqlData = SQLData.getInstance();
+					sqlData.makeCon(sqlData);
             		int ageInt = (int)ageSlider.getValue();
         			int ageMinInt = (int)ageMinSlider.getValue();
         			int ageMaxInt = (int)ageMaxSlider.getValue();

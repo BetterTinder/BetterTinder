@@ -177,6 +177,7 @@ public class LoginScreen extends Pane {
 	private boolean checkLoginInformation(String username, String password) {
 		Boolean valid = false;
 		SQLData sqlData = SQLData.getInstance();
+		sqldata.makeCon();
 		if(sqlData.userExists(username)==true) {
 			String[] desiredcol = {"Password"};
 			List<String> passList = new ArrayList<String>();
@@ -185,6 +186,7 @@ public class LoginScreen extends Pane {
 				System.out.println("OH BABY A TRIPLE");
 				valid = true;
 			}
+			sqlData.closeCon();
 		}
 		return valid;
 	}

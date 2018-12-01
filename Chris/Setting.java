@@ -229,11 +229,13 @@ public class Setting extends GridPane  {
 			e.printStackTrace();
 		}
 		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
 		String[] desiredcol = {collumn};
 		List<String> percentLst = sqlData.readData(currentUser, desiredcol);
 		String percentStr = new String(percentLst.get(0));
 		Double percentVal = new Double(percentStr);
 		slide.setValue(percentVal);
+		sqlData.closeCon();
 	}
 	/**
 	 * sets the starting val of the combo boxes by pulling from the database, except for location
@@ -273,6 +275,7 @@ public class Setting extends GridPane  {
 		non.add("Prefer not to answer");
 		int index = 5;
 		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
 		if(sqlData.readData(currentUser, desiredcol).equals(hollHill) || sqlData.readData(currentUser, desiredcol).equals(yes) || sqlData.readData(currentUser, desiredcol).equals(male))
 			index = 0;
 		else if(sqlData.readData(currentUser, desiredcol).equals(portOrange) || sqlData.readData(currentUser, desiredcol).equals(no) || sqlData.readData(currentUser, desiredcol).equals(fem))
@@ -286,6 +289,7 @@ public class Setting extends GridPane  {
 		else
 			System.out.println("FUCK");
 		combo.getSelectionModel().select(index);
+		sqlData.closeCon();
 	}
 	/**
 	 * closes setting and sends the user back to profile
