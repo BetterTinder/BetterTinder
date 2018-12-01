@@ -22,9 +22,9 @@ public class NewAccount extends Setting  {
 	 */
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
-    	getAgeSlider();
-		getAgeMin();
-		getAgeMax();
+    	getAgeSlider(ageSlider);
+    	getAgeSlider(ageMinSlider);
+    	getAgeSlider(ageMaxSlider);
 		getMatchPercent();   
         String style = "-fx-background-color: rgba(255, 255, 255, 1);";
         TextField name = new TextField();
@@ -79,94 +79,6 @@ public class NewAccount extends Setting  {
         gridPane.add(save, 1, 500);
 
         //event handlers for the combo boxes
-        genderPref.setOnAction(new EventHandler<ActionEvent>() {
-          	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like sleep with the gender of:");
-            	System.out.println(genderPref.getValue());
-            }
-        });
-        genderIden.setOnAction(new EventHandler<ActionEvent>() {
-        	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to identify as:");
-            	System.out.println(genderIden.getValue());
-            	}
-        });
-        comboBox.setOnAction(new EventHandler<ActionEvent>() {
-         	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user would like to change their location");
-            	System.out.println(comboBox.getValue());
-            	}
-        });
-        dogBox.setOnAction(new EventHandler<ActionEvent>() {
-        	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(dogBox.getValue());
-            	}
-        });
-        dogHaveBox.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(dogHaveBox.getValue());
-            	}
-        });
-        dogHaveBox.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(dogHaveBox.getValue());
-            	}
-        });
-        vegetarianBox.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(vegetarianBox.getValue());
-            	}
-        });
-        movieBox.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(movieBox.getValue());
-            	}
-        });
-        walkingBox.setOnAction(new EventHandler<ActionEvent>() {
-          	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(walkingBox.getValue());
-            	}
-        });
-        musicBox.setOnAction(new EventHandler<ActionEvent>() {
-          	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(musicBox.getValue());
-            	}
-        });
-        democracyBox.setOnAction(new EventHandler<ActionEvent>() {
-          	 
-            @Override
-            public void handle(ActionEvent event) {
-            	System.out.println("The user has answered:");
-            	System.out.println(democracyBox.getValue());
-            	}
-        });
         save.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -175,7 +87,7 @@ public class NewAccount extends Setting  {
             			sendToProfile();
             			System.out.println("Changes saved");
             			//sendToDatabase isn't here, because I left it in Settings
-            			userToDatabase(name, FirstName, LastName, Password, matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+            			userToDatabase(name, FirstName, LastName, Password, matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderIden, genderPref);
             		}
             		else {
             			System.out.println("correct yo age");
@@ -196,13 +108,15 @@ public class NewAccount extends Setting  {
             public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password, Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
         			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
         			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
-            	UserID userID = new UserID();
+            	String userID = name.getText();
+            	UserID makeID = new UserID();
+				makeID.makeUserID(userID);
             	//userID.makeUserID(userID); //need to make a label for the userID and then have this method grab it            
             		SQLData sqlData = SQLData.getInstance();
             		int ageInt = (int)ageSlider.getValue();
-        			int ageMinInt = (int)ageSlider.getValue();
-        			int ageMaxInt = (int)ageSlider.getValue();
-        			int matchInt = (int)ageSlider.getValue();
+        			int ageMinInt = (int)ageMinSlider.getValue();
+        			int ageMaxInt = (int)ageMaxSlider.getValue();
+        			int matchInt = (int)matchPercentage.getValue();
         			String ageVal = new String(Integer.toString(ageInt));
         			String ageMinVal = new String(Integer.toString(ageMinInt));
         			String ageMaxVal = new String(Integer.toString(ageMaxInt));

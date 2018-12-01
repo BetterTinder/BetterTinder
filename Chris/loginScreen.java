@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -43,7 +42,6 @@ public class LoginScreen extends Pane {
 		controlGrid(gridPane);
 		getSignBtn(grid1, profile);
 		getNewAccBtn(grid1, newAcc);
-
 		//return
 		this.getChildren().add(gridPane);
 	}
@@ -122,7 +120,6 @@ public class LoginScreen extends Pane {
 		});
 	}
 /**
- * 
  * @param grid1
  * @param profile
  */
@@ -139,7 +136,7 @@ public class LoginScreen extends Pane {
 			} else if (password.isEmpty()) {
 				createAlert(Alert.AlertType.ERROR, "No password was entered!");		
 			} else {
-				boolean valid = checkLoginInformation(userID,password);//need to replace this with SQL stuff
+				boolean valid = checkLoginInformation(userID,password);
 				if (valid == true) {
 					UserID makeID = new UserID();
 					makeID.makeUserID(userID);
@@ -157,11 +154,11 @@ public class LoginScreen extends Pane {
 		});
 	}
 /**
- * 
  * @param type
  * @param string
  * @return
  */
+	
 	private Alert createAlert(Alert.AlertType type, String string) {
 		Alert alert = new Alert(type);
 		alert.setHeaderText(null);
@@ -169,6 +166,7 @@ public class LoginScreen extends Pane {
 		alert.showAndWait();
 		return alert;
 	}
+	
 /**
  * 
  * @param fileName
@@ -179,43 +177,15 @@ public class LoginScreen extends Pane {
 	private boolean checkLoginInformation(String username, String password) {
 		Boolean valid = false;
 		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.userExists(username)==true)
-			if(sqlData.readData(username, "Password").equals(password))
+		if(sqlData.userExists(username)==true) {
+			String[] desiredcol = {"Password"};
+			List<String> passList = new ArrayList<String>();
+			passList.add(password);
+			if(passList.equals(sqlData.readData(username, desiredcol))) {
+				System.out.println("OH BABY A TRIPLE");
 				valid = true;
-		return valid;
-/*
-		List<String> loginInfo = new ArrayList<String>();
-		Boolean valid = false;
-
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(fileName));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				loginInfo.add(line);
 			}
-			reader.close();
-		}	catch (Exception e) {
-			System.err.format("Exception occured trying to read '%s'.", fileName);
-			e.printStackTrace();
-		}
-
-		String splitBy = ",";
-		int count = 0;
-		int size = loginInfo.size();
-
-		while (count < size && valid == false) {
-			String line = loginInfo.get(count);
-			String[] info = line.split(splitBy);
-			if (info[0].equals(username)) {
-				if (info[1].equals(password)) {
-					valid = true;
-				}
-			} else {
-				valid = false;
-			}
-			count++;
 		}
 		return valid;
-*/
 	}
 }

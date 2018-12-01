@@ -154,7 +154,6 @@ public class LoginScreen extends Pane {
 		});
 	}
 /**
- * 
  * @param type
  * @param string
  * @return
@@ -175,58 +174,18 @@ public class LoginScreen extends Pane {
  * @param password
  * @return
  */
-	
 	private boolean checkLoginInformation(String username, String password) {
 		Boolean valid = false;
 		SQLData sqlData = SQLData.getInstance();
 		if(sqlData.userExists(username)==true) {
-			System.out.println("fuck my gay father with a garden hose");
-			String[] col = {"Password"};
-			List<String> dataPass = sqlData.readData(username, col);
+			String[] desiredcol = {"Password"};
 			List<String> passList = new ArrayList<String>();
 			passList.add(password);
-			System.out.println("datalist " + sqlData.readData(username, col));
-			System.out.println("entered " + password);
-			System.out.println("database " + dataPass);
-			if(passList.equals(dataPass)) {
+			if(passList.equals(sqlData.readData(username, desiredcol))) {
 				System.out.println("OH BABY A TRIPLE");
 				valid = true;
 			}
 		}
 		return valid;
-/*
-		List<String> loginInfo = new ArrayList<String>();
-		Boolean valid = false;
-
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(fileName));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				loginInfo.add(line);
-			}
-			reader.close();
-		}	catch (Exception e) {
-			System.err.format("Exception occured trying to read '%s'.", fileName);
-			e.printStackTrace();
-		}
-
-		String splitBy = ",";
-		int count = 0;
-		int size = loginInfo.size();
-
-		while (count < size && valid == false) {
-			String line = loginInfo.get(count);
-			String[] info = line.split(splitBy);
-			if (info[0].equals(username)) {
-				if (info[1].equals(password)) {
-					valid = true;
-				}
-			} else {
-				valid = false;
-			}
-			count++;
-		}
-		return valid;
-*/
 	}
 }

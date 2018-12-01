@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,9 +63,9 @@ public class Setting extends GridPane  {
 	 */
 	Setting(HBox hbox, GridPane rootpane) {
 		GridPane gridPane = addGrid();
-		getAgeSlider();
-		getAgeMin();
-		getAgeMax();
+		getAgeSlider(ageSlider);
+		getAgeSlider(ageMinSlider);
+		getAgeSlider(ageMaxSlider);
 		getMatchPercent();
 		getSave(hbox, rootpane);
 		this.getChildren().add(gridPane);
@@ -108,35 +110,15 @@ public class Setting extends GridPane  {
 		matchPercentage.setShowTickMarks(true);
 		matchPercentage.setSnapToTicks(true);
 	}
-	public void getAgeMax() {
-		ageMaxSlider.setMin(18);
-		ageMaxSlider.setMax(60);
-		ageMaxSlider.setValue(18);
-		ageMaxSlider.setBlockIncrement(5);
-		ageMaxSlider.setMajorTickUnit(5);
-		ageMaxSlider.setShowTickLabels(true);
-		ageMaxSlider.setShowTickMarks(true);
-		ageMaxSlider.setSnapToTicks(true);
-	}
-	public void getAgeMin() {
-		ageMinSlider.setMin(18);
-		ageMinSlider.setMax(60);
-		ageMinSlider.setValue(18);
-		ageMinSlider.setBlockIncrement(5);
-		ageMinSlider.setMajorTickUnit(5);
-		ageMinSlider.setShowTickLabels(true);
-		ageMinSlider.setShowTickMarks(true);
-		ageMinSlider.setSnapToTicks(true);
-	}
-	public void getAgeSlider() {
-		ageSlider.setMin(18);
-		ageSlider.setMax(60);
-		ageSlider.setValue(18);
-		ageSlider.setBlockIncrement(5);
-		ageSlider.setMajorTickUnit(5);
-		ageSlider.setShowTickLabels(true);
-		ageSlider.setShowTickMarks(true);
-		ageSlider.setSnapToTicks(true);
+	public void getAgeSlider(Slider slide) {
+		slide.setMin(18);
+		slide.setMax(60);
+		slide.setValue(18);
+		slide.setBlockIncrement(5);
+		slide.setMajorTickUnit(5);
+		slide.setShowTickLabels(true);
+		slide.setShowTickMarks(true);
+		slide.setSnapToTicks(true);
 	}
 	
 	public GridPane addGrid() {
@@ -209,29 +191,16 @@ public class Setting extends GridPane  {
 			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
 			SQLData sqlData = SQLData.getInstance();
 			int ageInt = (int)ageSlider.getValue();
-			int ageMinInt = (int)ageSlider.getValue();
-			int ageMaxInt = (int)ageSlider.getValue();
-			int matchInt = (int)ageSlider.getValue();
+			int ageMinInt = (int)ageMinSlider.getValue();
+			int ageMaxInt = (int)ageMaxSlider.getValue();
+			int matchInt = (int)matchPercentage.getValue();
 			String ageVal = new String(Integer.toString(ageInt));
 			String ageMinVal = new String(Integer.toString(ageMinInt));
 			String ageMaxVal = new String(Integer.toString(ageMaxInt));
 			String matchVal = new String(Integer.toString(matchInt));
 			String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
 			sqlData.newUser("Location, Age, Dog, One_Night, Vegetarian, Movie, Exercise, Music, Relationship, Gender, Gender_Preference, Min_Age, Max_Age, Match", values);
-			//print statements I'll delete later
-			System.out.println(ageSlider.getValue());
-			System.out.println(comboBox2.getValue());
-			System.out.println(comboBox3.getValue());
-			System.out.println(comboBox4.getValue());
-			System.out.println(comboBox5.getValue());
-			System.out.println(comboBox6.getValue());
-			System.out.println(comboBox7.getValue());
-			System.out.println(comboBox8.getValue());
-			System.out.println(genderBox.getValue());
-			System.out.println(genderBox1.getValue());
-			System.out.println(ageMinSlider.getValue());
-			System.out.println(ageMaxSlider.getValue());
-			System.out.println(matchPercentage.getValue());
+			sqlData.closeCon();
 		}
 	/**
 	 * sets the combo boxes to their value in SQL
@@ -239,12 +208,32 @@ public class Setting extends GridPane  {
 	public void runOnButton() {
 		setDefaultVal(comboBox, "Location");
 		setDefaultVal(dogBox, "Dog");
-		setDefaultVal(dogHaveBox, "OneNight");
+		setDefaultVal(dogHaveBox, "One_Night");
 		setDefaultVal(vegetarianBox, "Vegetarian");
 		setDefaultVal(movieBox, "Movie");
 		setDefaultVal(walkingBox, "Exercise");
 		setDefaultVal(musicBox, "Music");
 		setDefaultVal(democracyBox, "Relationship");
+		setDefaultVal(genderIden, "Gender");
+		setDefaultVal(genderPref, "Gender_Preference");
+		setSliderVal(ageSlider, "Age");
+		setSliderVal(ageMinSlider, "Min_Age");
+		setSliderVal(ageMaxSlider, "Max_Age");
+		setSliderVal(matchPercentage, "Match");
+	}
+	private void setSliderVal(Slider slide, String collumn) {
+		String currentUser = " ";
+		try {
+			currentUser = userID.getUserID();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		SQLData sqlData = SQLData.getInstance();
+		String[] desiredcol = {collumn};
+		List<String> percentLst = sqlData.readData(currentUser, desiredcol);
+		String percentStr = new String(percentLst.get(0));
+		Double percentVal = new Double(percentStr);
+		slide.setValue(percentVal);
 	}
 	/**
 	 * sets the starting val of the combo boxes by pulling from the database, except for location
@@ -257,19 +246,45 @@ public class Setting extends GridPane  {
 		try {
 			currentUser = userID.getUserID();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int index = 0;
+		String[] desiredcol = {collumn};
+		List<String> hollHill = new ArrayList<String>();
+		hollHill.add("HollyHill");
+		List<String> daytona = new ArrayList<String>();
+		daytona.add("Daytona");
+		List<String> deland = new ArrayList<String>();
+		deland.add("Deland");
+		List<String> ormondBeach = new ArrayList<String>();
+		ormondBeach.add("Ormond Beach");
+		List<String> portOrange = new ArrayList<String>();
+		portOrange.add("Port Orange");
+		List<String> male = new ArrayList<String>();
+		male.add("Male");
+		List<String> fem = new ArrayList<String>();
+		fem.add("Female");
+		List<String> other = new ArrayList<String>();
+		other.add("Other");
+		List<String> yes = new ArrayList<String>();
+		yes.add("Yes");
+		List<String> no = new ArrayList<String>();
+		no.add("No");
+		List<String> non = new ArrayList<String>();
+		non.add("Prefer not to answer");
+		int index = 5;
 		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.readData(currentUser, collumn).equals("Port Orange") || sqlData.readData(currentUser, collumn).equals("No"))
+		if(sqlData.readData(currentUser, desiredcol).equals(hollHill) || sqlData.readData(currentUser, desiredcol).equals(yes) || sqlData.readData(currentUser, desiredcol).equals(male))
+			index = 0;
+		else if(sqlData.readData(currentUser, desiredcol).equals(portOrange) || sqlData.readData(currentUser, desiredcol).equals(no) || sqlData.readData(currentUser, desiredcol).equals(fem))
 			index = 1;
-		else if(sqlData.readData(currentUser, collumn).equals("Daytona") || sqlData.readData(currentUser, collumn).equals("Prefer not to answer"))
+		else if(sqlData.readData(currentUser, desiredcol).equals(daytona) || sqlData.readData(currentUser, desiredcol).equals(non) || sqlData.readData(currentUser, desiredcol).equals(other))
 			index = 2;
-		else if(sqlData.readData(currentUser, collumn).equals("Deland"))
+		else if(sqlData.readData(currentUser, desiredcol).equals(deland))
 			index = 3;
-		else if(sqlData.readData(currentUser, collumn).equals("Ormond Beach"))
+		else if(sqlData.readData(currentUser, desiredcol).equals(ormondBeach))
 			index = 4;
+		else
+			System.out.println("FUCK");
 		combo.getSelectionModel().select(index);
 	}
 	/**

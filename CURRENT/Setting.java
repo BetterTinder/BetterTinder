@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -212,7 +215,7 @@ public class Setting extends GridPane  {
 		setDefaultVal(musicBox, "Music");
 		setDefaultVal(democracyBox, "Relationship");
 		setDefaultVal(genderIden, "Gender");
-		setDefaultVal(genderPref, "Gender_Preferance");
+		setDefaultVal(genderPref, "Gender_Preference");
 		setSliderVal(ageSlider, "Age");
 		setSliderVal(ageMinSlider, "Min_Age");
 		setSliderVal(ageMaxSlider, "Max_Age");
@@ -223,15 +226,15 @@ public class Setting extends GridPane  {
 		try {
 			currentUser = userID.getUserID();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		SQLData sqlData = SQLData.getInstance();
-		String percentStr = sqlData.readData(currentUser, collumn);
+		String[] desiredcol = {collumn};
+		List<String> percentLst = sqlData.readData(currentUser, desiredcol);
+		String percentStr = new String(percentLst.get(0));
 		Double percentVal = new Double(percentStr);
 		slide.setValue(percentVal);
 	}
-
 	/**
 	 * sets the starting val of the combo boxes by pulling from the database, except for location
 	 * @param combo
@@ -243,20 +246,42 @@ public class Setting extends GridPane  {
 		try {
 			currentUser = userID.getUserID();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String[] desiredcol = {collumn};
+		List<String> hollHill = new ArrayList<String>();
+		hollHill.add("HollyHill");
+		List<String> daytona = new ArrayList<String>();
+		daytona.add("Daytona");
+		List<String> deland = new ArrayList<String>();
+		deland.add("Deland");
+		List<String> ormondBeach = new ArrayList<String>();
+		ormondBeach.add("Ormond Beach");
+		List<String> portOrange = new ArrayList<String>();
+		portOrange.add("Port Orange");
+		List<String> male = new ArrayList<String>();
+		male.add("Male");
+		List<String> fem = new ArrayList<String>();
+		fem.add("Female");
+		List<String> other = new ArrayList<String>();
+		other.add("Other");
+		List<String> yes = new ArrayList<String>();
+		yes.add("Yes");
+		List<String> no = new ArrayList<String>();
+		no.add("No");
+		List<String> non = new ArrayList<String>();
+		non.add("Prefer not to answer");
 		int index = 5;
 		SQLData sqlData = SQLData.getInstance();
-		if(sqlData.readData(currentUser, collumn).equals("Holly Hill") || sqlData.readData(currentUser, collumn).equals("Yes") || sqlData.readData(currentUser, collumn).equals("Male"))
+		if(sqlData.readData(currentUser, desiredcol).equals(hollHill) || sqlData.readData(currentUser, desiredcol).equals(yes) || sqlData.readData(currentUser, desiredcol).equals(male))
 			index = 0;
-		else if(sqlData.readData(currentUser, collumn).equals("Port Orange") || sqlData.readData(currentUser, collumn).equals("No") || sqlData.readData(currentUser, collumn).equals("Female"))
+		else if(sqlData.readData(currentUser, desiredcol).equals(portOrange) || sqlData.readData(currentUser, desiredcol).equals(no) || sqlData.readData(currentUser, desiredcol).equals(fem))
 			index = 1;
-		else if(sqlData.readData(currentUser, collumn).equals("Daytona") || sqlData.readData(currentUser, collumn).equals("Prefer not to answer") || sqlData.readData(currentUser, collumn).equals("Other"))
+		else if(sqlData.readData(currentUser, desiredcol).equals(daytona) || sqlData.readData(currentUser, desiredcol).equals(non) || sqlData.readData(currentUser, desiredcol).equals(other))
 			index = 2;
-		else if(sqlData.readData(currentUser, collumn).equals("Deland"))
+		else if(sqlData.readData(currentUser, desiredcol).equals(deland))
 			index = 3;
-		else if(sqlData.readData(currentUser, collumn).equals("Ormond Beach"))
+		else if(sqlData.readData(currentUser, desiredcol).equals(ormondBeach))
 			index = 4;
 		else
 			System.out.println("FUCK");

@@ -87,7 +87,7 @@ public class NewAccount extends Setting  {
             			sendToProfile();
             			System.out.println("Changes saved");
             			//sendToDatabase isn't here, because I left it in Settings
-            			userToDatabase(name, FirstName, LastName, Password, matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+            			userToDatabase(name, FirstName, LastName, Password, matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderIden, genderPref);
             		}
             		else {
             			System.out.println("correct yo age");

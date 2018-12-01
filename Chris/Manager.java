@@ -69,7 +69,6 @@ public class Manager extends Application{
 		return btnBox;
 	}
 	/**
-	 * 
 	 * @param grid1
 	 * @return
 	 */
@@ -85,7 +84,6 @@ public class Manager extends Application{
 		return helpBtn;
 	}
 	/**
-	 * 
 	 * @param grid1
 	 * @return
 	 */

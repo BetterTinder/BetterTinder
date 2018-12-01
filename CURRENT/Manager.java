@@ -84,7 +84,6 @@ public class Manager extends Application{
 		return helpBtn;
 	}
 	/**
-	 * 
 	 * @param grid1
 	 * @return
 	 */
