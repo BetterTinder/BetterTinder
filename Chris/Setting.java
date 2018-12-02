@@ -162,7 +162,7 @@ public class Setting extends GridPane  {
 			@Override
 			public void handle(ActionEvent event) {
 				if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {
-					sendToDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
+					updateDataBase(matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderPref, genderIden);
 					sendToProfile(hbox,rootpane);
 					System.out.println("Changes saved");
 				}
@@ -186,10 +186,11 @@ public class Setting extends GridPane  {
 	 * @param genderBox
 	 * @param genderBox1
 	 */
-	public void sendToDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
+	public void updateDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
 			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
 			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
 			SQLData sqlData = SQLData.getInstance();
+			sqlData.makeCon(sqlData);
 			int ageInt = (int)ageSlider.getValue();
 			int ageMinInt = (int)ageMinSlider.getValue();
 			int ageMaxInt = (int)ageMaxSlider.getValue();
@@ -198,8 +199,16 @@ public class Setting extends GridPane  {
 			String ageMinVal = new String(Integer.toString(ageMinInt));
 			String ageMaxVal = new String(Integer.toString(ageMaxInt));
 			String matchVal = new String(Integer.toString(matchInt));
+			String currentUser = " ";
+			try {
+				currentUser = userID.getUserID();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String[] column = {"Location", "Age", "Dog", "One_Night", "Vegetarian", "Movie", "Exercise", "Music", "Relationship", "Gender", "Gender_Preference", "Min_Age", "Max_Age", "Match"};
 			String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
-			sqlData.newUser("Location, Age, Dog, One_Night, Vegetarian, Movie, Exercise, Music, Relationship, Gender, Gender_Preference, Min_Age, Max_Age, Match", values);
+			System.out.println(values);
+			sqlData.updateData(currentUser, column, values);
 			sqlData.closeCon();
 		}
 	/**
@@ -258,9 +267,9 @@ public class Setting extends GridPane  {
 		List<String> deland = new ArrayList<String>();
 		deland.add("Deland");
 		List<String> ormondBeach = new ArrayList<String>();
-		ormondBeach.add("Ormond Beach");
+		ormondBeach.add("OrmondBeach");
 		List<String> portOrange = new ArrayList<String>();
-		portOrange.add("Port Orange");
+		portOrange.add("PortOrange");
 		List<String> male = new ArrayList<String>();
 		male.add("Male");
 		List<String> fem = new ArrayList<String>();

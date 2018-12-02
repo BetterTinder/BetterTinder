@@ -19,7 +19,7 @@ public class UserGUIMethods extends GridPane{
 	Image image; ImageView view = new ImageView();
 	UserID userID = new UserID();
 	String currentUser;
-
+	
 	UserGUIMethods(HBox hBox, GridPane rootpane) {
 		try {
 			currentUser = userID.getUserID();
@@ -246,17 +246,13 @@ public class UserGUIMethods extends GridPane{
 	 * @return reads and displays the user's name
 	 */
 	public Text getname() {
-		SQLData Database = SQLData.getInstance();
-		Database.makeCon(Database);
-		String[] col = {"FirstName","LastName"};
-		String FName = Database.readData(currentUser, col).get(0);
-		String LName = Database.readData(currentUser, col).get(1);
-		Database.closeCon();
-		Text username = new Text(FName+LName); //Test dummy information
+		Text username = new Text("Keanu"); //Test dummy information
+
+		//Below is for the online database (SQL), grab the currentUser
+		
 		username.setTranslateX(110.0f);
 		username.setTranslateY(-70.0f);
 		return username;
-
 	}
 }
 

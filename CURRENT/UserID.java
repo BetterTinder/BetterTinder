@@ -21,7 +21,7 @@ public class UserID {
 	 */
 	public String getUserID() throws IOException{
 		String directory = System.getProperty("user.dir"); String dir = directory + ("\\\\");
-		String userID ="Defeault";
+		String userID ="defeault";
 		String path = dir+"UserID.txt";
 				userID = new String(Files.readAllBytes(Paths.get(path)));
 		return userID;
