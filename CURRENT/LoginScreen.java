@@ -30,7 +30,7 @@ public class LoginScreen extends Pane {
 		System.out.println("Login runnin");
 	}
 
-	LoginScreen(GridPane grid1, NewAccount newAcc, Profile profile) {
+	LoginScreen(GridPane grid1, NewAccount newAcc) {
 		GridPane gridPane = new GridPane();
 		setGrid(gridPane);
 		createLabels();
@@ -39,7 +39,7 @@ public class LoginScreen extends Pane {
 		newAccountButton = new Button("New Account");
 		setBox();
 		controlGrid(gridPane);
-		getSignBtn(grid1, profile);
+		getSignBtn(grid1);
 		getNewAccBtn(grid1, newAcc);
 		//return
 		this.getChildren().add(gridPane);
@@ -122,7 +122,7 @@ public class LoginScreen extends Pane {
  * @param grid1
  * @param profile
  */
-	private void getSignBtn(GridPane grid1, Profile profile) {
+	private void getSignBtn(GridPane grid1) {
 		signInButton.setOnAction(event -> {
 			String userID = new String();
 			String password = new String();
@@ -144,7 +144,10 @@ public class LoginScreen extends Pane {
 					passwordField.clear();
 					System.out.println("Signed In");
 					grid1.getChildren().clear();
-					grid1.getChildren().add(profile);
+					Manager manager = new Manager();
+					//grid1.getChildren().add(prof);
+				
+					grid1.getChildren().add(manager.InitalizeProfile(grid1));
 				}
 				else {
 					createAlert(Alert.AlertType.ERROR, "Try Again!");
