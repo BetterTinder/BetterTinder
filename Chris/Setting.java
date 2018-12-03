@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 /**
  * 
- * @author CHRIS G., Michael Fornito
+ * @author CHRIS G.
  *
  */
 public class Setting extends GridPane  {
@@ -189,27 +189,32 @@ public class Setting extends GridPane  {
 	public void updateDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
 			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
 			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
-			SQLData sqlData = SQLData.getInstance();
-			sqlData.makeCon(sqlData);
-			int ageInt = (int)ageSlider.getValue();
-			int ageMinInt = (int)ageMinSlider.getValue();
-			int ageMaxInt = (int)ageMaxSlider.getValue();
-			int matchInt = (int)matchPercentage.getValue();
-			String ageVal = new String(Integer.toString(ageInt));
-			String ageMinVal = new String(Integer.toString(ageMinInt));
-			String ageMaxVal = new String(Integer.toString(ageMaxInt));
-			String matchVal = new String(Integer.toString(matchInt));
-			String currentUser = " ";
-			try {
-				currentUser = userID.getUserID();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {	
+				SQLData sqlData = SQLData.getInstance();
+				sqlData.makeCon(sqlData);
+				int ageInt = (int)ageSlider.getValue();
+				int ageMinInt = (int)ageMinSlider.getValue();
+				int ageMaxInt = (int)ageMaxSlider.getValue();
+				int matchInt = (int)matchPercentage.getValue();
+				String ageVal = new String(Integer.toString(ageInt));
+				String ageMinVal = new String(Integer.toString(ageMinInt));
+				String ageMaxVal = new String(Integer.toString(ageMaxInt));
+				String matchVal = new String(Integer.toString(matchInt));
+				String currentUser = " ";
+				try {
+					currentUser = userID.getUserID();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				String[] column = {"Location", "Age", "Dog", "One_Night", "Vegetarian", "Movie", "Exercise", "Music", "Relationship", "Gender", "Gender_Preference", "Min_Age", "Max_Age", "Match"};
+				String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
+				System.out.println(values);
+				sqlData.updateData(currentUser, column, values);
+				sqlData.closeCon();
 			}
-			String[] column = {"Location", "Age", "Dog", "One_Night", "Vegetarian", "Movie", "Exercise", "Music", "Relationship", "Gender", "Gender_Preference", "Min_Age", "Max_Age", "Match"};
-			String[] values = {comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
-			System.out.println(values);
-			sqlData.updateData(currentUser, column, values);
-			sqlData.closeCon();
+			else {
+				System.out.println("Please correct your age preferences");
+			}
 		}
 	/**
 	 * sets the combo boxes to their value in SQL
@@ -327,7 +332,7 @@ public class Setting extends GridPane  {
 		setSliderMatchVars(matchPercentage, "Match");
 	}
 
-	private void readVars() {
+	public void readVars() {
 		setDefaultValPrint(comboBox, "Location");
 		setDefaultValPrint(dogBox, "Dog");
 		setDefaultValPrint(dogHaveBox, "One_Night");
@@ -344,7 +349,7 @@ public class Setting extends GridPane  {
 		setSliderValPrint(matchPercentage, "Match");
 	}
 	
-	private void setSliderVars(Slider slider, String col) {
+	public void setSliderVars(Slider slider, String col) {
 		slider.setValue((Math.random()*100));
 		String currentUser = "Chris";
 		SQLData sqlData = SQLData.getInstance();
@@ -361,7 +366,7 @@ public class Setting extends GridPane  {
 		sqlData.closeCon();
 	}
 	
-	private void setSliderMatchVars(Slider slider, String col) {
+	public void setSliderMatchVars(Slider slider, String col) {
 		slider.setValue((Math.random()*60));
 		String currentUser = "Chris";
 		SQLData sqlData = SQLData.getInstance();
@@ -392,7 +397,7 @@ public class Setting extends GridPane  {
 		System.out.println(sqlData.readData(currentUser, desiredcol));
 		sqlData.closeCon();
 	}
-	private void setSliderValPrint(Slider slide, String collumn) {
+	public void setSliderValPrint(Slider slide, String collumn) {
 		String currentUser = "Chris";
 		SQLData sqlData = SQLData.getInstance();
 		sqlData.makeCon(sqlData);

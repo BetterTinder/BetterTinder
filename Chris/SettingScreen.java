@@ -13,7 +13,9 @@ import javafx.scene.layout.Pane;
 public class SettingScreen extends Pane {
 
 	private HBox siBox;
-
+	Button settingTester = new Button("Test Setting");
+	Button newAccTester = new Button("Test New Account");
+	
 	public static void main(String[] args) {
 		System.out.println("Login runnin");
 	}
@@ -22,14 +24,14 @@ public class SettingScreen extends Pane {
 		GridPane gridPane = new GridPane();
 		setGrid(gridPane);
 		controlGrid(gridPane);
-		//return
 		this.getChildren().add(gridPane);
+		getNewAccBtn(grid1, newAcc);
 	}
 
 
 	private void controlGrid(GridPane gridPane) {
-		Button settingTester = new Button("Test Setting");
 		gridPane.add(settingTester, 0, 0);
+		gridPane.add(newAccTester, 1, 0);
 		settingTester.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Setting setting = new Setting(siBox, gridPane);
@@ -49,5 +51,12 @@ public class SettingScreen extends Pane {
 		gridPane.setHgap(0);
 		//gridPane.setGridLinesVisible(true);
 		gridPane.setPrefSize(400, 520);
+	}
+	private void getNewAccBtn(GridPane grid1, NewAccount newAcc) {
+		newAccTester.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent event) {
+				newAcc.testNewAccount();
+			}
+		});
 	}
 }

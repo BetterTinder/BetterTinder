@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 /**
  * 
- * @author Chris, Michael, and Danielle
+ * @author Chris
  *
  */
 public class SettingTester extends Application{
