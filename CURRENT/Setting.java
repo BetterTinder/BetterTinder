@@ -281,7 +281,7 @@ public class Setting extends GridPane  {
 		List<String> no = new ArrayList<String>();
 		no.add("No");
 		List<String> non = new ArrayList<String>();
-		non.add("Prefer not to answer");
+		non.add("Prefernottoanswer");
 		int index = 5;
 		SQLData sqlData = SQLData.getInstance();
 		sqlData.makeCon(sqlData);
@@ -296,7 +296,7 @@ public class Setting extends GridPane  {
 		else if(sqlData.readData(currentUser, desiredcol).equals(ormondBeach))
 			index = 4;
 		else
-			System.out.println("FUCK");
+			System.out.println("ERROR");
 		combo.getSelectionModel().select(index);
 		sqlData.closeCon();
 	}
@@ -308,5 +308,154 @@ public class Setting extends GridPane  {
 		Profile profile = new Profile(hbox, rootpane);
 		this.getChildren().add(profile);
 	}
+	public void testSetting() {
+		System.out.print("testing");
+		readVars();
+		setRandomVars(comboBox, "Location");
+		setRandomVars(dogBox, "Dog");
+		setRandomVars(dogHaveBox, "One_Night");
+		setRandomVars(vegetarianBox, "Vegetarian");
+		setRandomVars(movieBox, "Movie");
+		setRandomVars(walkingBox, "Exercise");
+		setRandomVars(musicBox, "Music");
+		setRandomVars(democracyBox, "Relationship");
+		setRandomVars(genderIden, "Gender");
+		setRandomVars(genderPref, "Gender_Preference");
+		setSliderVars(ageSlider, "Age");
+		setSliderVars(ageMinSlider, "Min_Age");
+		setSliderVars(ageMaxSlider, "Max_Age");
+		setSliderMatchVars(matchPercentage, "Match");
+	}
 
+	private void readVars() {
+		setDefaultValPrint(comboBox, "Location");
+		setDefaultValPrint(dogBox, "Dog");
+		setDefaultValPrint(dogHaveBox, "One_Night");
+		setDefaultValPrint(vegetarianBox, "Vegetarian");
+		setDefaultValPrint(movieBox, "Movie");
+		setDefaultValPrint(walkingBox, "Exercise");
+		setDefaultValPrint(musicBox, "Music");
+		setDefaultValPrint(democracyBox, "Relationship");
+		setDefaultValPrint(genderIden, "Gender");
+		setDefaultValPrint(genderPref, "Gender_Preference");
+		setSliderValPrint(ageSlider, "Age");
+		setSliderValPrint(ageMinSlider, "Min_Age");
+		setSliderValPrint(ageMaxSlider, "Max_Age");
+		setSliderValPrint(matchPercentage, "Match");
+	}
+	
+	private void setSliderVars(Slider slider, String col) {
+		slider.setValue((Math.random()*100));
+		String currentUser = "Chris";
+		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
+		String[] desiredcol = {col};
+		String[] column = {col};
+		int slideInt = (int)slider.getValue();
+		String slideVal = new String(Integer.toString(slideInt));
+		String[] values = {slideVal};
+		sqlData.updateData(currentUser, column, values);
+		System.out.println("This is testing updating the values in SQL, the following things should be the same");
+		System.out.println(slider.getValue());
+		System.out.println(sqlData.readData(currentUser, desiredcol));
+		sqlData.closeCon();
+	}
+	
+	private void setSliderMatchVars(Slider slider, String col) {
+		slider.setValue((Math.random()*60));
+		String currentUser = "Chris";
+		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
+		String[] desiredcol = {col};
+		String[] column = {col};
+		int slideInt = (int)slider.getValue();
+		String slideVal = new String(Integer.toString(slideInt));
+		String[] values = {slideVal};
+		sqlData.updateData(currentUser, column, values);
+		System.out.println("This is testing updating the values in SQL, the following things should be the same");
+		System.out.println(slider.getValue());
+		System.out.println(sqlData.readData(currentUser, desiredcol));
+		sqlData.closeCon();
+	}
+
+	public void setRandomVars(ComboBox<String> combo, String collumn) {
+		combo.getSelectionModel().select((int) (Math.random()*3));
+		String currentUser = "Chris";
+		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
+		String[] desiredcol = {collumn};
+		String[] column = {collumn};
+		String[] values = {combo.getValue()};
+		sqlData.updateData(currentUser, column, values);
+		System.out.println("This is testing updating the values in SQL, the following things should be the same");
+		System.out.println(combo.getValue());
+		System.out.println(sqlData.readData(currentUser, desiredcol));
+		sqlData.closeCon();
+	}
+	private void setSliderValPrint(Slider slide, String collumn) {
+		String currentUser = "Chris";
+		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
+		String[] desiredcol = {collumn};
+		List<String> percentLst = sqlData.readData(currentUser, desiredcol);
+		String percentStr = new String(percentLst.get(0));
+		Double percentVal = new Double(percentStr);
+		slide.setValue(percentVal);
+		System.out.println("This is testing the retrieval of the default values from SQL, the following things should be the same");
+		System.out.println(slide.getValue());
+		System.out.println(sqlData.readData(currentUser, desiredcol));
+		sqlData.closeCon();
+	}
+	/**
+	 * sets the starting val of the combo boxes by pulling from the database, except for location
+	 * @param combo
+	 * @param collum
+	 **/
+	public void setDefaultValPrint(ComboBox<String> combo, String collumn)
+	{
+		String currentUser = "Chris";
+		String[] desiredcol = {collumn};
+		List<String> hollHill = new ArrayList<String>();
+		hollHill.add("HollyHill");
+		List<String> daytona = new ArrayList<String>();
+		daytona.add("Daytona");
+		List<String> deland = new ArrayList<String>();
+		deland.add("Deland");
+		List<String> ormondBeach = new ArrayList<String>();
+		ormondBeach.add("OrmondBeach");
+		List<String> portOrange = new ArrayList<String>();
+		portOrange.add("PortOrange");
+		List<String> male = new ArrayList<String>();
+		male.add("Male");
+		List<String> fem = new ArrayList<String>();
+		fem.add("Female");
+		List<String> other = new ArrayList<String>();
+		other.add("Other");
+		List<String> yes = new ArrayList<String>();
+		yes.add("Yes");
+		List<String> no = new ArrayList<String>();
+		no.add("No");
+		List<String> non = new ArrayList<String>();
+		non.add("Prefernottoanswer");
+		int index = 5;
+		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
+		if(sqlData.readData(currentUser, desiredcol).equals(hollHill) || sqlData.readData(currentUser, desiredcol).equals(yes) || sqlData.readData(currentUser, desiredcol).equals(male))
+			index = 0;
+		else if(sqlData.readData(currentUser, desiredcol).equals(portOrange) || sqlData.readData(currentUser, desiredcol).equals(no) || sqlData.readData(currentUser, desiredcol).equals(fem))
+			index = 1;
+		else if(sqlData.readData(currentUser, desiredcol).equals(daytona) || sqlData.readData(currentUser, desiredcol).equals(non) || sqlData.readData(currentUser, desiredcol).equals(other))
+			index = 2;
+		else if(sqlData.readData(currentUser, desiredcol).equals(deland))
+			index = 3;
+		else if(sqlData.readData(currentUser, desiredcol).equals(ormondBeach))
+			index = 4;
+		else
+			System.out.println("ERROR");
+		combo.getSelectionModel().select(index);
+		System.out.println("This is testing the retrieval of the default values from SQL, the following things should be the same");
+		System.out.println(combo.getValue());
+		System.out.println(sqlData.readData(currentUser, desiredcol));
+		sqlData.closeCon();
+	}
 }
