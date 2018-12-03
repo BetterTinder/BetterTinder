@@ -1,4 +1,0 @@
-
-0001;1;test1
-0002;5;errormessage
-0001;2;test2
