@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * 
+ * New Account, for creating new accounts
  * @author Chris
  *
  */
@@ -31,6 +31,11 @@ public class NewAccount extends Setting  {
     Label userLast = new Label("Last Name:");
     Label pass = new Label("Password:");
     
+    /**
+     * constructor for constructing 
+     * @param hbox
+     * @param prof
+     */
     NewAccount(HBox hbox, Profile prof) {
     	super(hbox, prof);
     	getAgeSlider(ageSlider);
@@ -94,7 +99,7 @@ public class NewAccount extends Setting  {
             				userToDatabase(name, FirstName, LastName, Password, matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderIden, genderPref);
             				}
             			else {
-            				System.out.println("Pedofile"); //this response is only possible in tester
+            				System.out.println(""); //this response is only possible in tester
             			}
             		}
             		else {
@@ -153,14 +158,18 @@ public class NewAccount extends Setting  {
     public static void main(String[] args) {
     	System.out.println("Bad Luck");
     }
-    
+    /**
+     * testing code
+     */
     public void testNewAccount() {
 		System.out.println("testing");
 		makenew();
 		testValid();
 		printVals();
 	}
-
+    /**
+     * testing code
+     */
 	public void makenew() {
 		setStringVar(name);
 		setStringVar(Password);
@@ -181,6 +190,10 @@ public class NewAccount extends Setting  {
 		setSliderVar(ageMaxSlider);
 		setSliderMatchVar(matchPercentage);
 	}
+	/**
+	 * testing code
+	 * @param text
+	 */
 	public void setStringVar(TextField text) {
 		int leftLimit = 97; // letter 'a'
 	    int rightLimit = 122; // letter 'z'
@@ -196,19 +209,33 @@ public class NewAccount extends Setting  {
 	    text.setText(randString);
 	    System.out.println(text.getText());
 	}
+	/**
+	 * testing code
+	 * @param combo
+	 */
 	public void setRandomVar(ComboBox<String> combo) {
 		combo.getSelectionModel().select((int) (Math.random()*3));
 		System.out.println(combo.getValue());
 	}
+	/**
+	 * testing code
+	 * @param slider
+	 */
 	public void setSliderVar(Slider slider) {
 		slider.setValue((Math.random()*100));
 		System.out.println(slider.getValue());
 	}
-	
+	/**
+	 * testing code
+	 * @param slider
+	 */
 	public void setSliderMatchVar(Slider slider) {
 		slider.setValue((Math.random()*60));
 		System.out.println(slider.getValue());
 	}
+	/**
+	 * testing code
+	 */
 	public void testValid() {
 		if(comboBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
     		if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {
@@ -223,6 +250,9 @@ public class NewAccount extends Setting  {
     	else
     		System.out.println("Please fill in all values");
     	}
+	/**
+	 * testing code
+	 */
 	public void printVals() {
 		SQLData sqlData = SQLData.getInstance();
 		sqlData.makeCon(sqlData);

@@ -14,7 +14,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 /**
- * 
+ * Setting class, where all your settings needs are met
  * @author CHRIS G.
  *
  */
@@ -80,6 +80,7 @@ public class Setting extends GridPane  {
 						);
 		return gender;
 	}
+	
 	public ObservableList<String> getResponse() {
 		ObservableList<String> yesno = 
 				FXCollections.observableArrayList(
@@ -89,6 +90,7 @@ public class Setting extends GridPane  {
 						);
 		return yesno;
 	}
+	
 	public ObservableList<String> getLocOptions() {
 		ObservableList<String> options = 
 				FXCollections.observableArrayList(
@@ -100,6 +102,9 @@ public class Setting extends GridPane  {
 						);
 		return options;
 	}
+	/**
+	 * an iniatializer
+	 */
 	public void getMatchPercent() {
 		matchPercentage.setMin(0);
 		matchPercentage.setMax(100);
@@ -157,6 +162,11 @@ public class Setting extends GridPane  {
 		gridPane.add(save, 1, 500);
 		return gridPane;
 	}
+	/**
+	 * save event handler
+	 * @param hbox
+	 * @param rootpane
+	 */
 	private void getSave(HBox hbox, GridPane rootpane) {
 		save.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -235,6 +245,11 @@ public class Setting extends GridPane  {
 		setSliderVal(ageMaxSlider, "Max_Age");
 		setSliderVal(matchPercentage, "Match");
 	}
+	/**
+	 * sets the starting val of the sliders by pulling from the database
+	 * @param slide
+	 * @param collumn
+	 */
 	private void setSliderVal(Slider slide, String collumn) {
 		String currentUser = " ";
 		try {
@@ -252,7 +267,7 @@ public class Setting extends GridPane  {
 		sqlData.closeCon();
 	}
 	/**
-	 * sets the starting val of the combo boxes by pulling from the database, except for location
+	 * sets the starting val of the combo boxes by pulling from the database
 	 * @param combo
 	 * @param collum
 	 **/
@@ -313,6 +328,9 @@ public class Setting extends GridPane  {
 		Profile profile = new Profile(hbox, rootpane);
 		this.getChildren().add(profile);
 	}
+	/**
+	 * testing code
+	 */
 	public void testSetting() {
 		System.out.print("testing");
 		readVars();
@@ -331,7 +349,9 @@ public class Setting extends GridPane  {
 		setSliderVars(ageMaxSlider, "Max_Age");
 		setSliderMatchVars(matchPercentage, "Match");
 	}
-
+	/**
+	 * testing code
+	 */
 	public void readVars() {
 		setDefaultValPrint(comboBox, "Location");
 		setDefaultValPrint(dogBox, "Dog");
@@ -348,7 +368,11 @@ public class Setting extends GridPane  {
 		setSliderValPrint(ageMaxSlider, "Max_Age");
 		setSliderValPrint(matchPercentage, "Match");
 	}
-	
+	/**
+	 * testing code
+	 * @param slider
+	 * @param col
+	 */
 	public void setSliderVars(Slider slider, String col) {
 		slider.setValue((Math.random()*100));
 		String currentUser = "Chris";
@@ -365,7 +389,11 @@ public class Setting extends GridPane  {
 		System.out.println(sqlData.readData(currentUser, desiredcol));
 		sqlData.closeCon();
 	}
-	
+	/**
+	 * testing code
+	 * @param slider
+	 * @param col
+	 */
 	public void setSliderMatchVars(Slider slider, String col) {
 		slider.setValue((Math.random()*60));
 		String currentUser = "Chris";
@@ -382,7 +410,11 @@ public class Setting extends GridPane  {
 		System.out.println(sqlData.readData(currentUser, desiredcol));
 		sqlData.closeCon();
 	}
-
+	/**
+	 * testing code
+	 * @param combo
+	 * @param collumn
+	 */
 	public void setRandomVars(ComboBox<String> combo, String collumn) {
 		combo.getSelectionModel().select((int) (Math.random()*3));
 		String currentUser = "Chris";
@@ -397,6 +429,11 @@ public class Setting extends GridPane  {
 		System.out.println(sqlData.readData(currentUser, desiredcol));
 		sqlData.closeCon();
 	}
+	/**
+	 * testing code
+	 * @param slide
+	 * @param collumn
+	 */
 	public void setSliderValPrint(Slider slide, String collumn) {
 		String currentUser = "Chris";
 		SQLData sqlData = SQLData.getInstance();

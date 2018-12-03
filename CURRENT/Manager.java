@@ -16,29 +16,31 @@ public class Manager extends Application{
 	GridPane rootpane = new GridPane();
 	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 	UserID userID = new UserID();
-	
+
 	public static void main(String[] args) {
 		launch(args);	
 	}
 	/**
 	 * 
-	 * @param grid1 
 	 * @return
 	 */
-	public Profile InitalizeProfile(GridPane grid1) {
-		Profile profile = new Profile(addButtons(grid1),grid1);
+	
+	public Profile InitalizeProfile() {
+		Profile profile = new Profile(addButtons(rootpane),rootpane); 
 		return profile;
 	}
+	
 	public void start(Stage stage) {
 		String tempUserID = "default";
 		userID.makeUserID(tempUserID);
-		NewAccount newAcc = new NewAccount(addButtons(rootpane), InitalizeProfile(rootpane));
-		LoginScreen login = new LoginScreen(rootpane, newAcc);
+		NewAccount newAcc = new NewAccount(addButtons(rootpane), InitalizeProfile());
+		LoginScreen login = new LoginScreen(rootpane, newAcc, InitalizeProfile());
 		rootpane.getChildren().add(login);
 		Scene scene = new Scene(rootpane,400,520);
 		stage.setScene(scene);
 		stage.show();
 	}
+
 	/**
 	 * 
 	 * @param grid1
@@ -82,7 +84,6 @@ public class Manager extends Application{
 		return helpBtn;
 	}
 	/**
-	 * 
 	 * @param grid1
 	 * @return
 	 */

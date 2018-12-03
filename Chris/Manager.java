@@ -29,7 +29,7 @@ public class Manager extends Application{
 		Profile profile = new Profile(addButtons(rootpane),rootpane); 
 		return profile;
 	}
-
+	
 	public void start(Stage stage) {
 		String tempUserID = "default";
 		userID.makeUserID(tempUserID);

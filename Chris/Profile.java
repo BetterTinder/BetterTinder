@@ -12,7 +12,6 @@ public class Profile extends UserGUIMethods{
 		super(hBox, rootpane);
 		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 		grabImageFromSQL();
-
 		this.setStyle(style);
 		this.getChildren().addAll(getHbox2(hBox, rootpane),getHbox1(),hBox,getname(),getBio(),getReviewRating(),view);
 	}
