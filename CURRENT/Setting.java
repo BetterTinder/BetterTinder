@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -261,7 +260,7 @@ public class Setting extends GridPane  {
 		sqlData.makeCon(sqlData);
 		String[] desiredcol = {collumn};
 		List<String> percentLst = sqlData.readData(currentUser, desiredcol);
-		String percentStr = new String(percentLst.get(0));
+		String percentStr = new String(percentLst.get(0)); 
 		Double percentVal = new Double(percentStr);
 		slide.setValue(percentVal);
 		sqlData.closeCon();
@@ -281,15 +280,15 @@ public class Setting extends GridPane  {
 		}
 		String[] desiredcol = {collumn};
 		List<String> hollHill = new ArrayList<String>();
-		hollHill.add("HollyHill");
+		hollHill.add("Holly Hill");
 		List<String> daytona = new ArrayList<String>();
 		daytona.add("Daytona");
 		List<String> deland = new ArrayList<String>();
-		deland.add("Deland");
+		deland.add("De land");
 		List<String> ormondBeach = new ArrayList<String>();
-		ormondBeach.add("OrmondBeach");
+		ormondBeach.add("Ormond Beach");
 		List<String> portOrange = new ArrayList<String>();
-		portOrange.add("PortOrange");
+		portOrange.add("Port Orange");
 		List<String> male = new ArrayList<String>();
 		male.add("Male");
 		List<String> fem = new ArrayList<String>();
@@ -301,7 +300,7 @@ public class Setting extends GridPane  {
 		List<String> no = new ArrayList<String>();
 		no.add("No");
 		List<String> non = new ArrayList<String>();
-		non.add("Prefernottoanswer");
+		non.add("Prefer not to answer");
 		int index = 5;
 		SQLData sqlData = SQLData.getInstance();
 		sqlData.makeCon(sqlData);
@@ -458,15 +457,15 @@ public class Setting extends GridPane  {
 		String currentUser = "Chris";
 		String[] desiredcol = {collumn};
 		List<String> hollHill = new ArrayList<String>();
-		hollHill.add("HollyHill");
+		hollHill.add("Holly Hill");
 		List<String> daytona = new ArrayList<String>();
 		daytona.add("Daytona");
 		List<String> deland = new ArrayList<String>();
 		deland.add("Deland");
 		List<String> ormondBeach = new ArrayList<String>();
-		ormondBeach.add("OrmondBeach");
+		ormondBeach.add("Ormond Beach");
 		List<String> portOrange = new ArrayList<String>();
-		portOrange.add("PortOrange");
+		portOrange.add("Port Orange");
 		List<String> male = new ArrayList<String>();
 		male.add("Male");
 		List<String> fem = new ArrayList<String>();
@@ -478,7 +477,7 @@ public class Setting extends GridPane  {
 		List<String> no = new ArrayList<String>();
 		no.add("No");
 		List<String> non = new ArrayList<String>();
-		non.add("Prefernottoanswer");
+		non.add("Prefer not to answer");
 		int index = 5;
 		SQLData sqlData = SQLData.getInstance();
 		sqlData.makeCon(sqlData);

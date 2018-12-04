@@ -16,25 +16,23 @@ public class Manager extends Application{
 	GridPane rootpane = new GridPane();
 	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 	UserID userID = new UserID();
-
+ 	
 	public static void main(String[] args) {
 		launch(args);	
 	}
 	/**
-	 * 
+	 * @param grid1 
 	 * @return
 	 */
-	
-	public Profile InitalizeProfile() {
-		Profile profile = new Profile(addButtons(rootpane),rootpane); 
+	public Profile InitalizeProfile(GridPane grid1) {
+		Profile profile = new Profile(addButtons(grid1),grid1);
 		return profile;
 	}
-	
-	public void start(Stage stage) {
+ 	public void start(Stage stage) {
 		String tempUserID = "default";
 		userID.makeUserID(tempUserID);
-		NewAccount newAcc = new NewAccount(addButtons(rootpane), InitalizeProfile());
-		LoginScreen login = new LoginScreen(rootpane, newAcc, InitalizeProfile());
+		NewAccount newAcc = new NewAccount(addButtons(rootpane), InitalizeProfile(rootpane));
+		LoginScreen login = new LoginScreen(rootpane, newAcc);
 		rootpane.getChildren().add(login);
 		Scene scene = new Scene(rootpane,400,520);
 		stage.setScene(scene);
@@ -42,7 +40,6 @@ public class Manager extends Application{
 	}
 
 	/**
-	 * 
 	 * @param grid1
 	 * @return hBox
 	 * This method adds the 4 main buttons to the pane which can be grabbed by other panes
