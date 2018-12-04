@@ -21,9 +21,12 @@ public class UserGUIMethods extends GridPane{
 	String currentUser;
 	
 	UserGUIMethods(HBox hBox, GridPane rootpane) {
+		currentUser();
+	}
+	
+	public void currentUser() {
 		try {
 			currentUser = userID.getUserID();
-			System.out.println("Testing:"+ currentUser);
 		} catch (IOException e) {
 			userID.alertUser();
 		}
@@ -86,7 +89,12 @@ public class UserGUIMethods extends GridPane{
 	 * reads for the review rating and displays it to the profile
 	 */
 	public Text getReviewRating() {
-		Text review = new Text("5.0");
+		SQLData Database = SQLData.getInstance();
+		Database.makeCon(Database);
+		String[] col = {"Review"};
+		String rev = Database.readData(currentUser, col).get(0);
+		Database.closeCon();
+		Text review = new Text("Rating: "+rev+"//5.00");
 		review.setWrappingWidth(400);
 		review.setTranslateX(230.0f);
 		review.setTranslateY(-70.0f);
@@ -113,9 +121,13 @@ public class UserGUIMethods extends GridPane{
 	 * @return finds and displays the user's bio information as a text on the pane
 	 */
 	public Text getBio() {
-		Text userBio;
-		String userBioString = new  String("Hello my name is Keanu Reeve, falling in love and having a relationship are two different things.");
-		userBio = new Text(userBioString);
+		SQLData Database = SQLData.getInstance();
+		Database.makeCon(Database);
+		Text userBio = new Text("");
+		String[] col = {"Bio"};
+		String Bio = Database.readBio(currentUser, col).get(0);
+		Database.closeCon();
+		userBio = new Text(Bio);
 		userBio.setWrappingWidth(400);
 		userBio.setTranslateX(10.0f);
 		userBio.setTranslateY(230.0f);
@@ -252,9 +264,7 @@ public class UserGUIMethods extends GridPane{
 		String FName = Database.readData(currentUser, col).get(0);
 		String LName = Database.readData(currentUser, col).get(1);
 		Database.closeCon();
-		Text username = new Text(FName+LName); //Test dummy information
-		//Below is for the online database (SQL), grab the currentUser
-		
+		Text username = new Text(FName+" "+LName);
 		username.setTranslateX(110.0f);
 		username.setTranslateY(-70.0f);
 		return username;
