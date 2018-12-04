@@ -5,6 +5,7 @@ import java.util.Collections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -120,18 +121,27 @@ public class UserGUIMethods extends GridPane{
 	 * 
 	 * @return finds and displays the user's bio information as a text on the pane
 	 */
-	public Text getBio() {
-		SQLData Database = SQLData.getInstance();
-		Database.makeCon(Database);
-		Text userBio = new Text("");
-		String[] col = {"Bio"};
-		String Bio = Database.readBio(currentUser, col).get(0);
-		Database.closeCon();
-		userBio = new Text(Bio);
-		userBio.setWrappingWidth(400);
-		userBio.setTranslateX(10.0f);
-		userBio.setTranslateY(230.0f);
-		return userBio;
+	public TextField getBio() {
+		TextField bio = new TextField();
+		bio.setMaxWidth(400);
+		bio.setTranslateX(10.0f);
+		bio.setTranslateY(230.0f);
+		return bio;
+	}
+	public Button sendBio(TextField bio) {
+		Button sendbio = new Button("Send Bio");
+		sendbio.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				SQLData sqlData = SQLData.getInstance();
+				sqlData.makeCon(sqlData);
+				String[] column = {"Bio"};
+				String[] values = {bio.getText()};
+				sqlData.updateData(currentUser, column, values);
+				sqlData.closeCon();
+			}
+		});
+		return sendbio;
 	}
 	/**
 	 * 
