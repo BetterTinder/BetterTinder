@@ -47,7 +47,7 @@ public class FindUserTest extends MainTest{
 	public void FoundMatches() {//Test if they have potential matchers
 		System.out.println("Found Potential matched users:");
 		String rev = ("5");
-		username = new Text("Test3"); 
+		username = new Text("Test 3"); 
 		bio = new Text("Hello Im Test3!");
 		revText = new Text("Rating: "+rev+"/5.00");
 	}
@@ -72,7 +72,6 @@ public class FindUserTest extends MainTest{
 		String bioStr = bio.getText();
 		Text sqlBioText= profile.getFindUserBio();
 		String SQLBio = sqlBioText.getText();
-
 		if(bioStr.equals(SQLBio)) {
 			System.out.println("Passed the bio test");
 		}else {

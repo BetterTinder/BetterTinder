@@ -20,7 +20,8 @@ public class UserGUIMethods extends GridPane{
 	Image image; ImageView view = new ImageView();
 	UserID userID = new UserID();
 	String currentUser;
-
+	TextField bio = new TextField();
+	
 	UserGUIMethods(HBox hBox, GridPane rootpane) {
 		currentUser();
 	}
@@ -49,12 +50,12 @@ public class UserGUIMethods extends GridPane{
 	 * @param rootpane
 	 * @return
 	 */
-	public HBox getHbox2(HBox hbox, GridPane rootpane) {
+	public HBox getHbox2(HBox hbox, GridPane rootpane) { //All buttons for only profile are here
 		HBox Hbox2 = new HBox(5);
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
 		Hbox2.getChildren().addAll(getAddBtn(),getRemoveBtn(),getSettingBtn(hbox, rootpane));
-		Hbox2.getChildren().add(sendBio(getBio()));
+		Hbox2.getChildren().addAll(sendBio());
 		return Hbox2;
 	}
 	/**
@@ -122,7 +123,6 @@ public class UserGUIMethods extends GridPane{
 	 * @return finds and displays the user's bio information as a text on the pane
 	 */
 	public TextField getBio() {
-		TextField bio = new TextField();
 		bio.setMaxWidth(400);
 		bio.setTranslateX(10.0f);
 		bio.setTranslateY(230.0f);
@@ -133,7 +133,7 @@ public class UserGUIMethods extends GridPane{
 	 * @param bio
 	 * @return
 	 */
-	public Button sendBio(TextField bio) {
+	public Button sendBio() {
 		Button sendbio = new Button("Send Bio");
 		sendbio.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -142,11 +142,11 @@ public class UserGUIMethods extends GridPane{
 				sqlData.makeCon(sqlData);
 				String[] column = {"Bio"};
 				String[] values = {bio.getText()};
-				System.out.println("This is the current bio:"+values);
 				sqlData.updateData(currentUser, column, values);
 				sqlData.closeCon();
 			}
 		});		
+		bio.clear();
 		return sendbio;
 	}
 	/**

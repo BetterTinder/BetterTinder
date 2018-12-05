@@ -1,9 +1,5 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.lang.reflect.Array;
 import java.util.Arrays;
-
-import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
 import javafx.scene.control.TextField;
