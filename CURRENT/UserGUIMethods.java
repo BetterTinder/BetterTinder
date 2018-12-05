@@ -25,6 +25,9 @@ public class UserGUIMethods extends GridPane{
 	UserGUIMethods(HBox hBox, GridPane rootpane) {
 		currentUser();
 	}
+	/**
+	 * reads the UserId text file
+	 */
 	public void currentUser() {
 		try {
 			currentUser = userID.getUserID();
@@ -114,7 +117,7 @@ public class UserGUIMethods extends GridPane{
 
 	/**
 	 * 
-	 * @return the left button with its action event to shift the array of images to the left, calls the change method
+	 * @return moves the image to the left by coolection.roatate the array list +1
 	 */
 	public Button getLeftBtn(){
 		Button leftscroll = new Button("<");
@@ -131,7 +134,7 @@ public class UserGUIMethods extends GridPane{
 	}
 	/**
 	 * 
-	 * @return
+	 * @return moves the image to the right by coolection.roatate the array list -1
 	 */
 	public Button getRightBtn() {
 		Button rightscroll = new Button(">");
@@ -149,7 +152,7 @@ public class UserGUIMethods extends GridPane{
 	}
 	/**
 	 * 
-	 * @return the right button with its action event to shift the array of images to the right, calls change method
+	 * @return Adds the image (string name) to the array list
 	 */
 	public Button getAddBtn() { //Reads the file
 		Button add = new Button("Add");
@@ -193,7 +196,7 @@ public class UserGUIMethods extends GridPane{
 	}
 	/**
 	 * 
-	 * @return removes the first image being displayed from the imagelist
+	 * @return removes the first image being displayed from the image list
 	 */
 	public Button getRemoveBtn() {
 		Button remove = new Button("Remove");

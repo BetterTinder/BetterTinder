@@ -16,7 +16,8 @@ public class Profile extends UserGUIMethods{
 		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 		grabImageFromSQL();
 		this.setStyle(style);
-		this.getChildren().addAll(getHbox2(hBox, rootpane),getHbox1(),hBox,getname(),getReviewRating(),getBio(),view);
+		this.getChildren().addAll(getHbox2(hBox, rootpane),getHbox1(),hBox,
+				getname(),getReviewRating(),getBio(),DisplayCurrentBio(),view);
 	}
 	/**
 	 * 
@@ -67,6 +68,19 @@ public class Profile extends UserGUIMethods{
 		return username;
 	}
 
+	public Text DisplayCurrentBio() {
+		SQLData Database = SQLData.getInstance();
+		Database.makeCon(Database);
+		Text userBio = new Text("");
+		String[] col = {"Bio"};
+		String Bio = Database.readBio(currentUser, col).get(0);
+		Database.closeCon();
+		userBio = new Text(Bio);
+		userBio.setWrappingWidth(400);
+		userBio.setTranslateX(10.0f);
+		userBio.setTranslateY(260.0f);
+		return userBio;
+	}
 
 	/**
 	 * 

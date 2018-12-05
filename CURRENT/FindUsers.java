@@ -26,6 +26,11 @@ public class FindUsers extends UserGUIMethods{
 		SetUpFindUser(hBox);
 
 	}
+	/**
+	 * 
+	 * @param hBox
+	 * @return
+	 */
 	private HBox getBox(HBox hBox) {
 		HBox Hbox1 = new HBox(255);
 		Hbox1.setTranslateX(5);
@@ -33,13 +38,16 @@ public class FindUsers extends UserGUIMethods{
 		Hbox1.getChildren().addAll(DislikeBtn(hBox),LikeBtn(hBox));
 		return Hbox1;
 	}
+	/**
+	 * 
+	 * @param hBox
+	 */
 	public void SetUpFindUser(HBox hBox) {
 		this.getChildren().clear(); //refresh to the next user
 		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 		this.setStyle(style);
 		this.getChildren().addAll(hBox,getBox(hBox),getHbox1(),getname(),getFindUserBio(),getReviewRating(),view);
 	}
-
 	/**
 	 * 
 	 * @return Text of the first potential name
@@ -60,7 +68,10 @@ public class FindUsers extends UserGUIMethods{
 		username.setTranslateY(-70.0f);
 		return username;
 	}
-	
+	/**
+	 * 
+	 * @return the users bio from SQL
+	 */
 	public Text getFindUserBio() {
 		Text userBio = new Text("");
 		if(potentialMatch.isEmpty() || potentialMatch.get(0)==null) {
@@ -78,7 +89,9 @@ public class FindUsers extends UserGUIMethods{
 		userBio.setTranslateY(230.0f);
 		return userBio;
 	}
-
+	/**
+	 * returns the review rating text from SQL
+	 */
 	public Text getReviewRating() {
 		Text review = new Text("");
 		if(potentialMatch.isEmpty()==true) {	
@@ -96,7 +109,11 @@ public class FindUsers extends UserGUIMethods{
 		review.setTranslateY(-70.0f);
 		return review;
 	}
-
+	/**
+	 * 
+	 * @param hBox
+	 * @return Like will return a 1 to SQL
+	 */
 	private Button LikeBtn(HBox hBox) {
 		Button like = new Button("Like");
 		like.setOnAction(new EventHandler<ActionEvent>(){
@@ -113,7 +130,11 @@ public class FindUsers extends UserGUIMethods{
 			}});
 		return like;
 	}
-
+	/**
+	 * 
+	 * @param hBox
+	 * @return Dislike will return a 0 to SQL
+	 */
 	private Button DislikeBtn(HBox hBox) {
 		Button dislike = new Button("DisLike");
 		dislike.setOnAction(new EventHandler<ActionEvent>(){
@@ -131,7 +152,11 @@ public class FindUsers extends UserGUIMethods{
 			}});
 		return dislike;
 	}
-
+	/**
+	 * 
+	 * @throws IOException
+	 * Initiate the matched algorithm
+	 */
 	private void FindPotentialMatches() throws IOException {
 		Matching match = new Matching();
 		UserID userID = new UserID();  
