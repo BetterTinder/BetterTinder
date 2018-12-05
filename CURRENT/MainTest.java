@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -7,7 +9,7 @@ public class MainTest extends Application {
 	public static void main(String[] args) {
 		launch(args);	
 	}
-	public void start(Stage stage) {
+	public void start(Stage stage) throws IOException {
 		ProfileTest profTest = new ProfileTest();
 		profTest.start();
 		FindUserTest findU = new FindUserTest();

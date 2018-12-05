@@ -168,6 +168,5 @@ public class FindUsers extends UserGUIMethods{
 		for(int i = 0; i<MatchData.length; i++) {
 			potentialMatch.add(MatchData[i][0]);
 		}
-		System.out.println("Matched"+":"+potentialMatch);
 	}
 }
