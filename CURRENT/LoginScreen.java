@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -120,7 +121,6 @@ public class LoginScreen extends Pane {
 	}
 /**
  * @param grid1
- * @param profile
  */
 	private void getSignBtn(GridPane grid1) {
 		signInButton.setOnAction(event -> {
@@ -145,8 +145,6 @@ public class LoginScreen extends Pane {
 					System.out.println("Signed In");
 					grid1.getChildren().clear();
 					Manager manager = new Manager();
-					//grid1.getChildren().add(prof);
-				
 					grid1.getChildren().add(manager.InitalizeProfile(grid1));
 				}
 				else {
