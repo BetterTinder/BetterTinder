@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -18,7 +17,6 @@ import javafx.scene.text.Text;
 /**
  * Setting class, where all your settings needs are met
  * @author CHRIS G.
- *
  */
 public class Setting extends GridPane  {
 	//label declarations
@@ -61,8 +59,8 @@ public class Setting extends GridPane  {
 	ComboBox<String> democracyBox = new ComboBox<String>(getResponse());
 	/**
 	 * a constructor, the constructor for the setting pane
-	 * @param hbox
-	 * @param rootpane
+	 * @param hbox buttons
+	 * @param rootpane pane
 	 */
 	Setting(HBox hbox, GridPane rootpane) {
 		GridPane gridPane = addGrid();
@@ -189,8 +187,8 @@ public class Setting extends GridPane  {
 	}
 	/**
 	 * save event handler
-	 * @param hbox
-	 * @param rootpane
+	 * @param hbox buttons
+	 * @param rootpane pane
 	 */
 	private void getSave(HBox hbox, GridPane rootpane) {
 		save.setOnAction(new EventHandler<ActionEvent>() {
@@ -209,17 +207,17 @@ public class Setting extends GridPane  {
 	}
 	/**
 	 * this method will send all the comboBox values to SQL
-	 * @param comboBox
-	 * @param comboBox1
-	 * @param comboBox2
-	 * @param comboBox3
-	 * @param comboBox4
-	 * @param comboBox5
-	 * @param comboBox6
-	 * @param comboBox7
-	 * @param comboBox8
-	 * @param genderBox
-	 * @param genderBox1
+	 * @param comboBox location
+	 * @param comboBox1 dog
+	 * @param comboBox2 night
+	 * @param comboBox3 music
+	 * @param comboBox4 relationship
+	 * @param comboBox5 exercise
+	 * @param comboBox6 vegetarian
+	 * @param comboBox7 movie
+	 * @param comboBox8 age
+	 * @param genderBox gender
+	 * @param genderBox1 gender pref
 	 */
 	public void updateDataBase(Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
 			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
@@ -272,8 +270,8 @@ public class Setting extends GridPane  {
 	}
 	/**
 	 * sets the starting val of the sliders by pulling from the database
-	 * @param slide
-	 * @param collumn
+	 * @param slide slider
+	 * @param collumn sql location
 	 */
 	private void setSliderVal(Slider slide, String collumn) {
 		String currentUser = " ";
@@ -293,8 +291,8 @@ public class Setting extends GridPane  {
 	}
 	/**
 	 * sets the starting val of the combo boxes by pulling from the database
-	 * @param combo
-	 * @param collum
+	 * @param combo desired box
+	 * @param collum sql location
 	 **/
 	public void setDefaultVal(ComboBox<String> combo, String collumn)
 	{
@@ -347,7 +345,7 @@ public class Setting extends GridPane  {
 	}
 	/**
 	 * closes setting and sends the user back to profile
-	 * @param hbox 
+	 * @param hbox buttons
 	 */
 	private void sendToProfile(HBox hbox,GridPane rootpane) {
 		Profile profile = new Profile(hbox, rootpane);
