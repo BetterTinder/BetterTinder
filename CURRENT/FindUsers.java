@@ -4,13 +4,10 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class FindUsers extends UserGUIMethods{
@@ -35,8 +32,8 @@ public class FindUsers extends UserGUIMethods{
 	 * @return
 	 */
 	private HBox getBox(HBox hBox) {
-		HBox Hbox1 = new HBox(260);
-		Hbox1.setAlignment(Pos.CENTER);
+		HBox Hbox1 = new HBox(255);
+		Hbox1.setTranslateX(5);
 		Hbox1.setTranslateY(100);
 		Hbox1.getChildren().addAll(DislikeBtn(hBox),LikeBtn(hBox));
 		return Hbox1;
@@ -47,7 +44,7 @@ public class FindUsers extends UserGUIMethods{
 	 */
 	public void SetUpFindUser(HBox hBox) {
 		this.getChildren().clear(); //refresh to the next user
-		String style = "-fx-background-color: #52858F";
+		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
 		this.setStyle(style);
 		this.getChildren().addAll(hBox,getBox(hBox),getHbox1(),getname(),getFindUserBio(),getReviewRating(),view);
 	}
@@ -57,7 +54,6 @@ public class FindUsers extends UserGUIMethods{
 	 */
 	public Text getname() {
 		Text username = new Text("There are currently no matches.");
-		username.setFont(Font.font("Lucida Bright"));
 		if(potentialMatch.isEmpty() || potentialMatch.get(0)==null) {
 		}else {
 			SQLData Database = SQLData.getInstance();
@@ -120,12 +116,6 @@ public class FindUsers extends UserGUIMethods{
 	 */
 	private Button LikeBtn(HBox hBox) {
 		Button like = new Button("Like");
-
-		like.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
-		like.setPrefWidth(70);
-		like.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
-				+ "-fx-text-fill: white;");
-		
 		like.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				if(potentialMatch.isEmpty() || potentialMatch.get(0)==null) {
@@ -146,12 +136,7 @@ public class FindUsers extends UserGUIMethods{
 	 * @return Dislike will return a 0 to SQL
 	 */
 	private Button DislikeBtn(HBox hBox) {
-		Button dislike = new Button("Dislike");
-		dislike.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
-		dislike.setPrefWidth(70);
-		dislike.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
-				+ "-fx-text-fill: white;");
-		
+		Button dislike = new Button("DisLike");
 		dislike.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				if(potentialMatch.isEmpty()|| potentialMatch.get(0)==null) {
