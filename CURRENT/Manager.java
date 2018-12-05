@@ -58,7 +58,7 @@ public class Manager extends Application{
 
 		Button findBtn = getFindBtn(grid1);
 
-		Button matchedBtn = getMatchedBtn();
+		Button matchedBtn = getMatchedBtn(grid1);
 
 		btnBox.getChildren().addAll(helpBtn,profileBtn,findBtn,matchedBtn);
 		btnBox.setTranslateY(380);
@@ -115,12 +115,14 @@ public class Manager extends Application{
 	 * 
 	 * @return
 	 */
-	private Button getMatchedBtn() {
+	private Button getMatchedBtn(GridPane grid1) {
 		Button matchedBtn = new Button("Matched");
 		matchedBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
 		matchedBtn.setMinSize(85, 20);
 		matchedBtn.setOnAction(event -> {
 			System.out.println("Matched");
+			ListMatchedUsers matched = ListMatchedUsers.getInstance(addButtons(grid1), rootpane);
+			grid1.getChildren().add(matched);
 		});
 		return matchedBtn;
 	}
