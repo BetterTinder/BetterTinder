@@ -121,7 +121,7 @@ public class Matching {
 	 MatchData = new String[1][2];
 	 double PercentRequired = Double.valueOf(UserData[0][14]);
 	 for (int i = 0; i < FilteredMatchData.length; i++) {
-		PercentRequiredPotential = Double.valueOf(FilteredMatchData[i][14]);
+		double PercentRequiredPotential = Double.valueOf(FilteredMatchData[i][14]);
 		totalMatchPoints = 0;
 		MatchPoints = 0;
 		for (int j = 3; j < 9; j++) {
