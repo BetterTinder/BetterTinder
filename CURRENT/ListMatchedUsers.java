@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Button;
@@ -13,6 +14,10 @@ public class ListMatchedUsers extends GridPane
 	String currentUser;
 	VBox List = new VBox(20);
 	VBox Sliders = new VBox(20);
+	VBox ReviewButtons = new VBox(20);
+	List<Button> UserButtonList = new ArrayList<Button>();
+	List<Slider> SliderList = new ArrayList<Slider>();
+	List<Button> ReviewButtonList = new ArrayList<Button>();
 	List<String> Users;
 	private static ListMatchedUsers instance = null;
 
@@ -23,12 +28,14 @@ public class ListMatchedUsers extends GridPane
 		List.setTranslateX(0);
 		Sliders.setTranslateY(3);
 		Sliders.setTranslateX(250);
+		ReviewButtons.setTranslateY(3);
+		ReviewButtons.setTranslateX(150);
 		System.out.println(Sliders.getPrefWidth());
 		//Sliders.setMaxWidth(60);
 		//Sliders.autosize();
 		refresh(hbox, rootpane);
 	}
-	
+
 	public static ListMatchedUsers getInstance(HBox hbox, GridPane rootpane)
 	{
 		if (instance == null) 
@@ -38,9 +45,9 @@ public class ListMatchedUsers extends GridPane
 		{
 			instance.refresh(hbox, rootpane);
 		}
-			return instance;
+		return instance;
 	}
-	
+
 	public void refresh(HBox hbox, GridPane rootpane)
 	{
 		SQLData Database = SQLData.getInstance();
@@ -56,33 +63,60 @@ public class ListMatchedUsers extends GridPane
 		Database.closeCon();
 		List.getChildren().clear();
 		Sliders.getChildren().clear();
+		ReviewButtons.getChildren().clear();
+		UserButtonList.clear();
+		SliderList.clear();
+		ReviewButtonList.clear();
 		rootpane.getChildren().clear();
 		this.getChildren().clear();
-		makeButtons(Users);
+		makeButtons(Users,hbox,rootpane);
 		setRoot(rootpane, hbox);
 		this.getChildren().add(rootpane);
 	}
 
-	public void makeButtons(List<String> matchedUsers)
+	public void makeButtons(List<String> matchedUsers, HBox hbox, GridPane rootpane)
 	{
 		for (int i = 0; i<matchedUsers.size();i++)
 		{
-				Button button = new Button(matchedUsers.get(i));
-				List.getChildren().add(button);	
-				Slider reviewSlider = new Slider();
-				setSlider(reviewSlider);
-				Sliders.getChildren().add(reviewSlider);	
-				System.out.println(Sliders.isResizable());
+			Button button = new Button(matchedUsers.get(i));
+			List.getChildren().add(button);	
+			UserButtonList.add(button);
+			button.setOnAction(e -> 
+			{
+				FindUsers getProfile = new FindUsers(hbox, rootpane);
+				rootpane.getChildren().clear();
+				List<String> username = new ArrayList<String>();
+				username.add(button.getText());
+				getProfile.potentialMatch= username;
+				getProfile.SetUpFindUser(hbox);
+				rootpane.getChildren().add(getProfile);
+			});
+			Slider reviewSlider = new Slider();
+			setSlider(reviewSlider);
+			Sliders.getChildren().add(reviewSlider);
+			SliderList.add(reviewSlider);
+			Button ReviewButton = new Button("Submit Review");
+			ReviewButtons.getChildren().add(ReviewButton);
+			ReviewButtonList.add(ReviewButton);
+			ReviewButton.setOnAction(e->
+			{
+				int index = ReviewButtonList.indexOf(ReviewButton);
+				SQLData Database = SQLData.getInstance();
+				Database.makeCon(Database);
+				Database.reviewUser(UserButtonList.get(index).getText(), SliderList.get(index).getValue());
+				Database.closeCon();
+			});
 		}
 	}
-	
+
 	private void setRoot(GridPane rootpane, HBox hbox)
 	{
 		rootpane.getChildren().add(List);
 		rootpane.getChildren().add(hbox);
 		rootpane.getChildren().add(Sliders);
+		rootpane.getChildren().add(ReviewButtons);
 	}
-	
+
 	private void setSlider(Slider slider)
 	{
 		slider.setMin(0);
