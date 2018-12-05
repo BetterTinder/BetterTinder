@@ -2,7 +2,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -19,15 +18,12 @@ public class Help extends GridPane  {
 		setGrid(gridPane);
 		
 		Text profile = new Text(profileHelp());
-		profile.setFill(Color.WHITE);
 		profile.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 15));
 		
 		Text matched = new Text(MatchedHelp());
-		matched.setFill(Color.WHITE);
 		matched.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 15));
 
 		Text finduser = new Text(findUserHelp());
-		finduser.setFill(Color.WHITE);
 		finduser.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 15));
 
 		profile.setWrappingWidth(360);

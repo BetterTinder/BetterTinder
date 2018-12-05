@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 /**
  * Setting class, where all your settings needs are met
  * @author CHRIS G.
@@ -34,14 +38,15 @@ public class Setting extends GridPane  {
 	Label walking = new Label("Do you enjoy excersizing?");
 	Label music = new Label("Do you like music?");
 	Label match = new Label("What match percent do you desire?");
-	Label democracy = new Label("Do you want a long term relationship?");
+	Text democracy = new Text("Do you want a long term relationship?");
+	
 
 	//age slider declarations
 	Slider ageSlider = new Slider();
 	Slider ageMinSlider = new Slider();
 	Slider ageMaxSlider = new Slider();
 	Slider matchPercentage = new Slider();
-	Button save = new Button("Apply Changes");
+	Button save = new Button("Apply Changes");	
 	UserID userID = new UserID();
 	
 	//combo box declarations
@@ -127,7 +132,28 @@ public class Setting extends GridPane  {
 	
 	public GridPane addGrid() {
 		GridPane gridPane = new GridPane();
-		gridPane.setPadding(new Insets(25));
+		gridPane.setVgap(3);
+		gridPane.setPadding(new Insets(3,25,0,25));
+		String value = "-fx-text-fill: white;";
+		
+		age.setStyle(value);
+		genPrefLabel.setStyle(value);
+		genIdenLabel.setStyle(value);
+		location.setStyle(value);
+		intrest.setStyle(value);
+		agePref.setStyle(value);
+		ageMin.setStyle(value);
+		ageMax.setStyle(value);
+		dog.setStyle(value);
+		dogHave.setStyle(value);
+		vegetarian.setStyle(value);
+		movie.setStyle(value);
+		walking.setStyle(value);
+		music.setStyle(value); 
+		match.setStyle(value);
+		democracy.setFill(Color.WHITE);
+		
+		
 		gridPane.add(comboBox,1,2);
 		gridPane.add(genPrefLabel, 0, 1);
 		gridPane.add(genIdenLabel, 0, 0);
@@ -157,8 +183,9 @@ public class Setting extends GridPane  {
 		gridPane.add(music, 0, 14);
 		gridPane.add(musicBox, 1, 14);
 		gridPane.add(democracy, 0, 15);
+		democracy.setWrappingWidth(200);
 		gridPane.add(democracyBox, 1, 15);
-		gridPane.add(save, 1, 500);
+		gridPane.add(save, 1, 16);
 		return gridPane;
 	}
 	/**
