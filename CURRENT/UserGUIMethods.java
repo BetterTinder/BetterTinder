@@ -20,11 +20,10 @@ public class UserGUIMethods extends GridPane{
 	Image image; ImageView view = new ImageView();
 	UserID userID = new UserID();
 	String currentUser;
-	
+
 	UserGUIMethods(HBox hBox, GridPane rootpane) {
 		currentUser();
 	}
-	
 	public void currentUser() {
 		try {
 			currentUser = userID.getUserID();
@@ -55,6 +54,7 @@ public class UserGUIMethods extends GridPane{
 		Hbox2.setTranslateX(1);
 		Hbox2.setTranslateY(1);
 		Hbox2.getChildren().addAll(getAddBtn(),getRemoveBtn(),getSettingBtn(hbox, rootpane));
+		Hbox2.getChildren().add(sendBio(getBio()));
 		return Hbox2;
 	}
 	/**
@@ -95,7 +95,7 @@ public class UserGUIMethods extends GridPane{
 		String[] col = {"Review"};
 		String rev = Database.readData(currentUser, col).get(0);
 		Database.closeCon();
-		Text review = new Text("Rating: "+rev+"//5.00");
+		Text review = new Text("Rating: "+rev+"/5.00");
 		review.setWrappingWidth(400);
 		review.setTranslateX(230.0f);
 		review.setTranslateY(-70.0f);
@@ -128,6 +128,11 @@ public class UserGUIMethods extends GridPane{
 		bio.setTranslateY(230.0f);
 		return bio;
 	}
+	/**
+	 * 
+	 * @param bio
+	 * @return
+	 */
 	public Button sendBio(TextField bio) {
 		Button sendbio = new Button("Send Bio");
 		sendbio.setOnAction(new EventHandler<ActionEvent>() {
@@ -137,12 +142,18 @@ public class UserGUIMethods extends GridPane{
 				sqlData.makeCon(sqlData);
 				String[] column = {"Bio"};
 				String[] values = {bio.getText()};
+				System.out.println("This is the current bio:"+values);
 				sqlData.updateData(currentUser, column, values);
 				sqlData.closeCon();
 			}
-		});
+		});		
 		return sendbio;
 	}
+	/**
+	 * 
+	 * @return the other user's bio from SQL that the current user matched with
+	 */
+
 	/**
 	 * 
 	 * @return the left button with its action event to shift the array of images to the left, calls the change method

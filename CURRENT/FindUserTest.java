@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -16,11 +17,16 @@ public class FindUserTest extends MainTest{
 	HBox hbox = new HBox();
 	FindUsers findprofile = new FindUsers(hbox, rootpane);
 	UserID userID = new UserID();
-	String userid = ("Test 2"); //Current User
+	String userid = ("Test 2"); //The current user that will view the other user
 	Text username;
 	Text bio;
 	Text revText;
-
+/**
+ * IMPORTANT NOTE: The results for found no matches and found matches should always be opposite results
+ * because they share the same methods; for instance, if you find potential matches then you should pass for
+ * all the potential matches and fail for finding no potential matches. The reason you fail for finding no potential matches
+ * is because the strings for finding a user should never match the strings for not finding a user (vise versa).
+ */
 	public void start() {
 		FoundNoMatches();
 		changeUser();
@@ -44,21 +50,21 @@ public class FindUserTest extends MainTest{
 	
 	public void FoundMatches() {//Test if they have potential matchers
 		System.out.println("Found Potential matched users:");
+		String rev = ("3");
 		username = new Text("Test3"); 
-		bio = new Text("Hello this is my bio");
-		revText = new Text("3");
+		bio = new Text("Hello Im Test3!");
+		revText = new Text("Rating: "+rev+"/5.00");
 	}
 
 	public void changeUser() {
 		userID.makeUserID(userid);
 	}
 
-	public void checkName(UserGUIMethods profile) {;	
+	public void checkName(FindUsers profile) {;	
 	String userStr = username.getText();
 	Text SQLUserNameText = profile.getname();
 	String  sqlUserNameStr = SQLUserNameText.getText();
-
-	//Compare Test
+	
 	if(userStr.equals(sqlUserNameStr)){
 		System.out.println("Passed the name test");
 	}else {
@@ -66,10 +72,9 @@ public class FindUserTest extends MainTest{
 	}
 	}
 
-	public void checkBio(UserGUIMethods profile) {
+	public void checkBio(FindUsers profile) {
 		String bioStr = bio.getText();
-
-		Text sqlBioText= profile.getBio();
+		Text sqlBioText= profile.getFindUserBio();
 		String SQLBio = sqlBioText.getText();
 
 		if(bioStr.equals(SQLBio)) {
@@ -79,7 +84,7 @@ public class FindUserTest extends MainTest{
 		}
 	}
 
-	public void checkReview(UserGUIMethods profile) {
+	public void checkReview(FindUsers profile) {
 		String revStr = revText.getText();
 		Text SQLRevText = profile.getReviewRating();
 		String SQLRevString = SQLRevText.getText();

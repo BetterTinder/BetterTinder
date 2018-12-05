@@ -6,6 +6,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -14,9 +15,10 @@ class ProfileTest extends MainTest{
 	GridPane rootpane = new GridPane();
 	//Initialized variables names that I want to check
 	String userid = "Test2";
+	String rev = "0";
 	Text  username = new Text("Test 2");
-	Text bio = new Text("Hello I am Test 2");
-	Text revText = new Text("5.0");
+	Text bio = new Text("Hello I am Test2");
+	Text revText = new Text("Rating: "+rev+"/5.00");
 	
 	ProfileTest(){
 		start();
@@ -37,7 +39,7 @@ class ProfileTest extends MainTest{
 		userID.makeUserID(userid);
 	}
 
-	public void checkName(UserGUIMethods profile) {;	
+	public void checkName(Profile profile) {;	
 	String userStr = username.getText();
 	Text SQLUserNameText = profile.getname();
 	String  sqlUserNameStr = SQLUserNameText.getText();
@@ -50,11 +52,16 @@ class ProfileTest extends MainTest{
 	}
 	}
 
-	public void checkBio(UserGUIMethods profile) {
-		String bioStr = bio.getText();
-		Text sqlBioText= profile.getBio();
+	public void checkBio(Profile profile) {
+		SQLData Database = SQLData.getInstance();
+		Database.makeCon(Database);
+		String[] col = {"Bio"};
+		String Bio = Database.readBio(userid, col).get(0);
+		Database.closeCon();
+		Text sqlBioText = new Text(Bio);
 		String SQLBio = sqlBioText.getText();
-
+		String bioStr = bio.getText();
+		System.out.println("Bio in SQL:"+SQLBio);
 		if(bioStr.equals(SQLBio)) {
 			System.out.println("Passed the bio test");
 		}else {
@@ -62,7 +69,7 @@ class ProfileTest extends MainTest{
 		}
 	}
 
-	public void checkReview(UserGUIMethods profile) {
+	public void checkReview(Profile profile) {
 		String revStr = revText.getText();
 		Text SQLRevText = profile.getReviewRating();
 		String SQLRevString = SQLRevText.getText();

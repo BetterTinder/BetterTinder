@@ -105,7 +105,7 @@ public class Manager extends Application{
 		findBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
 		findBtn.setMinSize(85, 20);
 		findBtn.setOnAction(event -> {
-			FindUsers<String> find = new FindUsers<String>(addButtons(grid1),grid1);
+			FindUsers find = new FindUsers(addButtons(grid1),grid1);
 			grid1.getChildren().add(find);
 			System.out.println("Find");
 		});
