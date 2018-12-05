@@ -26,7 +26,7 @@ public class Matching {
 	
 	sqlData.closeCon();
 	
-	cellsPerLine = 14;
+	cellsPerLine = 15;
 	int x,k;
 	row = -1;
 	int cellNumbers = sqlDataList.size();
