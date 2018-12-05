@@ -164,7 +164,7 @@ public class FindUsers extends UserGUIMethods{
 		match.getUserData(userID.getUserID());
 		match.getPotentialMatches();
 		match.filterPotentialMatches();
-		String[][] MatchData = match.MatchUsers(75.0);
+		String[][] MatchData = match.MatchUsers();
 		for(int i = 0; i<MatchData.length; i++) {
 			potentialMatch.add(MatchData[i][0]);
 		}

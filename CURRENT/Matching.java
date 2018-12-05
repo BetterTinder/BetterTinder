@@ -116,10 +116,12 @@ public class Matching {
 	 }
  }
  
- public String[][] MatchUsers(double PercentRequired) {
+ public String[][] MatchUsers() {
 	 int k = 0;
 	 MatchData = new String[1][2];
+	 double PercentRequired = UserData[0][14]
 	 for (int i = 0; i < FilteredMatchData.length; i++) {
+		PercentRequiredPotential = FilteredMatchData[i][14];
 		totalMatchPoints = 0;
 		MatchPoints = 0;
 		for (int j = 3; j < 9; j++) {
@@ -135,7 +137,7 @@ public class Matching {
 		}
 		Percent = 100 * MatchPoints / totalMatchPoints;
 		PercentMatch = Math.round(Percent*100)/100.0;
-		if (PercentMatch >= PercentRequired) {
+		if (PercentMatch >= PercentRequired && PercentMatch >= PercentRequiredPotential) {
 			if (MatchData.length>k) {
 			MatchData[k][0] = FilteredMatchData[i][0];
 			MatchData[k][1] = Double.toString(PercentMatch);
