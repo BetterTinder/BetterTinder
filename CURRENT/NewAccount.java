@@ -1,3 +1,4 @@
+import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -9,7 +10,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
 /**
  * 
  * @author Chris
@@ -22,6 +22,11 @@ public class NewAccount extends Setting  {
 	 * @param hbox
 	 * @param prof
 	 */
+	TextField name = new TextField();
+	TextField FirstName = new TextField();
+	TextField LastName = new TextField();
+	TextField Password = new TextField();
+	
 	NewAccount(HBox hbox, Profile prof) {
 		super(hbox, prof);
 		getAgeSlider(ageSlider);
@@ -29,14 +34,14 @@ public class NewAccount extends Setting  {
 		getAgeSlider(ageMaxSlider);
 		getMatchPercent();   
 		String style = "-fx-background-color: #52858F";
-		TextField name = new TextField("Enter Username");
 		name.setMaxWidth(150);
-		TextField FirstName = new TextField("Enter First Name");
+		name.setPromptText("Enter Username");
 		FirstName.setMaxWidth(150);
-		TextField LastName = new TextField("Enter Last Name");
+		FirstName.setPromptText("Enter First Name");
 		LastName.setMaxWidth(150);
-		TextField Password = new TextField("Enter Password");
+		LastName.setPromptText("Enter Last Name");
 		Password.setMaxWidth(150);
+		Password.setPromptText("Enter Password");
 		
 		/*
         Label username = new Label("Username:");
@@ -105,35 +110,6 @@ public class NewAccount extends Setting  {
 			}
 
 			/**
-			 * sends the newAccount specific vars to the SQL database
-			 * @param name
-			 * @param firstName
-			 * @param lastName
-			 * @param password
-			 */
-			public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password, Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
-					ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
-					ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
-				String userID = name.getText();
-				UserID makeID = new UserID();
-				makeID.makeUserID(userID);
-				//userID.makeUserID(userID); //need to make a label for the userID and then have this method grab it            
-				SQLData sqlData = SQLData.getInstance();
-				sqlData.makeCon(sqlData);
-				int ageInt = (int)ageSlider.getValue();
-				int ageMinInt = (int)ageMinSlider.getValue();
-				int ageMaxInt = (int)ageMaxSlider.getValue();
-				int matchInt = (int)matchPercentage.getValue();
-				String ageVal = new String(Integer.toString(ageInt));
-				String ageMinVal = new String(Integer.toString(ageMinInt));
-				String ageMaxVal = new String(Integer.toString(ageMaxInt));
-				String matchVal = new String(Integer.toString(matchInt));
-				String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText(), comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
-				sqlData.newUser("Username, Password, FirstName, LastName, Location, Age, Dog, One_Night, Vegetarian, Movie, Exercise, Music, Relationship, Gender, Gender_Preference, Min_Age, Max_Age, Match", values);
-				sqlData.closeCon();
-			}
-
-			/**
 			 * this sends the user to the profile screen after creating their account
 			 */
 			private void sendToProfile() {
@@ -143,7 +119,35 @@ public class NewAccount extends Setting  {
 		});
 
 		this.getChildren().add(gridPane);
-	}           
+	}    
+	/**
+	 * sends the newAccount specific vars to the SQL database
+	 * @param name
+	 * @param firstName
+	 * @param lastName
+	 * @param password
+	 */
+	public void userToDatabase(TextField name, TextField firstName, TextField lastName, TextField password, Slider matchPercentage, Slider ageMinSlider, Slider ageMaxSlider, ComboBox<String> comboBox, Slider ageSlider,
+			ComboBox<String> comboBox2, ComboBox<String> comboBox3, ComboBox<String> comboBox4, ComboBox<String> comboBox5, ComboBox<String> comboBox6, 
+			ComboBox<String> comboBox7, ComboBox<String> comboBox8, ComboBox<String> genderBox, ComboBox<String> genderBox1) {
+		String userID = name.getText();
+		UserID makeID = new UserID();
+		makeID.makeUserID(userID);
+		//userID.makeUserID(userID); //need to make a label for the userID and then have this method grab it            
+		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
+		int ageInt = (int)ageSlider.getValue();
+		int ageMinInt = (int)ageMinSlider.getValue();
+		int ageMaxInt = (int)ageMaxSlider.getValue();
+		int matchInt = (int)matchPercentage.getValue();
+		String ageVal = new String(Integer.toString(ageInt));
+		String ageMinVal = new String(Integer.toString(ageMinInt));
+		String ageMaxVal = new String(Integer.toString(ageMaxInt));
+		String matchVal = new String(Integer.toString(matchInt));
+		String[] values = {name.getText(), password.getText(), firstName.getText(), lastName.getText(), comboBox.getValue(),ageVal,comboBox2.getValue(),comboBox3.getValue(),comboBox4.getValue(),comboBox5.getValue(),comboBox6.getValue(),comboBox7.getValue(),comboBox8.getValue(),genderBox.getValue(),genderBox1.getValue(),ageMinVal,ageMaxVal,matchVal};
+		sqlData.newUser("Username, Password, FirstName, LastName, Location, Age, Dog, One_Night, Vegetarian, Movie, Exercise, Music, Relationship, Gender, Gender_Preference, Min_Age, Max_Age, Match", values);
+		sqlData.closeCon();
+	}
 
 	/**
 	 * 
@@ -151,5 +155,107 @@ public class NewAccount extends Setting  {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Bad Luck");
+	}
+    /**
+     * testing code
+     */
+    public void testNewAccount() {
+		System.out.println("testing");
+		makenew();
+		testValid();
+		printVals();
+	}
+    /**
+     * testing code
+     */
+	public void makenew() {
+		setStringVar(name);
+		setStringVar(Password);
+		setStringVar(FirstName);
+		setStringVar(LastName);
+		setRandomVar(comboBox);
+		setRandomVar(dogBox);
+		setRandomVar(dogHaveBox);
+		setRandomVar(vegetarianBox);
+		setRandomVar(movieBox);
+		setRandomVar(walkingBox);
+		setRandomVar(musicBox);
+		setRandomVar(democracyBox);
+		setRandomVar(genderIden);
+		setRandomVar(genderPref);
+		setSliderVar(ageSlider);
+		setSliderVar(ageMinSlider);
+		setSliderVar(ageMaxSlider);
+		setSliderMatchVar(matchPercentage);
+	}
+	/**
+	 * testing code
+	 * @param text
+	 */
+	public void setStringVar(TextField text) {
+		int leftLimit = 97; // letter 'a'
+	    int rightLimit = 122; // letter 'z'
+	    int targetStringLength = 10;
+	    Random random = new Random();
+	    StringBuilder buffer = new StringBuilder(targetStringLength);
+	    for (int i = 0; i < targetStringLength; i++) {
+	        int randomLimitedInt = leftLimit + (int) 
+	          (random.nextFloat() * (rightLimit - leftLimit + 1));
+	        buffer.append((char) randomLimitedInt);
+	    }
+	    String randString = buffer.toString();
+	    text.setText(randString);
+	    System.out.println(text.getText());
+	}
+	/**
+	 * testing code
+	 * @param combo
+	 */
+	public void setRandomVar(ComboBox<String> combo) {
+		combo.getSelectionModel().select((int) (Math.random()*3));
+		System.out.println(combo.getValue());
+	}
+	/**
+	 * testing code
+	 * @param slider
+	 */
+	public void setSliderVar(Slider slider) {
+		slider.setValue((Math.random()*100));
+		System.out.println(slider.getValue());
+	}
+	/**
+	 * testing code
+	 * @param slider
+	 */
+	public void setSliderMatchVar(Slider slider) {
+		slider.setValue((Math.random()*60));
+		System.out.println(slider.getValue());
+	}
+	/**
+	 * testing code
+	 */
+	public void testValid() {
+		if(comboBox.getValue()!=null && dogHaveBox.getValue()!=null && vegetarianBox.getValue()!=null && movieBox.getValue()!=null && walkingBox.getValue()!=null && musicBox.getValue()!=null && democracyBox.getValue()!=null && genderPref.getValue()!=null&&genderIden.getValue()!=null) {
+    		if (ageMinSlider.getValue()<=ageMaxSlider.getValue()) {
+    			System.out.println("Profile Valid!");
+    			//sendToDatabase isn't here, because I left it in Settings
+    			userToDatabase(name, FirstName, LastName, Password, matchPercentage, ageMinSlider, ageMaxSlider, comboBox, ageSlider, dogBox, dogHaveBox, vegetarianBox, movieBox, walkingBox, musicBox, democracyBox, genderIden, genderPref);
+    		}
+    		else {
+    			System.out.println("Please correct your age preferences");
+    		}
+    	}
+    	else
+    		System.out.println("Please fill in all values");
+    	}
+	/**
+	 * testing code
+	 */
+	public void printVals() {
+		SQLData sqlData = SQLData.getInstance();
+		sqlData.makeCon(sqlData);
+		String[] desiredcol = {"Username", "Password", "FirstName", "LastName", "Location", "Age", "Dog", "One_Night", "Vegetarian", "Movie", "Exercise", "Music", "Relationship", "Gender", "Gender_Preference", "Min_Age", "Max_Age", "Match"};
+		System.out.println(sqlData.readData(name.getText(), desiredcol));
+		sqlData.closeCon();
 	}
 }

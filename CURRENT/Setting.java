@@ -14,8 +14,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 /**
  * Setting class, where all your settings needs are met
@@ -108,7 +106,7 @@ public class Setting extends GridPane  {
 		return options;
 	}
 	/**
-	 * an iniatializer
+	 * an initializer
 	 */
 	public void getMatchPercent() {
 		matchPercentage.setMin(0);
