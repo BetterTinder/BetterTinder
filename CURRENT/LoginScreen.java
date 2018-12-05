@@ -3,12 +3,15 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -25,7 +28,7 @@ public class LoginScreen extends Pane {
 	private TextField usernameField;
 	private PasswordField passwordField;
 	private HBox siBox, naBox;
-	private Label welcomeLabel, usernameLabel, passwordLabel;
+	private Label welcomeLabel1,welcomeLabel2, usernameLabel, passwordLabel;
 
 	public static void main(String[] args) {
 		System.out.println("Login runnin");
@@ -35,9 +38,17 @@ public class LoginScreen extends Pane {
 		GridPane gridPane = new GridPane();
 		setGrid(gridPane);
 		createLabels();
-		createFields();
+		createFields();		
 		signInButton = new Button("Sign In");
+		signInButton.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 15));
+		signInButton.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
+		
 		newAccountButton = new Button("New Account");
+		newAccountButton.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 15));
+		newAccountButton.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
+		
 		setBox();
 		controlGrid(gridPane);
 		getSignBtn(grid1);
@@ -46,7 +57,7 @@ public class LoginScreen extends Pane {
 		this.getChildren().add(gridPane);
 	}
 /**
- * creates the fields for username and passwrd
+ * creates the fields for username and password
  */
 	private void createFields() {
 		usernameField = new TextField();
@@ -59,39 +70,50 @@ public class LoginScreen extends Pane {
  * creates the labels
  */
 	private void createLabels() {
-		welcomeLabel = new Label("Welcome to Riddle Vision");
-		welcomeLabel.setFont(Font.font("Courier New", FontWeight.BOLD, 25));
-		welcomeLabel.setMinSize(200, 100);
-		welcomeLabel.setWrapText(true);
+		welcomeLabel1 = new Label("Welcome to");
+		welcomeLabel1.setFont(Font.font("Lucida Bright", FontWeight.BOLD, 30));
+		welcomeLabel1.setMaxHeight(30);
+		welcomeLabel1.setStyle("-fx-text-fill: white");
+		
+		welcomeLabel2 = new Label("Riddle Vision");
+		welcomeLabel2.setFont(Font.font("Lucida Bright", FontWeight.BOLD, 30));
+		welcomeLabel2.setMaxHeight(30);
+		welcomeLabel2.setStyle("-fx-text-fill: white");
 
 		usernameLabel = new Label("Username:");
+		usernameLabel.setFont(Font.font("Lucida Bright", FontWeight.EXTRA_LIGHT, 15));
+		usernameLabel.setStyle("-fx-text-fill: white");
 
 		passwordLabel = new Label("Password:");
+		passwordLabel.setFont(Font.font("Lucida Bright", FontWeight.EXTRA_LIGHT, 15));
+		passwordLabel.setStyle("-fx-text-fill: white");
 	}
 /**
  * 
  * @param gridPane
  */
 	private void controlGrid(GridPane gridPane) {
-		gridPane.add(welcomeLabel, 0, 0);
-		gridPane.add(usernameLabel, 0, 1);
-		gridPane.add(usernameField, 0, 2);
-		gridPane.add(passwordLabel, 0, 3);
-		gridPane.add(passwordField, 0, 4);
-		gridPane.add(siBox, 0 ,5);
-		gridPane.add(naBox, 0, 6);
+		// gridPane.setGridLinesVisible(true);
+		gridPane.add(welcomeLabel1, 0, 0);
+		GridPane.setHalignment(welcomeLabel1, HPos.CENTER);
+		gridPane.add(welcomeLabel2, 0, 1);
+		gridPane.add(usernameLabel, 0, 5);
+		gridPane.add(usernameField, 0, 6);
+		gridPane.add(passwordLabel, 0, 7);
+		gridPane.add(passwordField, 0, 8);
+		gridPane.add(siBox, 0 ,9);
+		gridPane.add(naBox, 0, 10);
 	}
 /**
  * 
  * @param gridPane
  */
 	private void setGrid(GridPane gridPane) {
-		String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+		String style = "-fx-background-color: #52858F";
 		gridPane.setStyle(style);
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setVgap(10);
 		gridPane.setHgap(0);
-		//gridPane.setGridLinesVisible(true);
 		gridPane.setPrefSize(400, 520);
 	}
 /**
@@ -112,6 +134,24 @@ public class LoginScreen extends Pane {
  * @param newAcc
  */
 	private void getNewAccBtn(GridPane grid1, NewAccount newAcc) {
+		
+		DropShadow shadow = new DropShadow();
+		//Adding the shadow when the mouse cursor is on
+		newAccountButton.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+		    new EventHandler<MouseEvent>() {
+		        @Override public void handle(MouseEvent e) {
+		        	newAccountButton.setEffect(shadow);
+		        }
+		}); 
+		
+		//Removing the shadow when the mouse cursor is off
+		newAccountButton.addEventHandler(MouseEvent.MOUSE_EXITED, 
+		    new EventHandler<MouseEvent>() {
+		        @Override public void handle(MouseEvent e) {
+		        	newAccountButton.setEffect(null);
+		        }
+		});
+		
 		newAccountButton.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				grid1.getChildren().clear();
@@ -123,6 +163,24 @@ public class LoginScreen extends Pane {
  * @param grid1
  */
 	private void getSignBtn(GridPane grid1) {
+		
+		DropShadow shadow = new DropShadow();
+		//Adding the shadow when the mouse cursor is on
+		signInButton.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+		    new EventHandler<MouseEvent>() {
+		        @Override public void handle(MouseEvent e) {
+		        	signInButton.setEffect(shadow);
+		        }
+		}); 
+		
+		//Removing the shadow when the mouse cursor is off
+		signInButton.addEventHandler(MouseEvent.MOUSE_EXITED, 
+		    new EventHandler<MouseEvent>() {
+		        @Override public void handle(MouseEvent e) {
+		        	signInButton.setEffect(null);
+		        }
+		});
+		
 		signInButton.setOnAction(event -> {
 			String userID = new String();
 			String password = new String();
