@@ -1,10 +1,6 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Arrays;
-
-import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
 import javafx.scene.control.TextField;
@@ -50,7 +46,7 @@ public class FindUserTest extends MainTest{
 	
 	public void FoundMatches() {//Test if they have potential matchers
 		System.out.println("Found Potential matched users:");
-		String rev = ("3");
+		String rev = ("5");
 		username = new Text("Test3"); 
 		bio = new Text("Hello Im Test3!");
 		revText = new Text("Rating: "+rev+"/5.00");
