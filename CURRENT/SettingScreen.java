@@ -55,7 +55,7 @@ public class SettingScreen extends Pane {
 	private void getNewAccBtn(GridPane grid1, NewAccount newAcc) {
 		newAccTester.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
-			//	newAcc.testNewAccount();
+				newAcc.testNewAccount();
 			}
 		});
 	}

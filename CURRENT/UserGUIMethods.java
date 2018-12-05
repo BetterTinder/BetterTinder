@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -20,7 +22,7 @@ public class UserGUIMethods extends GridPane{
 	Image image; ImageView view = new ImageView();
 	UserID userID = new UserID();
 	String currentUser;
-	TextField bio = new TextField();
+	TextField bio = new TextField("Enter new bio");
 
 	UserGUIMethods(HBox hBox, GridPane rootpane) {
 		currentUser();
@@ -67,6 +69,23 @@ public class UserGUIMethods extends GridPane{
 	}
 	/**
 	 * 
+	 * returns an image of a star for the review
+	 */
+	public ImageView getReviewImage() {
+		ImageView view = new ImageView();
+		image = new Image("star.png");
+		view.setImage(image);
+		view.setFitWidth(25);
+		view.setFitHeight(25);
+		view.setTranslateX(250.0f);
+		view.setTranslateY(-70.0f);
+		view.setScaleX(1);
+		view.setScaleY(1);
+		view.setPreserveRatio(true);
+		return view;
+	}
+	/**
+	 * 
 	 * reads for the review rating and displays it to the profile
 	 */
 	public Text getReviewRating() {
@@ -76,6 +95,7 @@ public class UserGUIMethods extends GridPane{
 		String rev = Database.readData(currentUser, col).get(0);
 		Database.closeCon();
 		Text review = new Text("Rating: "+rev+"/5.00");
+		review.setFont(Font.font("Lucida Bright"));
 		review.setWrappingWidth(400);
 		review.setTranslateX(230.0f);
 		review.setTranslateY(-70.0f);
@@ -104,6 +124,9 @@ public class UserGUIMethods extends GridPane{
 	 */
 	public Button getLeftBtn(){
 		Button leftscroll = new Button("<");
+		leftscroll.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 15));
+		leftscroll.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
 		leftscroll.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Collections.rotate(imagesList, 1);
@@ -121,6 +144,9 @@ public class UserGUIMethods extends GridPane{
 	 */
 	public Button getRightBtn() {
 		Button rightscroll = new Button(">");
+		rightscroll.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 15));
+		rightscroll.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
 		rightscroll.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Collections.rotate(imagesList, -1);
@@ -139,6 +165,10 @@ public class UserGUIMethods extends GridPane{
 	 */
 	public Button getAddBtn() { //Reads the file
 		Button add = new Button("Add");
+		add.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+		add.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
+		add.setMinSize(85, 20);
 		add.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				Stage getImageStage = new Stage();
@@ -183,6 +213,10 @@ public class UserGUIMethods extends GridPane{
 	 */
 	public Button getRemoveBtn() {
 		Button remove = new Button("Remove");
+		remove.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+		remove.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
+		remove.setMinSize(85, 20);
 		remove.setOnAction(new EventHandler<ActionEvent>(){
 			public void handle(ActionEvent event) {
 				String currentfile=	imagesList.get(0);
@@ -201,7 +235,4 @@ public class UserGUIMethods extends GridPane{
 		return remove;
 	}
 
-
 }
-
-

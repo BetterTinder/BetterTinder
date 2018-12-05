@@ -37,6 +37,7 @@ public class NewAccount extends Setting  {
 		LastName.setMaxWidth(150);
 		TextField Password = new TextField("Enter Password");
 		Password.setMaxWidth(150);
+		
 		/*
         Label username = new Label("Username:");
         Label userFirst = new Label("First Name:");

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -23,7 +24,7 @@ import javafx.scene.text.Text;
  */
 public class Setting extends GridPane  {
 	//label declarations
-	Label age = new Label("Age:");
+	Label age = new Label("Your Age:");
 	Label genPrefLabel = new Label("Gender preference:");
 	Label genIdenLabel = new Label("Gender:");
 	Label location = new Label("Location:");

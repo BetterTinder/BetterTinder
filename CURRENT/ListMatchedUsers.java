@@ -7,6 +7,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class ListMatchedUsers extends GridPane
 {
@@ -79,6 +81,9 @@ public class ListMatchedUsers extends GridPane
 		for (int i = 0; i<matchedUsers.size();i++)
 		{
 			Button button = new Button(matchedUsers.get(i));
+			button.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+			button.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+					+ "-fx-text-fill: white;");
 			List.getChildren().add(button);	
 			UserButtonList.add(button);
 			button.setOnAction(e -> 
@@ -91,11 +96,15 @@ public class ListMatchedUsers extends GridPane
 				getProfile.SetUpFindUser(hbox);
 				rootpane.getChildren().add(getProfile);
 			});
+			
 			Slider reviewSlider = new Slider();
 			setSlider(reviewSlider);
 			Sliders.getChildren().add(reviewSlider);
 			SliderList.add(reviewSlider);
 			Button ReviewButton = new Button("Submit Review");
+			ReviewButton.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+			ReviewButton.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+					+ "-fx-text-fill: white;");
 			ReviewButtons.getChildren().add(ReviewButton);
 			ReviewButtonList.add(ReviewButton);
 			ReviewButton.setOnAction(e->
@@ -109,8 +118,7 @@ public class ListMatchedUsers extends GridPane
 		}
 	}
 
-	private void setRoot(GridPane rootpane, HBox hbox)
-	{
+	private void setRoot(GridPane rootpane, HBox hbox) {
 		rootpane.getChildren().add(List);
 		rootpane.getChildren().add(hbox);
 		rootpane.getChildren().add(Sliders);
