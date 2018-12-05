@@ -1,14 +1,13 @@
 public class Matching_tester {
 
-public static void main(String[] args) {	
-	/*
+public static void main(String[] args) {
 	Matching match = new Matching();
-	UserID userID = new UserID();  
+	String UserID = "Test2";  
 	match.DownloadData();
-	  match.getUserData(userID.getUserID());
+	  match.getUserData(UserID);
 	  match.getPotentialMatches();
 	  match.filterPotentialMatches();
 	  String[][] MatchData = match.MatchUsers();
-	  */
+
   }
 }
