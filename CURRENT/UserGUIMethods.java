@@ -67,23 +67,6 @@ public class UserGUIMethods extends GridPane{
 	}
 	/**
 	 * 
-	 * returns an image of a star for the review
-	 */
-	public ImageView getReviewImage() {
-		ImageView view = new ImageView();
-		image = new Image("star.png");
-		view.setImage(image);
-		view.setFitWidth(25);
-		view.setFitHeight(25);
-		view.setTranslateX(250.0f);
-		view.setTranslateY(-70.0f);
-		view.setScaleX(1);
-		view.setScaleY(1);
-		view.setPreserveRatio(true);
-		return view;
-	}
-	/**
-	 * 
 	 * reads for the review rating and displays it to the profile
 	 */
 	public Text getReviewRating() {
