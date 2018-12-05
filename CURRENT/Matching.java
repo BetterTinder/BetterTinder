@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 
@@ -140,8 +141,13 @@ public class Matching {
 			MatchData[k][1] = Double.toString(PercentMatch);
 			k++;
 			} else {
+				try {
 				MatchData[k][0] = FilteredMatchData[i][0];
 				MatchData[k][1] = Double.toString(PercentMatch);
+				}catch(Exception e){
+					//hope to avoid error bounds
+				}
+				
 				k++;
 			}
 			
