@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -30,7 +31,7 @@ public class LoginScreen extends Pane {
 		System.out.println("Login runnin");
 	}
 
-	LoginScreen(GridPane grid1, NewAccount newAcc) {
+	LoginScreen(GridPane grid1, NewAccount newAcc, Profile profile) {
 		GridPane gridPane = new GridPane();
 		setGrid(gridPane);
 		createLabels();
@@ -39,7 +40,7 @@ public class LoginScreen extends Pane {
 		newAccountButton = new Button("New Account");
 		setBox();
 		controlGrid(gridPane);
-		getSignBtn(grid1);
+		getSignBtn(grid1, profile);
 		getNewAccBtn(grid1, newAcc);
 		//return
 		this.getChildren().add(gridPane);
@@ -122,7 +123,7 @@ public class LoginScreen extends Pane {
  * @param grid1
  * @param profile
  */
-	private void getSignBtn(GridPane grid1) {
+	private void getSignBtn(GridPane grid1, Profile profile) {
 		signInButton.setOnAction(event -> {
 			String userID = new String();
 			String password = new String();
@@ -144,10 +145,7 @@ public class LoginScreen extends Pane {
 					passwordField.clear();
 					System.out.println("Signed In");
 					grid1.getChildren().clear();
-					Manager manager = new Manager();
-					//grid1.getChildren().add(prof);
-				
-					grid1.getChildren().add(manager.InitalizeProfile(grid1));
+					grid1.getChildren().add(profile);
 				}
 				else {
 					createAlert(Alert.AlertType.ERROR, "Try Again!");
