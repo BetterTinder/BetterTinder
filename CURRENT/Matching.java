@@ -119,9 +119,9 @@ public class Matching {
  public String[][] MatchUsers() {
 	 int k = 0;
 	 MatchData = new String[1][2];
-	 double PercentRequired = UserData[0][14]
+	 double PercentRequired = Double.valueOf(UserData[0][14]);
 	 for (int i = 0; i < FilteredMatchData.length; i++) {
-		PercentRequiredPotential = FilteredMatchData[i][14];
+		PercentRequiredPotential = Double.valueOf(FilteredMatchData[i][14]);
 		totalMatchPoints = 0;
 		MatchPoints = 0;
 		for (int j = 3; j < 9; j++) {
