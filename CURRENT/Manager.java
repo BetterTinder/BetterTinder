@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
  */
 public class Manager extends Application{
 	GridPane rootpane = new GridPane();
-	String style = "-fx-background-color: rgba(255, 255, 255, 1);";
+	String background = "-fx-background-color: #52858F";
 	UserID userID = new UserID();
  	
 	public static void main(String[] args) {
@@ -50,7 +51,7 @@ public class Manager extends Application{
 
 		//Resets the pane every time the method is called by the button
 		grid1.getChildren().clear();
-		grid1.setStyle(style);
+		grid1.setStyle(background);
 
 		Button helpBtn = getHelpBtn(grid1);
 
@@ -71,7 +72,10 @@ public class Manager extends Application{
 	 */
 	private Button getHelpBtn(GridPane grid1) {
 		Button helpBtn = new Button("Help");
-		helpBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
+		grid1.setStyle(background);
+		helpBtn.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+		helpBtn.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
 		helpBtn.setMinSize(85, 20);
 		helpBtn.setOnAction(event -> {
 			System.out.println("Help Button");	
@@ -86,7 +90,9 @@ public class Manager extends Application{
 	 */
 	private Button getProfileBtn(GridPane grid1) {
 		Button profileBtn = new Button("My Profile");
-		profileBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
+		profileBtn.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+		profileBtn.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
 		profileBtn.setMinSize(85, 20);
 		profileBtn.setOnAction(event -> {
 			System.out.println("My Profile");
@@ -102,7 +108,9 @@ public class Manager extends Application{
 	 */
 	private Button getFindBtn(GridPane grid1) {
 		Button findBtn = new Button("Find");
-		findBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
+		findBtn.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+		findBtn.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
 		findBtn.setMinSize(85, 20);
 		findBtn.setOnAction(event -> {
 			FindUsers find = new FindUsers(addButtons(grid1),grid1);
@@ -117,7 +125,9 @@ public class Manager extends Application{
 	 */
 	private Button getMatchedBtn(GridPane grid1) {
 		Button matchedBtn = new Button("Matched");
-		matchedBtn.setFont(Font.font("Verdana", FontWeight.LIGHT, 10));
+		matchedBtn.setFont(Font.font("Lucida Bright", FontWeight.LIGHT, 10));
+		matchedBtn.setStyle("-fx-background-color: linear-gradient(#767676, #444545);"
+				+ "-fx-text-fill: white;");
 		matchedBtn.setMinSize(85, 20);
 		matchedBtn.setOnAction(event -> {
 			System.out.println("Matched");
